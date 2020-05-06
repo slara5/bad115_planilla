@@ -33,6 +33,7 @@
 <?php
   echo view('plantilla/navbar');
   echo view('plantilla/sidebar');
+  
 ?>
 
 <div class="content-wrapper">
