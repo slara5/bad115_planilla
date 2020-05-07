@@ -48,19 +48,19 @@ Vagrantfile
 #-------------------------
 # Temporary Files
 #-------------------------
-SitemaPlanilla/writable/cache/*
+SistemaPlanilla/writable/cache/*
 !writable/cache/index.html
 
-SitemaPlanilla/writable/logs/*
+SistemaPlanilla/writable/logs/*
 !writable/logs/index.html
 
-SitemaPlanilla/writable/session/*
+SistemaPlanilla/writable/session/*
 !writable/session/index.html
 
-SitemaPlanilla/writable/uploads/*
+SistemaPlanilla/writable/uploads/*
 !writable/uploads/index.html
 
-SitemaPlanilla/writable/debugbar/*
+SistemaPlanilla/writable/debugbar/*
 
 php_errors.log
 
@@ -75,16 +75,16 @@ user_guide_src/cilexer/pycilexer.egg-info/*
 #-------------------------
 # Test Files
 #-------------------------
-SitemaPlanilla/tests/coverage*
+SistemaPlanilla/tests/coverage*
 
 # Don't save phpunit under version control.
-SitemaPlanilla/phpunit
+SistemaPlanilla/phpunit
 
 #-------------------------
 # Composer
 #-------------------------
-SitemaPlanilla/vendor/
-SitemaPlanilla/composer.lock
+SistemaPlanilla/vendor/
+SistemaPlanilla/composer.lock
 
 #-------------------------
 # IDE / Development Files
