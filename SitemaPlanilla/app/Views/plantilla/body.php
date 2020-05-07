@@ -1,14 +1,21 @@
 
- </div>
+<body class="hold-transition sidebar-mini layout-fixed">
+<div class="wrapper">
+    <?= $navbar ?>
+    <?= $sidebar ?>
 
-<?php
+    <div class="content-wrapper">
+        <?= $breadcrumb ?>
 
-  echo view('plantilla/footer');
-?>
 
+        <section class="content">
+          <div class="container-fluid">
+            <?= $main?>
+          </div>
+        </section>
+    </div>
+    <?= $footer ?>
 </div>
-<!-- ./wrapper -->
-
 <!-- jQuery -->
 <script src="plugins/jquery/jquery.min.js"></script>
 <!-- jQuery UI 1.11.4 -->

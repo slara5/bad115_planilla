@@ -6,7 +6,7 @@ class Dashboard extends BaseController
 {
 	public function index()
 	{
-		return view('index');
+		return crear_plantilla(view('index'));
 	}
 
 	//--------------------------------------------------------------------
