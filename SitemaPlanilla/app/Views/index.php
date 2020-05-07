@@ -70,6 +70,9 @@ echo view('plantilla/plantilla_inicio');
 
     </div>
 
+
+
+
   </div><!-- /.container-fluid -->
 </section>
 
