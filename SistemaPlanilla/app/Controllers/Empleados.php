@@ -13,9 +13,12 @@ class Empleados extends BaseController
         $data = [
             'empleados' => $empleados->get()
         ];
-        return crear_plantilla(view('empleados/index', $data));
+        return crear_plantilla(view('empleados/empleados', $data));
 	}
 
 	//--------------------------------------------------------------------
-	
+	public function nuevo(){
+        
+        return crear_plantilla(view('empleados/nuevo'));
+    }
 }
