@@ -2,7 +2,7 @@
 
 use CodeIgniter\Model;
 
-class MunicipioModel extends Model
+class MunicipiosModel extends Model
 {
     protected $table      = 'MUNICIPIOS';
     protected $primaryKey = 'ID_MUNICIPIO';
@@ -16,4 +16,15 @@ class MunicipioModel extends Model
     protected $validationRules    = [];
     protected $validationMessages = [];
     protected $skipValidation     = false;
+
+
+    function get($id = ''){
+        if($id == '' || $id == []){
+            return $this->findAll();
+        }else if(is_array($id)){
+            return $this->find($id);
+        }else{
+            return [$this->find($id)];
+        }
+    }
 }

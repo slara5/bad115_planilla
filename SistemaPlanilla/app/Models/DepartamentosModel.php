@@ -2,7 +2,7 @@
 
 use CodeIgniter\Model;
 
-class DepartamentoModel extends Model
+class DepartamentosModel extends Model
 {
     protected $table      = 'DEPARTAMENTOS';
     protected $primaryKey = 'ID_DEPARTAMENTO';
@@ -16,4 +16,16 @@ class DepartamentoModel extends Model
     protected $validationRules    = [];
     protected $validationMessages = [];
     protected $skipValidation     = false;
+
+
+    function get($id = ''){
+        if($id == '' || $id == []){
+            return $this->findAll();
+        }else if(is_array($id)){
+            return $this->find($id);
+        }else{
+            return [$this->find($id)];
+        }
+    }
+
 }

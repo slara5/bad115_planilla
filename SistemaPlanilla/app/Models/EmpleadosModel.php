@@ -2,13 +2,12 @@
 
 use CodeIgniter\Model;
 
-class EmpleadoModel extends Model
+class EmpleadosModel extends Model
 {
     protected $table      = 'EMPLEADOS';
     protected $primaryKey = 'ID_EMPLEADO';
 
     protected $returnType     = 'array';
-    protected $useSoftDeletes = true;
 
     protected $allowedFields = ['ID_SUB_SECCION', 'ID_ESTADO', 'ID_ESTADO_CIVIL', 
                                 'ID_AFP', 'ID_PUESTO', 'ID_GENERO','ID_TIPO_CONTRATACION',
@@ -26,4 +25,14 @@ class EmpleadoModel extends Model
     protected $validationRules    = [];
     protected $validationMessages = [];
     protected $skipValidation     = false;
+
+    function get($id = ''){
+        if($id == '' || $id == []){
+            return $this->findAll();
+        }else if(is_array($id)){
+            return $this->find($id);
+        }else{
+            return [$this->find($id)];
+        }
+    }
 }

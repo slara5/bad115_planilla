@@ -2,7 +2,7 @@
 
 use CodeIgniter\Model;
 
-class TipoContratacionModel extends Model
+class TiposContratacionModel extends Model
 {
     protected $table      = 'TIPOS_CONTRATACION';
     protected $primaryKey = 'ID_TIPO_CONTRATACION';
@@ -16,4 +16,14 @@ class TipoContratacionModel extends Model
     protected $validationRules    = [];
     protected $validationMessages = [];
     protected $skipValidation     = false;
+
+    function get($id = ''){
+        if($id == '' || $id == []){
+            return $this->findAll();
+        }else if(is_array($id)){
+            return $this->find($id);
+        }else{
+            return [$this->find($id)];
+        }
+    }
 }

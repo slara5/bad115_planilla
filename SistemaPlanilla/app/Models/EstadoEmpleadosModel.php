@@ -2,7 +2,7 @@
 
 use CodeIgniter\Model;
 
-class EstadoEmpleadoModel extends Model
+class EstadoEmpleadosModel extends Model
 {
     protected $table      = 'ESTADO_EMPLEADOS';
     protected $primaryKey = 'ID_ESTADO';
@@ -16,4 +16,14 @@ class EstadoEmpleadoModel extends Model
     protected $validationRules    = [];
     protected $validationMessages = [];
     protected $skipValidation     = false;
+
+    function get($id = ''){
+        if($id == '' || $id == []){
+            return $this->findAll();
+        }else if(is_array($id)){
+            return $this->find($id);
+        }else{
+            return [$this->find($id)];
+        }
+    }
 }
