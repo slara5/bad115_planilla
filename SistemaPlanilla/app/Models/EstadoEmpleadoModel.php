@@ -2,15 +2,15 @@
 
 use CodeIgniter\Model;
 
-class TiposContratacionModel extends Model
+class EstadoEmpleadoModel extends Model
 {
-    protected $table      = 'TIPOS_CONTRATACION';
-    protected $primaryKey = 'ID_TIPO_CONTRATACION';
+    protected $table      = 'ESTADO_EMPLEADOS';
+    protected $primaryKey = 'ID_ESTADO';
 
     protected $returnType     = 'array';
     protected $useSoftDeletes = false;
 
-    protected $allowedFields = ['NOMBRE_CONTRATACION'];
+    protected $allowedFields = ['NOMBRE_ESTADO', 'AFECTA_CALCULO'];
 
 
     protected $validationRules    = [];
