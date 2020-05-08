@@ -2,20 +2,15 @@
 
 use CodeIgniter\Model;
 
-class AfpsModel extends Model
+class TiposContratacionModel extends Model
 {
-    protected $table      = 'AFPS';
-    protected $primaryKey = 'ID_AFP';
+    protected $table      = 'TIPOS_CONTRATACION';
+    protected $primaryKey = 'ID_TIPO_CONTRATACION';
 
     protected $returnType     = 'array';
     protected $useSoftDeletes = false;
 
-    protected $allowedFields = [
-        'NOMBRE_AFP',
-    'PORCENTAJE_LABORAL',
-    'PORCENTAJE_PATRONAL',
-    'LIMITE_MAXIMO_AFP'
-];
+    protected $allowedFields = ['NOMBRE_CONTRATACION'];
 
 
     protected $validationRules    = [];

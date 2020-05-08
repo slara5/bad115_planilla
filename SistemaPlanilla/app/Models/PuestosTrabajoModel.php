@@ -2,20 +2,15 @@
 
 use CodeIgniter\Model;
 
-class AfpsModel extends Model
+class PuestosTrabajoModel extends Model
 {
-    protected $table      = 'AFPS';
-    protected $primaryKey = 'ID_AFP';
+    protected $table      = 'PUESTOS_TRABAJO';
+    protected $primaryKey = 'ID_PUESTO';
 
     protected $returnType     = 'array';
     protected $useSoftDeletes = false;
 
-    protected $allowedFields = [
-        'NOMBRE_AFP',
-    'PORCENTAJE_LABORAL',
-    'PORCENTAJE_PATRONAL',
-    'LIMITE_MAXIMO_AFP'
-];
+    protected $allowedFields = ['DESCRIPCION_PUESTO','SALARIO_MIN','SALARIO_MAX'];
 
 
     protected $validationRules    = [];

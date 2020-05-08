@@ -2,20 +2,15 @@
 
 use CodeIgniter\Model;
 
-class AfpsModel extends Model
+class ProfesionesModel extends Model
 {
-    protected $table      = 'AFPS';
-    protected $primaryKey = 'ID_AFP';
+    protected $table      = 'PROFESIONES';
+    protected $primaryKey = 'ID_PROFESION_OFICIO';
 
     protected $returnType     = 'array';
     protected $useSoftDeletes = false;
 
-    protected $allowedFields = [
-        'NOMBRE_AFP',
-    'PORCENTAJE_LABORAL',
-    'PORCENTAJE_PATRONAL',
-    'LIMITE_MAXIMO_AFP'
-];
+    protected $allowedFields = ['NOMBRE_PROFESION','ES_OFICIO'];
 
 
     protected $validationRules    = [];

@@ -2,20 +2,15 @@
 
 use CodeIgniter\Model;
 
-class AfpsModel extends Model
+class UnidadesModel extends Model
 {
-    protected $table      = 'AFPS';
-    protected $primaryKey = 'ID_AFP';
+    protected $table      = 'UNIDADES';
+    protected $primaryKey = 'ID_UNIDAD';
 
     protected $returnType     = 'array';
     protected $useSoftDeletes = false;
 
-    protected $allowedFields = [
-        'NOMBRE_AFP',
-    'PORCENTAJE_LABORAL',
-    'PORCENTAJE_PATRONAL',
-    'LIMITE_MAXIMO_AFP'
-];
+    protected $allowedFields = ['NOMBRE_UNIDAD'];
 
 
     protected $validationRules    = [];

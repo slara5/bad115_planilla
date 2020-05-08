@@ -2,20 +2,15 @@
 
 use CodeIgniter\Model;
 
-class AfpsModel extends Model
+class AreasModel extends Model
 {
-    protected $table      = 'AFPS';
-    protected $primaryKey = 'ID_AFP';
+    protected $table      = 'AREAS';
+    protected $primaryKey = 'IDAREA';
 
     protected $returnType     = 'array';
     protected $useSoftDeletes = false;
 
-    protected $allowedFields = [
-        'NOMBRE_AFP',
-    'PORCENTAJE_LABORAL',
-    'PORCENTAJE_PATRONAL',
-    'LIMITE_MAXIMO_AFP'
-];
+    protected $allowedFields = ['ID_DEPARTAMENTO_EMPRESA','NOMBRE_AREA'];
 
 
     protected $validationRules    = [];
