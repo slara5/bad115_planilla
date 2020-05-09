@@ -35,4 +35,8 @@ class EmpleadosModel extends Model
             return [$this->find($id)];
         }
     }
+
+    function get_last_empleado(){
+        return $this->orderBy('FECHA_HORA_CREACION_EMPLEADO', 'desc')->first();
+    }
 }
