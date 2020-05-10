@@ -8,10 +8,12 @@ function crear_plantilla($main = ''){
 }
 
 function crear_head(
-    $titulo = 'Sin Backup'
+    $titulo = 'Sin Backup',
+    $estilos    = []
 ){
     $datos = [
         'titulo' => $titulo,
+        'estilos'=> $estilos,
     ];
     return view('plantilla/head', $datos);
 }
@@ -20,6 +22,7 @@ function crear_body(
         $main = '',
         $sidebar = '',
         $breadcrumb = '',
+        $scripts = [],
         $navbar = '',
         $footer = ''
     ){
@@ -35,6 +38,7 @@ function crear_body(
         'sidebar'    => $sidebar,
         'main'       => $main,
         'footer'     => $footer,
+        'scripts'    => $scripts,
     ];
     return view('plantilla/body', $datos);
 }

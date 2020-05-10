@@ -63,6 +63,11 @@
 
     })
   </script>
+
+  <script src="<?= base_url() ?>/js/validaciones.js"></script>
+  <?php foreach ($scripts as $index => $js) : ?>
+    <script src="<?= base_url() . '/js/' . $js ?>"></script>
+  <?php endforeach ?>
 </body>
 
 </html>

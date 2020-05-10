@@ -18,7 +18,8 @@ use App\Models\SubSeccionesModel;
 
 class Empleados extends BaseController
 {
-    
+    protected $nombre_clase = 'empleados';
+
     public function index()
     {
         $empleados = new EmpleadosModel();
@@ -31,7 +32,7 @@ class Empleados extends BaseController
     //--------------------------------------------------------------------
     public function nuevo()
     {
-
+        $nombre_metodo = 'nuevo';
 
         $afps               = (new AfpsModel())->get();
         $empleados          = (new EmpleadosModel())->get();
@@ -50,7 +51,7 @@ class Empleados extends BaseController
         if ($this->request->getMethod() == 'post') {
             $post = true;
             if(!$this->validate([
-                'nombre_primero'   => 'required',
+                'nombre_primero'   => 'required|string',
                 'nombre_segundo'   => 'string',
                 'apellido_paterno'   => 'required',
                 'apellido_materno'   => 'required',
@@ -71,7 +72,7 @@ class Empleados extends BaseController
                 'horario_trabajo'   => 'string',
 
             ])){ //error
-
+                
                 $exito_guardar = false;
             }else{ //guardar
                 (new EmpleadosModel())->save([
@@ -114,6 +115,21 @@ class Empleados extends BaseController
             }
         }
 
+        $ruta_breadcrumb = [
+            [
+                'nombre' => 'Dashboard',
+                'url'    => base_url().'/dashboard', 
+            ],
+            [
+                'nombre' => ucfirst($this->nombre_clase),
+                'url'    => base_url().'/'.$this->nombre_clase, 
+            ],
+            [
+                'nombre' => $nombre_metodo,
+                'url'    => base_url().'/'.$this->nombre_clase.'/'.$nombre_metodo, 
+            ],
+        ];
+
         $data = [
             'afps'               => $afps,
             'empleados'          => $empleados,
@@ -129,7 +145,13 @@ class Empleados extends BaseController
             'exito' => $exito_guardar,
             'post'  => $post,
         ];
-        return crear_plantilla(view('empleados/nuevo', $data));
+        return crear_head('Nuevo Empleado')
+            .crear_body(
+                view('empleados/nuevo', $data),               //main
+                '',                                           //sidebar
+                crear_breadcrumb('Nuevo Empleado', $ruta_breadcrumb),   //breadcrumb
+                ['empleados/nuevo.js']                        //scripts
+            );
     }
 
     protected function get_codigo_empleado(){

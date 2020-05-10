@@ -29,4 +29,7 @@
   <!-- <link rel="stylesheet" href="css/summernote/summernote-bs4.css"> -->
   <!-- Google Font: Source Sans Pro -->
   <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
+  <?php foreach($estilos as $index => $css): ?>
+    <link rel="stylesheet" href="<?= base_url().'/css/'.$css ?>">
+  <?php endforeach?>
 </head>
