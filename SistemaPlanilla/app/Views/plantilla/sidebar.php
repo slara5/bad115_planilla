@@ -2,7 +2,7 @@
  <aside class="main-sidebar sidebar-dark-primary elevation-4">
     <!-- Brand Logo -->
     <a href="#" class="brand-link">
-      <img src="<?= base_url()?>/img/sin_backup.png" alt="AdminLTE Logo" class="brand-image img-circle "
+      <img src="<?= base_url()?>/img/sin_backup_logo.png" alt="AdminLTE Logo" class="brand-image img-circle "
            style="opacity: .9" >
       <span class="brand-text font-weight-bold">Sin Backup</span>
     </a>

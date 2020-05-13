@@ -57,7 +57,7 @@
           <div class="icon">
             <i class="fas fa-users-cog"></i>
           </div>
-          <a href="#" class="small-box-footer"><i class="fas fa-arrow-circle-right"></i></a>
+          <a href="<?= base_url() ?>/usuarios" class="small-box-footer"><i class="fas fa-arrow-circle-right"></i></a>
         </div>
       </div>
       <!-- ./col -->
