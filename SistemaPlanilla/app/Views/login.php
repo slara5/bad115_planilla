@@ -17,23 +17,25 @@
   <link rel="stylesheet" href="plugins/adminlte.min.css">
   <!-- Google Font: Source Sans Pro -->
   <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
+  <!-- Estilo -->
+  <link rel="stylesheet" href="css/estilo.css">
 </head>
-<body class="hold-transition login-page">
+<body class="hold-transition login-page" id="loginbody">
 <div class="login-box">
   <div class="login-logo">
-    <a href="#"><b>SIGPLA</b> by "Sin Backup"</a>
+    <a href="#" class="text-white"><b>SIGPLA</b> by "Sin Backup"</a>
   </div>
   <!-- /.login-logo -->
   <div class="card">
     <div class="card-body login-card-body">
-      <p class="login-box-msg">Inicio de Sesión</p>
+      <h5 class="login-box-msg">Inicio de Sesión</h5>
 
       <form action="<?= $url.'/dashboard' ?>" method="post">
         <div class="input-group mb-3">
-          <input type="email" class="form-control" placeholder="Email">
+          <input type="email" class="form-control" placeholder="Usuario">
           <div class="input-group-append">
             <div class="input-group-text">
-              <span class="fas fa-envelope"></span>
+              <span class="fas fa-user"></span>
             </div>
           </div>
         </div>
@@ -50,13 +52,13 @@
             <div class="icheck-primary">
               <input type="checkbox" id="remember">
               <label for="remember">
-                Recuerdame
+                Recuérdame
               </label>
             </div>
           </div>
           <!-- /.col -->
           <div class="col-4">
-            <button type="submit" class="btn btn-primary btn-block">Log in</button>
+            <button type="submit" class="btn btn-primary btn-block btn-flat">Log in</button>
           </div>
           <!-- /.col -->
         </div>
@@ -64,7 +66,7 @@
 
 
       <p class="mb-1">
-        <a href="#">Olvide mi contraseña</a>
+        <a href="#">Olvidé mi contraseña</a>
       </p>
     </div>
     <!-- /.login-card-body -->
