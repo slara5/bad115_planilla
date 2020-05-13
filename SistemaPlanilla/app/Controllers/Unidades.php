@@ -20,6 +20,27 @@ class Unidades extends BaseController
         return crear_plantilla(view('empresa/unidades/unidades', $data));
     }
 
+    public function view($par ='gerencia')
+    {
+        $unidades = new UnidadesModel();
+
+        $data['unidades'] = $unidades->like('NOMBRE_UNIDAD',strtoupper($par))->findAll();
+        return view('empresa/unidades/busqueda', $data);
+    }
+    public function delete($id = NULL)
+    {
+        $unidades = new UnidadesModel();
+     $unidades->delete($id);
+     $data = [
+        'unidades' => $unidades->get()
+    ];
+
+ return view('empresa/unidades/busqueda', $data);;
+
+  
+    }
+
+
     //--------------------------------------------------------------------
     public function nuevo()
     {
