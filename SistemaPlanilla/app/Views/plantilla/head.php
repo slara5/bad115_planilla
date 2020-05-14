@@ -6,8 +6,9 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <title><?= $titulo ?></title>
 
-<!-- sweet alert -->
-  <link rel="stylesheet" href="<?= base_url() ?>/plugins/package/dist/sweetalert2.css">
+  <script src="<?= base_url() ?>/plugins/swal2/sweetalert2.min.js"></script>
+  <script src="<?= base_url() ?>/plugins/jquery/jquery.min.js"></script>
+   <link rel="stylesheet" href="<?= base_url() ?>/plugins/swal2/sweetalert2.min.css">
   <!-- Tell the browser to be responsive to screen width -->
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <!-- Font Awesome -->

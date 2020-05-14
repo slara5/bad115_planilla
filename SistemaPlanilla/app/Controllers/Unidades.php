@@ -25,7 +25,7 @@ class Unidades extends BaseController
         $unidades = new UnidadesModel();
 
         $data['unidades'] = $unidades->like('NOMBRE_UNIDAD',strtoupper($par))->findAll();
-        return view('empresa/unidades/busqueda', $data);
+        return crear_plantilla(view('empresa/unidades/unidades', $data));
     }
     public function delete($id = NULL)
     {
@@ -35,7 +35,6 @@ class Unidades extends BaseController
         'unidades' => $unidades->get()
     ];
 
- return view('empresa/unidades/busqueda', $data);;
 
   
     }
