@@ -8,22 +8,24 @@ use App\Models\EstadoEmpleadosModel;
 class Estado_empleados extends BaseController
 {
 
-	protected function data_vista($operacion = '', $exito = false, $estados = []){
+	protected function data_vista($operacion = '', $exito = false, $estados = [], $termino = ''){
 		$estado_empleados  = ($estados == [])? (new EstadoEmpleadosModel())->get(): $estados;
 
 		$data = [
 			'estado_empleados' => $estado_empleados,
 			'operacion'		=> $operacion,
 			'exito' 		=> $exito,
+			'nombre_obj'    => 'Estado Empleado',
+			'termino'		=> $termino,
 			'url_guardar'	=> base_url() . '/estado_empleados/guardar',
 			'url_eliminar'  => base_url() . '/estado_empleados/eliminar',
 			'url_buscar'    => base_url() . '/estado_empleados/buscar',
 		];
-		return crear_head('Estados Civiles')
+		return crear_head('Estados Empleados')
 			. crear_body(
 				view('estado_empleados/estado_empleados', $data),               //main
 				'',                                           //sidebar
-				crear_breadcrumb('Estado Empleados', crear_ruta_breadcrumb('Estado_empleado')),   //breadcrumb
+				crear_breadcrumb('Estado Empleados', crear_ruta_breadcrumb('Estado_empleados')),   //breadcrumb
 				['estado_empleados/estado_empleados.js']
 			);
 	}
@@ -41,7 +43,7 @@ class Estado_empleados extends BaseController
 				'NOMBRE_ESTADO'   => 'required|string'
 			])) {
 				(new EstadoEmpleadosModel())->save([
-					'ID_ESTADO'        => $this->request->getVar('ID_GENERO'),
+					'ID_ESTADO'        => $this->request->getVar('ID_ESTADO'),
 					'NOMBRE_ESTADO'    => $this->request->getVar('NOMBRE_ESTADO'),
 					'AFECTA_CALCULO'   => $this->request->getVar('AFECTA_CALCULO'),
 				]);
@@ -87,7 +89,7 @@ class Estado_empleados extends BaseController
 									->findAll();
 				}
 			}
-			return $this->data_vista('buscar', $exito, $estado_empleados_buscados);
+			return $this->data_vista('buscar', $exito, $estado_empleados_buscados, $termino);
 		} else {
 			return redirect()->to(base_url() . '/estado_empleados');
 		}

@@ -8,13 +8,15 @@ use App\Models\EstadosCivilModel;
 class Estado_civil extends BaseController
 {
 
-	protected function data_vista($operacion = '', $exito = false, $estados = []){
+	protected function data_vista($operacion = '', $exito = false, $estados = [], $termino = ''){
 		$estados_civil  = ($estados == [])? (new EstadosCivilModel())->get(): $estados;
 
 		$data = [
 			'estados_civil' => $estados_civil,
 			'operacion'		=> $operacion,
 			'exito' 		=> $exito,
+			'nombre_obj'    => 'Estado Civil',
+			'termino'       => $termino,
 			'url_guardar'	=> base_url() . '/estado_civil/guardar',
 			'url_eliminar'  => base_url() . '/estado_civil/eliminar',
 			'url_buscar'    => base_url() . '/estado_civil/buscar',
@@ -83,7 +85,7 @@ class Estado_civil extends BaseController
 									->findAll();
 				}
 			}
-			return $this->data_vista('buscar', $exito, $estados_buscados);
+			return $this->data_vista('buscar', $exito, $estados_buscados, $termino);
 		} else {
 			return redirect()->to(base_url() . '/estado_civil');
 		}

@@ -51,10 +51,10 @@
             <div class="card-body">
                 <div class="row mb-3">
                     <div class="col-4">
-                        <button type="button" class="btn  btn-success col-8" data-toggle="modal" data-target="#estadoEmpleadosModal" onclick="limpiar()">Nuevo</button>
+                        <button type="button" class="btn  btn-success col-8" data-toggle="modal" data-target="#tiposContratacionModel" onclick="limpiar()">Nuevo</button>
                     </div>
                     <div class="col-8">
-                        <form class="mr-0 ml-auto" action="<?= $url_buscar ?>" method="post">
+                        <form class="mr-0 ml-auto" action="<?= $url_buscar?>" method="post">
                             <div class="input-group input-group-md">
                                 <input name="termino" class="form-control form-control-navbar" type="search" placeholder="Buscar" aria-label="Search">
                                 <div class="input-group-append">
@@ -66,34 +66,28 @@
                         </form>
                     </div>
                 </div>
-                <table id="" class="table table-bordered table-hover" >
+                <table id="" class="table table-bordered table-hover">
                     <thead>
                         <tr>
                             <th>#</th>
                             <th>Nombre</th>
-                            <th>Afecta Planilla?</th>
                             <th>Acciones</th>
                         </tr>
                     </thead>
                     <tbody>
-                        <?php foreach ($estado_empleados as $index => $estado) : ?>
+                        <?php foreach ($tipos_contratacion as $index => $tipos) : ?>
                             <tr>
                                 <td><?= $index + 1 ?></td>
-                                <td><?= $estado['NOMBRE_ESTADO'] ?></td>
-                                <?php if($estado['AFECTA_CALCULO'] == 1): ?>
-                                    <td align="center"><b class="badge-pill badge-success h5">SI</b></td>
-                                <?php else:?>
-                                    <td align="center"><b class="badge-pill badge-dark h5">NO</b></td>
-                                <?php endif?>
+                                <td><?= $tipos['NOMBRE_CONTRATACION']?></td>
                                 <td class="row d-flex justify-content-around">
-                                    <form action="<?= $url_eliminar ?>" method="post" class=" col-5">
-                                        <?= csrf_field() ?>
-                                        <input type="hidden" name="ID_ESTADO" value="<?= $estado['ID_ESTADO'] ?>">
+                                    <form action="<?= $url_eliminar?>" method="post" class=" col-5">
+                                    <?= csrf_field() ?>
+                                    <input type="hidden" name="ID_TIPO_CONTRATACION" value="<?=$tipos['ID_TIPO_CONTRATACION'] ?>">
                                         <button class="btn btn-danger  btn-block">Eliminar</button>
                                     </form>
                                     <button class="btn btn-primary col-5 btn-sm" 
-                                    onclick="editar_estado(<?= $estado['ID_ESTADO'] ?>, 
-                                    '<?= $estado['NOMBRE_ESTADO'] ?>', <?= $estado['AFECTA_CALCULO'] ?>)" data-toggle="modal" data-target="#estadoEmpleadosModal">Editar</button>
+                                    onclick="editar_estado(<?= $tipos['ID_TIPO_CONTRATACION'] ?>, '<?= $tipos['NOMBRE_CONTRATACION'] ?>')" 
+                                    data-toggle="modal" data-target="#tiposContratacionModel">Editar</button>
                                 </td>
                             </tr>
                         <?php endforeach; ?>
@@ -102,7 +96,6 @@
                         <tr>
                             <th>#</th>
                             <th>Nombre</th>
-                            <th>Afecta Planilla?</th>
                             <th>Acciones</th>
                         </tr>
                     </tfoot>
@@ -115,32 +108,25 @@
 </div>
 
 <!-- MODALES -->
-<div class="modal" id="estadoEmpleadosModal" tabindex="-1" role="dialog" aria-labelledby="estadoEmpleadosModalLabel" aria-hidden="true">
+<div class="modal" id="tiposContratacionModel" tabindex="-1" role="dialog" aria-labelledby="tiposContratacionModelLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="estadoEmpleadosModalLabel"><?= $nombre_obj?></h5>
+                <h5 class="modal-title" id="tiposContratacionModelLabel"><?= $nombre_obj?></h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
             <div class="modal-body">
                 <form action="<?= $url_guardar ?>" method="post">
-                    <?= csrf_field() ?>
-                    <input type="hidden" name="ID_ESTADO" id="ID_ESTADO">
+                     <?= csrf_field() ?>
+                    <input type="hidden" name="ID_TIPO_CONTRATACION" id="ID_TIPO_CONTRATACION">
                     <div class="form-group">
                         <label for="">Nombre de <?= $nombre_obj?></label>
-                        <input name="NOMBRE_ESTADO" id="NOMBRE_ESTADO" onkeyup="validar_nombre(this)" onblur="validar_nombre(this)" type="text" class="form-control" id="" placeholder="Nombre de <?= $nombre_obj?>">
+                        <input name="NOMBRE_CONTRATACION" id="NOMBRE_CONTRATACION" onkeyup="validar_nombre(this)" onblur="validar_nombre(this)" type="text" class="form-control" id="" placeholder="Nombre de <?= $nombre_obj?>">
                         <div class="invalid-feedback" style="display:none">
                             El nombre no debe comenzar con números ni caracteres especiales
                         </div>
-                    </div>
-                    <div class="form-group">
-                        <label for="">Afecta Calculo en Planilla</label>
-                        <select name="AFECTA_CALCULO" id="AFECTA_CALCULO" class="form-control">
-                            <option value="1">SI</option>
-                            <option value="0">NO</option>
-                        </select>
                     </div>
                     <button id="btn_submit" disabled type="submit" class="btn btn-success btn-block">Guardar</button>
                 </form>

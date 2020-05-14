@@ -8,22 +8,24 @@ use App\Models\GenerosModel;
 class Generos extends BaseController
 {
 
-	protected function data_vista($operacion = '', $exito = false, $estados = []){
-		$generos  = ($estados == [])? (new GenerosModel())->get(): $estados;
+	protected function data_vista($operacion = '', $exito = false, $generos = [], $termino = ''){
+		$generos  = ($generos == [])? (new GenerosModel())->get(): $generos;
 
 		$data = [
 			'generos'       => $generos,
 			'operacion'		=> $operacion,
 			'exito' 		=> $exito,
+			'nombre_obj'    => 'Género',
+			'termino'       => $termino,
 			'url_guardar'	=> base_url() . '/generos/guardar',
 			'url_eliminar'  => base_url() . '/generos/eliminar',
 			'url_buscar'    => base_url() . '/generos/buscar',
 		];
-		return crear_head('Estados Civiles')
+		return crear_head('Géneros')
 			. crear_body(
 				view('generos/generos', $data),               //main
 				'',                                           //sidebar
-				crear_breadcrumb('Generos', crear_ruta_breadcrumb('Generos')),   //breadcrumb
+				crear_breadcrumb('Géneros', crear_ruta_breadcrumb('Generos')),   //breadcrumb
 				['generos/generos.js']
 			);
 	}
@@ -83,7 +85,7 @@ class Generos extends BaseController
 									->findAll();
 				}
 			}
-			return $this->data_vista('buscar', $exito, $generos_buscados);
+			return $this->data_vista('buscar', $exito, $generos_buscados, $termino);
 		} else {
 			return redirect()->to(base_url() . '/generos');
 		}
