@@ -259,7 +259,7 @@
         <!-- /.card-body -->
 
         <div class="card-footer">
-            <button id="btn_submit" type="submit" class="btn btn-primary col-10 offset-1" disabled>Crear Empleado</button>
+            <button id="btn_submit" type="button" class="btn btn-primary col-10 offset-1" disabled onclick="submit(this,18)">Crear Empleado</button>
         </div>
     </form>
 </div>

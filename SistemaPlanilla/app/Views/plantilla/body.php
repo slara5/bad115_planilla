@@ -51,6 +51,15 @@
   <script src="<?= base_url() ?>/plugins/dashboard.js"></script>
   <!-- AdminLTE for demo purposes -->
   <script src="<?= base_url() ?>/plugins/demo.js"></script>
+  <!-- sweet alert -->
+  <script src="<?= base_url() ?>/plugins/package/dist/sweetalert2.min.js"></script>
+
+  <!-- DataTables -->
+  <script src="<?= base_url() ?>/plugins/datatables/jquery.dataTables.min.js"></script>
+  <script src="<?= base_url() ?>/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js"></script>
+  <script src="<?= base_url() ?>/plugins/datatables-responsive/js/dataTables.responsive.min.js"></script>
+  <script src="<?= base_url() ?>/plugins/datatables-responsive/js/responsive.bootstrap4.min.js"></script>
+
   <script>
     $(function() {
       //Initialize Select2 Elements
@@ -60,9 +69,18 @@
         format: 'DD/MM/YYYY',
       });
 
-
+      $('.table').DataTable({
+        "paging": false,
+        "lengthChange": false,
+        "searching": false,
+        "ordering": true,
+        "info": false,
+        "autoWidth": false,
+        "responsive": true,
+      });
     })
   </script>
+
 
   <script src="<?= base_url() ?>/js/validaciones.js"></script>
   <?php foreach ($scripts as $index => $js) : ?>

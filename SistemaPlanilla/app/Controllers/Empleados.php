@@ -50,7 +50,7 @@ class Empleados extends BaseController
 
         if ($this->request->getMethod() == 'post') {
             $post = true;
-            if(!$this->validate([
+            if (!$this->validate([
                 'nombre_primero'   => 'required|string',
                 'nombre_segundo'   => 'string',
                 'apellido_paterno'   => 'required',
@@ -71,10 +71,10 @@ class Empleados extends BaseController
                 'telefono'   => 'string',
                 'horario_trabajo'   => 'string',
 
-            ])){ //error
-                
+            ])) { //error
+
                 $exito_guardar = false;
-            }else{ //guardar
+            } else { //guardar
                 (new EmpleadosModel())->save([
                     'ID_SUB_SECCION'        => $this->request->getVar(strtolower('ID_SUB_SECCION')),
                     'ID_ESTADO'             => $this->request->getVar(strtolower('ID_ESTADO')),
@@ -108,27 +108,14 @@ class Empleados extends BaseController
                     'ID_EMPLEADO_JEFE'      => $this->request->getVar(strtolower('ID_EMPLEADO_JEFE')),
                     'FECHA_RETIRO'          => '',
                     'HORARIO_TRABAJO'       => $this->request->getVar(strtolower('HORARIO_TRABAJO')),
-                    'ID_USUARIO_CREO_EMPLEADO'      => 1, 
+                    'ID_USUARIO_CREO_EMPLEADO'      => 1,
                     'FECHA_HORA_CREACION_EMPLEADO'  => date('Y-m-d H:i:s'),
                 ]);
                 $exito_guardar = true;
             }
         }
 
-        $ruta_breadcrumb = [
-            [
-                'nombre' => 'Dashboard',
-                'url'    => base_url().'/dashboard', 
-            ],
-            [
-                'nombre' => ucfirst($this->nombre_clase),
-                'url'    => base_url().'/'.$this->nombre_clase, 
-            ],
-            [
-                'nombre' => $nombre_metodo,
-                'url'    => base_url().'/'.$this->nombre_clase.'/'.$nombre_metodo, 
-            ],
-        ];
+        $ruta_breadcrumb = crear_ruta_breadcrumb($this->nombre_clase, $nombre_metodo);
 
         $data = [
             'afps'               => $afps,
@@ -146,7 +133,7 @@ class Empleados extends BaseController
             'post'  => $post,
         ];
         return crear_head('Nuevo Empleado')
-            .crear_body(
+            . crear_body(
                 view('empleados/nuevo', $data),               //main
                 '',                                           //sidebar
                 crear_breadcrumb('Nuevo Empleado', $ruta_breadcrumb),   //breadcrumb
@@ -154,13 +141,14 @@ class Empleados extends BaseController
             );
     }
 
-    protected function get_codigo_empleado(){
+    protected function get_codigo_empleado()
+    {
         $cod_actual = ((new EmpleadosModel())->get_last_empleado())['CODIGO_EMPLEADO'];
         $cod_empleado = strval(intval($cod_actual) + 1);
-        $ceros = ''; 
-        for ($i=strlen($cod_empleado); $i < 4; $i++) { 
-            $ceros = $ceros.'0';
+        $ceros = '';
+        for ($i = strlen($cod_empleado); $i < 4; $i++) {
+            $ceros = $ceros . '0';
         }
-        return $ceros.$cod_empleado;
+        return $ceros . $cod_empleado;
     }
 }

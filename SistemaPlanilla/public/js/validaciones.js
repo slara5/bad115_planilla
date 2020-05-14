@@ -1,3 +1,14 @@
+/*
+VALIDACIONES:
+    -validar_string(input)
+    -validar_string_formato(input, formato, separador, numeros=true)
+    -validar_string_con_longitud(input, longitud, numeros=false)
+    -validar_numero(input, min = 0, max = Infinity)
+    -validar_nombre(input)
+    -validar_fecha(input)  //formato dd/mm/aaaa
+    -validar_correo(input)
+*/ 
+
 function validar_string(input) {
     if (input.value.trim() != "") {
         valido(input);

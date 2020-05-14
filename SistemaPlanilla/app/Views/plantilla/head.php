@@ -7,12 +7,15 @@
   <title><?= $titulo ?></title>
 
 <!-- sweet alert -->
-  <script src="<?= base_url() ?>/plugins/package/dist/sweetalert2.min.js"></script>
   <link rel="stylesheet" href="<?= base_url() ?>/plugins/package/dist/sweetalert2.css">
   <!-- Tell the browser to be responsive to screen width -->
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <!-- Font Awesome -->
   <link rel="stylesheet" href="<?= base_url() ?>/plugins/fontawesome-free/css/all.min.css">
+
+  <!-- DataTables -->
+  <link rel="stylesheet" href="<?= base_url() ?>/plugins/datatables-bs4/css/dataTables.bootstrap4.min.css">
+  <link rel="stylesheet" href="<?= base_url() ?>/plugins/datatables-responsive/css/responsive.bootstrap4.min.css">
 
   <!-- Tempusdominus Bbootstrap 4 -->
   <link rel="stylesheet" href="<?= base_url() ?>/plugins/tempusdominus-bootstrap-4/css/tempusdominus-bootstrap-4.min.css">
