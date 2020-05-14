@@ -8,8 +8,9 @@ use App\Models\EstadosCivilModel;
 class Estado_civil extends BaseController
 {
 
-	protected function data_vista($operacion = '', $exito = false, $estados = [], $termino = ''){
-		$estados_civil  = ($estados == [])? (new EstadosCivilModel())->get(): $estados;
+	protected function data_vista($operacion = '', $exito = false, $estados = [], $termino = '')
+	{
+		$estados_civil  = ($estados == []) ? (new EstadosCivilModel())->get() : $estados;
 
 		$data = [
 			'estados_civil' => $estados_civil,
@@ -47,11 +48,10 @@ class Estado_civil extends BaseController
 					'NOMBRE_ESTADO_CIVIL' => $this->request->getVar('NOMBRE_ESTADO_CIVIL')
 				]);
 				$exito = true;
-			} 
+			}
 			return $this->data_vista('guardar', $exito);
-		} else {
-			return redirect()->to(base_url() . '/estado_civil');
 		}
+		return redirect()->to(base_url() . '/estado_civil');
 	}
 
 	public function eliminar()
@@ -63,31 +63,31 @@ class Estado_civil extends BaseController
 			])) {
 				(new EstadosCivilModel())->where('ID_ESTADO_CIVIL', $this->request->getVar('ID_ESTADO_CIVIL'))->delete();
 				$exito = true;
-			} 
+			}
 			return $this->data_vista('eliminar', $exito);
-		} else {
-			return redirect()->to(base_url() . '/estado_civil');
 		}
+		return redirect()->to(base_url() . '/estado_civil');
 	}
 
-	public function buscar(){
+	public function buscar()
+	{
 		if ($this->request->getMethod() == 'post') {
 			$exito = false;
 			$estados_buscados = [];
+			$termino = '';
 			if ($this->validate([
 				'termino'   => 'required|string'
 			])) {
-				$exito = true;
 				$termino = trim($this->request->getVar('termino'));
-				if($termino != ''){
-				$estados_buscados = (new EstadosCivilModel())
-									->like('NOMBRE_ESTADO_CIVIL', $termino)
-									->findAll();
+				if ($termino != '') {
+					$estados_buscados = (new EstadosCivilModel())
+						->like('NOMBRE_ESTADO_CIVIL', $termino)
+						->findAll();
 				}
+				$exito = (count($estados_buscados) == 0) ? false : true;
 			}
 			return $this->data_vista('buscar', $exito, $estados_buscados, $termino);
-		} else {
-			return redirect()->to(base_url() . '/estado_civil');
 		}
+		return redirect()->to(base_url() . '/estado_civil');
 	}
 }

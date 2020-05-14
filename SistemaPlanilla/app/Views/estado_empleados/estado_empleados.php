@@ -2,14 +2,14 @@
     <?php if ($exito) : ?>
         <div class="alert alert-success alert-dismissible">
             <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
-            <h5><i class="icon fas fa-check"></i> <?= $nombre_obj?> Guardado!</h5>
-            Se ha guardado el <?= $nombre_obj?> con exito
+            <h5><i class="icon fas fa-check"></i> <?= $nombre_obj ?> Guardado!</h5>
+            Se ha guardado el <?= $nombre_obj ?> con exito
         </div>
     <?php else : ?>
         <div class="alert alert-danger alert-dismissible">
             <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
-            <h5><i class="icon fas fa-ban"></i> ERROR AL GUARDAR <?= strtoupper($nombre_obj)?>!</h5>
-            Ha ocurrido un problema al guardar <?= $nombre_obj?>
+            <h5><i class="icon fas fa-ban"></i> ERROR AL GUARDAR <?= strtoupper($nombre_obj) ?>!</h5>
+            Ha ocurrido un problema al guardar <?= $nombre_obj ?>
             <?= \Config\Services::validation()->listErrors(); ?>
         </div>
     <?php endif ?>
@@ -18,12 +18,12 @@
     <?php if ($exito) : ?>
         <div class="alert alert-success alert-dismissible">
             <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
-            <h5><i class="icon fas fa-check"></i> <?= $nombre_obj?> eliminado con exito</h5>
+            <h5><i class="icon fas fa-check"></i> <?= $nombre_obj ?> eliminado con exito</h5>
         </div>
     <?php else : ?>
         <div class="alert alert-danger alert-dismissible">
             <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
-            <h5><i class="icon fas fa-ban"></i> ERROR AL ELIMINAR <?= strtoupper($nombre_obj)?>!</h5>
+            <h5><i class="icon fas fa-ban"></i> ERROR AL ELIMINAR <?= strtoupper($nombre_obj) ?>!</h5>
         </div>
     <?php endif ?>
 <?php endif ?>
@@ -34,9 +34,9 @@
             <h5><i class="icon fas fa-check"></i> RESULTADOS DE BUSQUEDA: <?= strtoupper($termino) ?> </h5>
         </div>
     <?php else : ?>
-        <div class="alert alert-danger alert-dismissible">
+        <div class="alert alert-warning alert-dismissible">
             <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
-            <h5><i class="icon fas fa-ban"></i> ALGO HA SALIDO MAL EN LA BUSQUEDA!</h5>
+            <h5><i class="icon fas fa-exclamation-triangle"></i> NO SE ENCONTRARON COINCIDENCIAS</h5>
         </div>
     <?php endif ?>
 <?php endif ?>
@@ -45,7 +45,7 @@
     <div class="col-12">
         <div class="card">
             <div class="card-header">
-                <h2 class="card-title"><b><?= $nombre_obj?></b></h2>
+                <h2 class="card-title"><b><?= $nombre_obj ?></b></h2>
             </div>
             <!-- /.card-header -->
             <div class="card-body">
@@ -66,7 +66,7 @@
                         </form>
                     </div>
                 </div>
-                <table id="" class="table table-bordered table-hover" >
+                <table id="" class="table table-bordered table-hover">
                     <thead>
                         <tr>
                             <th>#</th>
@@ -80,19 +80,18 @@
                             <tr>
                                 <td><?= $index + 1 ?></td>
                                 <td><?= $estado['NOMBRE_ESTADO'] ?></td>
-                                <?php if($estado['AFECTA_CALCULO'] == 1): ?>
+                                <?php if ($estado['AFECTA_CALCULO'] == 1) : ?>
                                     <td align="center"><b class="badge-pill badge-success h5">SI</b></td>
-                                <?php else:?>
+                                <?php else : ?>
                                     <td align="center"><b class="badge-pill badge-dark h5">NO</b></td>
-                                <?php endif?>
+                                <?php endif ?>
                                 <td class="row d-flex justify-content-around">
                                     <form action="<?= $url_eliminar ?>" method="post" class=" col-5">
                                         <?= csrf_field() ?>
                                         <input type="hidden" name="ID_ESTADO" value="<?= $estado['ID_ESTADO'] ?>">
                                         <button class="btn btn-danger  btn-block">Eliminar</button>
                                     </form>
-                                    <button class="btn btn-primary col-5 btn-sm" 
-                                    onclick="editar_estado(<?= $estado['ID_ESTADO'] ?>, 
+                                    <button class="btn btn-primary col-5 btn-sm" onclick="editar_estado(<?= $estado['ID_ESTADO'] ?>, 
                                     '<?= $estado['NOMBRE_ESTADO'] ?>', <?= $estado['AFECTA_CALCULO'] ?>)" data-toggle="modal" data-target="#estadoEmpleadosModal">Editar</button>
                                 </td>
                             </tr>
@@ -119,7 +118,7 @@
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="estadoEmpleadosModalLabel"><?= $nombre_obj?></h5>
+                <h5 class="modal-title" id="estadoEmpleadosModalLabel"><?= $nombre_obj ?></h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
@@ -129,8 +128,8 @@
                     <?= csrf_field() ?>
                     <input type="hidden" name="ID_ESTADO" id="ID_ESTADO">
                     <div class="form-group">
-                        <label for="">Nombre de <?= $nombre_obj?></label>
-                        <input name="NOMBRE_ESTADO" id="NOMBRE_ESTADO" onkeyup="validar_nombre(this)" onblur="validar_nombre(this)" type="text" class="form-control" id="" placeholder="Nombre de <?= $nombre_obj?>">
+                        <label for="">Nombre de <?= $nombre_obj ?></label>
+                        <input name="NOMBRE_ESTADO" id="NOMBRE_ESTADO" onkeyup="validar_nombre(this)" onblur="validar_nombre(this)" type="text" class="form-control" id="" placeholder="Nombre de <?= $nombre_obj ?>">
                         <div class="invalid-feedback" style="display:none">
                             El nombre no debe comenzar con números ni caracteres especiales
                         </div>

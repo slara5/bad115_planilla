@@ -8,15 +8,16 @@ use App\Models\TiposContratacionModel;
 class Tipos_contratacion extends BaseController
 {
 
-	protected function data_vista($operacion = '', $exito = false, $tipos = [], $termino = ''){
-		$tipos_contratacion  = ($tipos == [])? (new TiposContratacionModel())->get(): $tipos;
+	protected function data_vista($operacion = '', $exito = false, $tipos = [], $termino = '')
+	{
+		$tipos_contratacion  = ($tipos == []) ? (new TiposContratacionModel())->get() : $tipos;
 
 		$data = [
 			'tipos_contratacion' => $tipos_contratacion,
 			'operacion'		=> $operacion,
-            'exito' 		=> $exito,
-            'nombre_obj'    => 'Tipo Contratación',
-            'termino'       => $termino,
+			'exito' 		=> $exito,
+			'nombre_obj'    => 'Tipo Contratación',
+			'termino'       => $termino,
 			'url_guardar'	=> base_url() . '/tipos_contratacion/guardar',
 			'url_eliminar'  => base_url() . '/tipos_contratacion/eliminar',
 			'url_buscar'    => base_url() . '/tipos_contratacion/buscar',
@@ -47,11 +48,10 @@ class Tipos_contratacion extends BaseController
 					'NOMBRE_CONTRATACION' => $this->request->getVar('NOMBRE_CONTRATACION')
 				]);
 				$exito = true;
-			} 
+			}
 			return $this->data_vista('guardar', $exito);
-		} else {
-			return redirect()->to(base_url() . '/tipos_contratacion');
 		}
+		return redirect()->to(base_url() . '/tipos_contratacion');
 	}
 
 	public function eliminar()
@@ -63,32 +63,31 @@ class Tipos_contratacion extends BaseController
 			])) {
 				(new TiposContratacionModel())->where('ID_TIPO_CONTRATACION', $this->request->getVar('ID_TIPO_CONTRATACION'))->delete();
 				$exito = true;
-			} 
+			}
 			return $this->data_vista('eliminar', $exito);
-		} else {
-			return redirect()->to(base_url() . '/tipos_contratacion');
 		}
+		return redirect()->to(base_url() . '/tipos_contratacion');
 	}
 
-	public function buscar(){
+	public function buscar()
+	{
 		if ($this->request->getMethod() == 'post') {
 			$exito = false;
-            $generos_buscados = [];
-            $termino = '';
+			$termino = '';
+			$tipos_contratacion = [];
 			if ($this->validate([
 				'termino'   => 'required|string'
 			])) {
-				$exito = true;
 				$termino = trim($this->request->getVar('termino'));
-				if($termino != ''){
-				$generos_buscados = (new TiposContratacionModel())
-									->like('NOMBRE_CONTRATACION', $termino)
-									->findAll();
+				if ($termino != '') {
+					$tipos_contratacion = (new TiposContratacionModel())
+						->like('NOMBRE_CONTRATACION', $termino)
+						->findAll();
 				}
+				$exito = (count($tipos_contratacion) == 0) ? false : true;
 			}
-			return $this->data_vista('buscar', $exito, $generos_buscados, $termino);
-		} else {
-			return redirect()->to(base_url() . '/tipos_contratacion');
+			return $this->data_vista('buscar', $exito, $tipos_contratacion, $termino);
 		}
+		return redirect()->to(base_url() . '/tipos_contratacion');
 	}
 }

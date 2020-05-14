@@ -38,6 +38,20 @@ function validar_string_formato(input, formato, separador, numeros = true) {
                 invalido(input);
             }
         } else {
+            // let ok = true;
+            // for (let index = 0; index < array_string.length; index++) {
+            //     if(array_formato[index].length !== array_string[index].length
+            //         && array_string[index] != []
+            //         ){
+            //         ok = false;
+            //         break;
+            //     }
+            // }
+            // if (ok) {
+            //     valido(input);
+            // } else {
+            //     invalido(input);
+            // }
             valido(input);
         }
     } else {

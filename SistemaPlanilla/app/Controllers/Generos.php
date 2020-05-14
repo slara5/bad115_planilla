@@ -8,8 +8,9 @@ use App\Models\GenerosModel;
 class Generos extends BaseController
 {
 
-	protected function data_vista($operacion = '', $exito = false, $generos = [], $termino = ''){
-		$generos  = ($generos == [])? (new GenerosModel())->get(): $generos;
+	protected function data_vista($operacion = '', $exito = false, $generos = [], $termino = '')
+	{
+		$generos  = ($generos == []) ? (new GenerosModel())->get() : $generos;
 
 		$data = [
 			'generos'       => $generos,
@@ -47,11 +48,10 @@ class Generos extends BaseController
 					'DESCRIPCION_GENERO' => $this->request->getVar('DESCRIPCION_GENERO')
 				]);
 				$exito = true;
-			} 
+			}
 			return $this->data_vista('guardar', $exito);
-		} else {
-			return redirect()->to(base_url() . '/generos');
 		}
+		return redirect()->to(base_url() . '/generos');
 	}
 
 	public function eliminar()
@@ -63,31 +63,31 @@ class Generos extends BaseController
 			])) {
 				(new GenerosModel())->where('ID_GENERO', $this->request->getVar('ID_GENERO'))->delete();
 				$exito = true;
-			} 
+			}
 			return $this->data_vista('eliminar', $exito);
-		} else {
-			return redirect()->to(base_url() . '/generos');
 		}
+		return redirect()->to(base_url() . '/generos');
 	}
 
-	public function buscar(){
+	public function buscar()
+	{
 		if ($this->request->getMethod() == 'post') {
 			$exito = false;
 			$generos_buscados = [];
+			$termino = '';
 			if ($this->validate([
 				'termino'   => 'required|string'
 			])) {
-				$exito = true;
 				$termino = trim($this->request->getVar('termino'));
-				if($termino != ''){
-				$generos_buscados = (new GenerosModel())
-									->like('DESCRIPCION_GENERO', $termino)
-									->findAll();
+				if ($termino != '') {
+					$generos_buscados = (new GenerosModel())
+						->like('DESCRIPCION_GENERO', $termino)
+						->findAll();
 				}
+				$exito = (count($generos_buscados) == 0) ? false : true;
 			}
 			return $this->data_vista('buscar', $exito, $generos_buscados, $termino);
-		} else {
-			return redirect()->to(base_url() . '/generos');
 		}
+		return redirect()->to(base_url() . '/generos');
 	}
 }

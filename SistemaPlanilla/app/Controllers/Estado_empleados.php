@@ -8,8 +8,9 @@ use App\Models\EstadoEmpleadosModel;
 class Estado_empleados extends BaseController
 {
 
-	protected function data_vista($operacion = '', $exito = false, $estados = [], $termino = ''){
-		$estado_empleados  = ($estados == [])? (new EstadoEmpleadosModel())->get(): $estados;
+	protected function data_vista($operacion = '', $exito = false, $estados = [], $termino = '')
+	{
+		$estado_empleados  = ($estados == []) ? (new EstadoEmpleadosModel())->get() : $estados;
 
 		$data = [
 			'estado_empleados' => $estado_empleados,
@@ -48,11 +49,10 @@ class Estado_empleados extends BaseController
 					'AFECTA_CALCULO'   => $this->request->getVar('AFECTA_CALCULO'),
 				]);
 				$exito = true;
-			} 
+			}
 			return $this->data_vista('guardar', $exito);
-		} else {
-			return redirect()->to(base_url() . '/estado_empleados');
 		}
+		return redirect()->to(base_url() . '/estado_empleados');
 	}
 
 	public function eliminar()
@@ -64,34 +64,34 @@ class Estado_empleados extends BaseController
 			])) {
 				(new EstadoEmpleadosModel())->where('ID_ESTADO', $this->request->getVar('ID_ESTADO'))->delete();
 				$exito = true;
-			} 
+			}
 			return $this->data_vista('eliminar', $exito);
-		} else {
-			return redirect()->to(base_url() . '/estado_empleados');
 		}
+		return redirect()->to(base_url() . '/estado_empleados');
 	}
 
-	public function buscar(){
+	public function buscar()
+	{
 		if ($this->request->getMethod() == 'post') {
 			$exito = false;
 			$estado_empleados_buscados = [];
+			$termino = '';
 			if ($this->validate([
 				'termino'   => 'required|string'
 			])) {
-				$exito = true;
 				$termino = trim($this->request->getVar('termino'));
-				if($termino != '' || strtolower($termino) == 'si' || strtolower($termino) == 'no'){
+				if ($termino != '' || strtolower($termino) == 'si' || strtolower($termino) == 'no') {
 					$afecta = (strtolower($termino) == 'si') ? 1 : 0;
 
 					$estado_empleados_buscados = (new EstadoEmpleadosModel())
-									->where('AFECTA_CALCULO', $afecta)
-									->orLike('NOMBRE_ESTADO', $termino)
-									->findAll();
+						->where('AFECTA_CALCULO', $afecta)
+						->orLike('NOMBRE_ESTADO', $termino)
+						->findAll();
 				}
+				$exito = (count($estado_empleados_buscados) == 0) ? false : true;
 			}
 			return $this->data_vista('buscar', $exito, $estado_empleados_buscados, $termino);
-		} else {
-			return redirect()->to(base_url() . '/estado_empleados');
 		}
+		return redirect()->to(base_url() . '/estado_empleados');
 	}
 }
