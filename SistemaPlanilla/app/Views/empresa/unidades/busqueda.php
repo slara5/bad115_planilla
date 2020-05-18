@@ -1,6 +1,6 @@
 <div id="tabla">
 
-<table class="table table-striped ">
+<table id="" class="table table-bordered table-hover">
   <thead class="thead-dark">
     <tr>
     <th>Correlativo</th>
@@ -12,7 +12,7 @@
   <tbody>
   <?php foreach ($unidades as $index => $unidad): ?>
     <tr>
-    <th scope="row"><?=$index?></th>
+    <th scope="row"><?=$index+1?></th>
     <th scope="row" class='idelemento'><?= $unidad['ID_UNIDAD'] ?></th>
       <td><?= $unidad['NOMBRE_UNIDAD'] ?></td>
       <td><button href="#"  button class="btn btn-navbar" id="delete" role="button" ><i class="fas fa-trash"></i></button></td>
@@ -24,7 +24,4 @@
 </table>
 </table>
 
-
-
 </div>
-<script src="<?= base_url() ?>/js/unidades/unidades.js"></script>
