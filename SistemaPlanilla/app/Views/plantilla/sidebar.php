@@ -15,7 +15,7 @@
           <img src="<?= base_url()?>/img/<?= $usuario['img']?>" class="img-circle elevation-2" alt="User Image">
         </div>
         <div class="info">
-          <a href="<?= $usuario['url']?>" class="d-block"><?= $usuario['nombre']?></a>
+          <a href="<?= $usuario['url']?>" class="d-block"><?= $usuario['nombre'] ?></a>
         </div>
       </div>
 
@@ -52,7 +52,7 @@
 
           <li class="nav-header">Mas</li>
           <li class="nav-item has-treeview">
-            <a href="#" class="nav-link">
+            <a href="<?= base_url() ?>/login/logout" class="nav-link">
               <i class="nav-icon fas fa-sign-out-alt"></i>
               <p>
                 Salir 

@@ -10,32 +10,111 @@ class Usuarios extends BaseController
 {
 	protected $nombre_clase = 'usuarios';
 
-	public function index()
-	{
-		$usuarios = new UsuariosModel();
+    protected function data_vista($operacion = '', $exito = false, $usuarios = [], $termino = '')
+    {
+        $usuarios = ($usuarios == [])? (new UsuariosModel())->get() : $usuarios;
 
-		$ruta_breadcrumb = [
-            [
-                'nombre' => 'Dashboard',
-                'url'    => base_url().'/dashboard', 
-            ],
-            [
-                'nombre' => ucfirst($this->nombre_clase),
-                'url'    => base_url().'/'.$this->nombre_clase, 
-            ],
+        $roles = (new RolesModel())->get();
+
+        $data = [
+            'roles'         => $roles,
+            'rolesModel'    => new RolesModel(),
+            'usuarios'      => $usuarios,
+            'usuariosModel' => new UsuariosModel(),
+            'operacion'     => $operacion,
+            'exito'         => $exito,
+            'nombre_obj'    => 'Usuario',
+            'termino'       => $termino,
+            'url_guardar'   => base_url() . '/usuarios/guardar',
+            'url_eliminar'   => base_url() . '/usuarios/eliminar',
+            'url_buscar'   => base_url() . '/usuarios/buscar',
         ];
 
-		$data = [
-			'usuarios' => $usuarios->get()
-		];
-
-		return crear_head('Lista de Usuarios')
-            .crear_body(
-                view('usuarios/usuarios', $data),               //main
-                '',                                           //sidebar
-                crear_breadcrumb('Lista de Usuarios', $ruta_breadcrumb),   //breadcrumb
-                ['usuarios.js']                        //scripts
+        return crear_head('Usuarios')
+            . crear_body( 
+                view('usuarios/usuarios', $data),
+                '',
+                crear_breadcrumb('Usuarios', crear_ruta_breadcrumb('Usuarios')),
+                ['usuarios/usuarios.js']
             );
+    }
+
+	public function index()
+	{
+		return $this->data_vista();
 	}
+
+    public function guardar()
+    {
+        if ($this->request->getMethod() == 'post') {
+            $exito = false;
+            if ($this->validate([
+                'NOMBRES'               => 'required|string',
+                'APELLIDOS'             => 'required|string',
+                'USUARIO'               => 'required|string',
+                'CONTRASENIA'           => 'required|string',
+                'CONFIRMAR_CONTRASENIA' => 'matches[CONTRASENIA]',
+
+            ])) { 
+                (new UsuariosModel())->save([
+                    'ID_USUARIO'            => $this->request->getvar('ID_USUARIO'),
+                    'ID_ROL'                => $this->request->getVar('ID_ROL'),
+                    'USUARIO'               => $this->request->getVar('USUARIO'),
+                    'CONTRASENIA'           => $this->request->getVar('CONTRASENIA'),
+                    'NOMBRES'               => $this->request->getVar('NOMBRES'),
+                    'APELLIDOS'             => $this->request->getVar('APELLIDOS'),
+                    'ACTIVO'                => 1,
+                    'FECHA_HORA_CREACION'   => date('Y-m-d H:i:s'),
+                    
+                ]);
+                $exito = true;
+            }
+            return $this->data_vista('guardar', $exito);
+        }
+
+        return redirect()->to(base_url() . '/usuarios');
+    }
+
+    public function eliminar()
+    {
+        if($this->request->getMethod = 'post')
+        {
+            $exito = false;
+            if($this->validate([
+                'ID_USUARIO'    => 'required|numeric'
+            ])){
+                (new UsuariosModel())->where('ID_USUARIO', $this->request->getVar('ID_USUARIO'))->delete();
+                $exito = true;
+            }
+            return $this->data_vista('eliminar', $exito);
+        }
+        return redirect()->to(base_url() . '/usuarios');
+    }
+
+    public function buscar()
+    {
+        if($this->request->getMethod() == 'post')
+        {
+            $exito = false;
+            $usuarios_buscados = [];
+            $termino = '';
+            if($this->validate([
+                'termino'   => 'required|string'
+            ])) {
+                $termino = trim($this->request->getVar('termino'));
+                if($termino != ''){
+                    $usuarios_buscados = (new UsuariosModel())
+                                            ->like('USUARIO', $termino)
+                                            ->orLike('NOMBRES', $termino)
+                                            ->orLike('APELLIDOS', $termino)
+                                            ->orLike('ACTIVO', $termino)
+                                            ->findAll();
+                }
+                $exito = (count($usuarios_buscados) == 0)? false : true;
+            }
+            return $this->data_vista('buscar', $exito, $usuarios_buscados, $termino);
+        }
+        return redirect()->to(base_url() . '/usuarios');
+    }
 	
 }

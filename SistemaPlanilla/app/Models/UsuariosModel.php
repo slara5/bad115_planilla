@@ -19,7 +19,18 @@ class UsuariosModel extends Model
 	protected $validationRules 		= [];
 	protected $validationMessages 	= [];
 	protected $skipValidation		= false;
+
+	protected $beforeInsert 		= ['encriptar'];
+	protected $beforeUpdate			= ['encriptar'];
 	
+
+	protected function encriptar(array $data)
+	{
+		if(isset($data['data']['CONTRASENIA']))
+			//$data['data']['CONTRASENIA'] = password_hash($data['data']['CONTRASENIA'], PASSWORD_BCRYPT);
+		return $data;
+	}
+
 	function get($id = ''){
 		if($id == '' || $id == []){
 			return $this->findAll();

@@ -21,6 +21,7 @@
   <link rel="stylesheet" href="css/estilo.css">
 </head>
 <body class="hold-transition login-page" id="loginbody">
+
 <div class="login-box">
   <div class="login-logo">
     <a href="#" class="text-white"><b>SIGPLA</b> by "Sin Backup"</a>
@@ -30,9 +31,9 @@
     <div class="card-body login-card-body">
       <h5 class="login-box-msg">Inicio de Sesión</h5>
 
-      <form action="<?= $url.'/dashboard' ?>" method="post">
+      <form action="<?= base_url().'/login/inicio' ?>" method="post">
         <div class="input-group mb-3">
-          <input type="email" class="form-control" placeholder="Usuario">
+          <input type="text" name="USUARIO" id="USUARIO" class="form-control" placeholder="Usuario" value="" required="true">
           <div class="input-group-append">
             <div class="input-group-text">
               <span class="fas fa-user"></span>
@@ -40,13 +41,27 @@
           </div>
         </div>
         <div class="input-group mb-3">
-          <input type="password" class="form-control" placeholder="Contraseña">
+          <input type="password" name="CONTRASENIA" id="CONTRASENIA" class="form-control" placeholder="Contraseña" required="true">
           <div class="input-group-append">
             <div class="input-group-text">
               <span class="fas fa-lock"></span>
             </div>
           </div>
         </div>
+        <?php if(!empty(session()->getFlashData('error'))) : ?>
+          <div class="col-12">
+            <div class="alert alert-danger" role="alert">
+              <?= session()->getFlashData('error') ?>
+            </div>
+          </div>
+        <?php endif ?>
+        <?php if(!empty(session()->getFlashData('adios'))) : ?>
+          <div class="col-12">
+            <div class="alert alert-success" role="success">
+              <?= session()->getFlashData('adios') ?>
+            </div>
+          </div>
+        <?php endif ?>
         <div class="row">
           <div class="col-8">
             <div class="icheck-primary">

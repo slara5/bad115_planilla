@@ -89,7 +89,7 @@ function crear_sidebar(
 ){
     if(count($usuario) == 0){
         $usuario = [
-            'nombre' => 'Dixon Argueta',
+            'nombre' => session()->get('NOMBRES') .' '. session()->get('APELLIDOS'),
             'img'    => 'user2-160x160.jpg',
             'url'    => base_url()
         ];
