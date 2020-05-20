@@ -5,7 +5,7 @@ use CodeIgniter\Model;
 class TiposMovimientoModel extends Model
 {
     protected $table      = 'TIPOS_MOVIMIENTO';
-    protected $primaryKey = 'ID_TIPOS_MOVIMIENTO';
+    protected $primaryKey = 'ID_TIPO_MOVIMIENTO';
 
     protected $returnType     = 'array';
     protected $useSoftDeletes = false;

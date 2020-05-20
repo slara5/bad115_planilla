@@ -8,8 +8,7 @@ use App\Models\RolesModel;
 
 class Usuarios extends BaseController
 {
-	protected $nombre_clase = 'usuarios';
-
+    
     protected function data_vista($operacion = '', $exito = false, $usuarios = [], $termino = '')
     {
         $usuarios = ($usuarios == [])? (new UsuariosModel())->get() : $usuarios;

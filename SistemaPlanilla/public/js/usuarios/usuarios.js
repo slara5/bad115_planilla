@@ -1,4 +1,4 @@
-function editar_estado(id, usuario, rol, nombres, apellidos, activo){
+function editar_estado(id, usuario, rol, nombres, apellidos){
     document.querySelector('#ID_USUARIO').value = id;
     document.querySelector('#USUARIO').value = usuario;
     document.querySelector('#ID_ROL').value = rol;

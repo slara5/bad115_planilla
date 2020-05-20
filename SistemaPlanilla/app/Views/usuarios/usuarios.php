@@ -102,8 +102,7 @@
                         '<?= $usuario['USUARIO'] ?>',
                         <?= $usuario['ID_ROL'] ?>,
                         '<?= $usuario['NOMBRES'] ?>',
-                        '<?= $usuario['APELLIDOS'] ?>',
-                        '<?= $usuario['ACTIVO'] ?>',
+                        '<?= $usuario['APELLIDOS'] ?>'
                         )"
                       data-toggle="modal" data-target="#usuarioModal"><i class="icon fas fa-edit"></i>
                     </button>
