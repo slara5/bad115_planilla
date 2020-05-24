@@ -13,9 +13,15 @@ class Unidades extends BaseController
 
     public function index()
     {
-        $unidades = new UnidadesModel();
+         $unidades = new UnidadesModel();
+
+       $datos= $unidades->paginate(10);
+       
         $data = [
-            'unidades' => $unidades->get()
+            'unidades' =>$datos,
+            'paginador'=>$unidades->pager
+        
+        
         ];
         return crear_plantilla(view('empresa/unidades/unidades', $data));
     }
@@ -23,10 +29,11 @@ class Unidades extends BaseController
     public function view($par ='')
     {
         $unidades = new UnidadesModel();
+        $datos=$unidades->paginate(10);
         if ($par==''){
 
             $data = [
-                'unidades' => $unidades->get()
+                'unidades' => $datos
             ];
 
             return view('empresa/unidades/busqueda', $data);
@@ -34,8 +41,10 @@ class Unidades extends BaseController
 
         }else{
 
+            $datos=$unidades->like('NOMBRE_UNIDAD',strtoupper($par))->paginate(10);
 
-            $data['unidades'] = $unidades->like('NOMBRE_UNIDAD',strtoupper($par))->findAll();
+
+            $data['unidades'] = $datos;
             return view('empresa/unidades/busqueda', $data);
         }
 
@@ -63,7 +72,7 @@ class Unidades extends BaseController
         ]);
         $unidades = new UnidadesModel();
         $data = [
-           'unidades' => $unidades->get()->order_by('ID_UNIDAD')
+           'unidades' => $unidades->get()
        ];
    
        

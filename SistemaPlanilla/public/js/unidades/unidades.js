@@ -83,6 +83,25 @@ else{
 }
 }
 
+$(document).on("click","tr td #edit",function(){ 
+  //codigo
+
+  var ident=   $(this).parents('tr').find('th.idelemento').text();
+  var nombre  =  $(this).parents('tr').find('td').text();
+
+  $('#ID_UNIDAD').val(ident);
+		$('#NOMBRE_UNIDAD').val(nombre);
+
+
+  $("#unidadesModal").modal("show");
+
+ 
+
+
+    });
+
+
+
 $(document).on("click","#nuevo",function(ev){ 
   //codigo
 
@@ -113,7 +132,13 @@ $("#unidadesModal").modal("show");
       
                 document.getElementById("formulario").reset(); 
                 
-            }
+            },
+            error: function( response ) {
+              console.log(response);
+              
+              
+              
+          }
       
         })  
 
