@@ -79,13 +79,4 @@ class Unidades extends BaseController
       return view('empresa/unidades/busqueda', $data);
     }
 
-    protected function get_codigo_empleado(){
-        $cod_actual = ((new EmpleadosModel())->get_last_empleado())['CODIGO_EMPLEADO'];
-        $cod_empleado = strval(intval($cod_actual) + 1);
-        $ceros = ''; 
-        for ($i=strlen($cod_empleado); $i < 4; $i++) { 
-            $ceros = $ceros.'0';
-        }
-        return $ceros.$cod_empleado;
-    }
 }
