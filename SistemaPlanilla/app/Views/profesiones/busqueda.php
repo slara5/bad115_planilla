@@ -1,7 +1,7 @@
 <div id="tabla">
 
 <table id="" class="table table-bordered table-hover">
-  <thead class="thead-dark">
+  <thead >
     <tr>
     <th>Correlativo</th>
     <th hidden="true">identificador</th>
@@ -28,8 +28,8 @@
 
     
       <td>
-      <button href="#"  button class="btn btn-navbar" id="delete" role="button" ><i class="fas fa-trash"></i></button>
-      <button href="#"  button class="btn btn-navbar" id="edit" role="button" ><i class="fas fa-pen"></i></button>
+      <button href="#" id="delete" role="button" class="btn btn-danger"><i class="icon fas fa-trash"></i></button>
+      <button href="#"  id="edit" role="button" class="btn btn-primary col-5" ><i class="icon fas fa-pen"></i></button>
       
       </td>
     </tr>

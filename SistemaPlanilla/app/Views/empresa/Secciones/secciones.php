@@ -2,7 +2,7 @@
   <div class="col-12">
     <div class="card">
       <div class="card-header">
-        <h2 class="card-title"><b>Departamentos de la empresa</b></h2>
+        <h2 class="card-title"><b>Secciones</b></h2>
       </div>
       <!-- /.card-header -->
       <div class="card-body">
@@ -31,7 +31,8 @@
 <div id="cambio">
 <?php
 
-echo view('empresa/depto_empresa/busqueda');
+echo view('empresa/Secciones/busqueda');
+
 
 ?>
 
@@ -50,10 +51,13 @@ echo view('empresa/depto_empresa/busqueda');
   </div>
 </div>
 
+
+
+
 <div class="modal" id="unidadesModal" tabindex="-1" role="dialog" aria-labelledby="unidadesModalLabel" aria-hidden="true">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="generoModalLabel">Crear nueva unidad</h5>
+                <h5 class="modal-title" id="generoModalLabel">Crear nueva seccion</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
@@ -61,28 +65,26 @@ echo view('empresa/depto_empresa/busqueda');
             <div class="modal-body">
                 <form  id="formulario" >
 
-                    <input type="hidden" name="ID_DEPARTAMENTO_EMPRESA" id="ID_DEPARTAMENTO_EMPRESA">
+                <input type="hidden" name="ID_SECCION" id="ID_SECCION">
                     <div class="form-group">
-                        <label for="">Nombre de la unidad</label>
-                        <input name="NOMBRE_DEPARTAMENTO_EMPRESA" id="NOMBRE_DEPARTAMENTO_EMPRESA" onkeyup="validar_nombre(this)" onblur="validar_nombre(this)" type="text" class="form-control" placeholder="Nombre del departamento">
+                        <label for="">Nombre de la seccion</label>
+                        <input name="NOMBRE_SECCION" id="NOMBRE_SECCION" onkeyup="validar_nombre(this)" onblur="validar_nombre(this)" type="text" class="form-control" require placeholder="ingrese el nombre de la seccion">
                         <div class="invalid-feedback" style="display:none">
-                            El nombre no debe comenzar con números ni caracteres especiales
+                        El nombre no debe comenzar con números ni caracteres especiales
                         </div>
-                    </div><div class="form-group">
-                    <label>Unidades</label>
-                    <select name="ID_UNIDAD" id="ID_UNIDAD"  class="form-control select2" style="width: 100%;">
-                        <?php foreach ($lista_u as $index => $l_unidades) : ?>
-                            <option value="<?= $l_unidades['ID_UNIDAD'] ?>"><?= $l_unidades['NOMBRE_UNIDAD'] ?></option>
+                    </div>
+                    
+                                              <div class="form-group">
+                    <label>Area</label>
+                    <select name="IDAREA" id="IDAREA"  class="form-control select2" style="width: 100%;">
+                        <?php foreach ($lista_a as $index => $l_areas) : ?>
+                            <option value="<?= $l_areas['IDAREA'] ?>"> <?= $l_areas['NOMBRE_AREA'] ?></option>
                         <?php endforeach ?>
                     </select>
                 </div>
 
-                <div class="form-group">
-                        <label for="">Codigo de centro de costos</label>
-                        <input name="CODIGO_CENTRO_COSTO" id="CODIGO_CENTRO_COSTO"  type="number" onkeyup="validador(this)" class="form-control" id="CODIGO_CENTRO_COSTO" placeholder="Ingrese codigo" min ="0" required pattern="[0-9]{3}">
-                        <div class="invalid-feedback" style="display:none">
-            El codigo debe tener tres digitos
-                        </div>
+
+
 
                     <button id="btn_submit" disabled  type="submit" class="btn btn-success btn-block">Guardar</button>
                 </form>
@@ -94,5 +96,5 @@ echo view('empresa/depto_empresa/busqueda');
 
 
 <?php echo $paginador->links(); ?>
-<script src="<?= base_url() ?>/js/depto_empresa/depto_empresa.js"></script>
+<script src="<?= base_url() ?>/js/empleados/secciones.js"></script>
  

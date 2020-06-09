@@ -1,19 +1,37 @@
-<button type="button" class="btn  btn-success col-8" id="nuevo">Nuevo</button>
+<div class="row">
+  <div class="col-12">
+    <div class="card">
+      <div class="card-header">
+        <h2 class="card-title"><b>Area</b></h2>
+      </div>
+      <!-- /.card-header -->
+      <div class="card-body">
+        <div class="row mb-3">
+          <div class="col-4">
+            <button type="button" class="btn  btn-success col-8" id="nuevo">Nuevo</button>
+          </div>
+          <div class="col-8">
 
-<label for="busqueda">Buscar</label>
+
 <div class="input-group input-group-sm">
-        <input class="form-control form-control-navbar" type="search" placeholder="Search" aria-label="Search" id="busqueda" onkeyup="Buscar()">
+        <input class="form-control form-control-navbar" type="search" placeholder="Buscar" aria-label="Search" id="busqueda" onkeyup="Buscar()">
         <div class="input-group-append">
-          <button class="btn btn-navbar" >
-            <i class="fas fa-search"></i>
-          </button>
+        <button class="btn btn-secondary" disabled>
+                    <i class="fas fa-search"></i>
+                  </button>
         </div>
       </div>
+
+
+
+          </div>
+        </div>
+
 
 <div id="cambio">
 <?php
 
-echo view('empresa/Area/busqueda');
+echo view('empresa/Area/Busqueda');
 
 
 ?>
@@ -23,6 +41,17 @@ echo view('empresa/Area/busqueda');
 
 
 </div>
+
+
+
+      </div>
+      <!-- /.card-body -->
+    </div>
+    <!-- /.card -->
+  </div>
+</div>
+
+
 
 <div class="modal" id="unidadesModal" tabindex="-1" role="dialog" aria-labelledby="unidadesModalLabel" aria-hidden="true">
         <div class="modal-content">

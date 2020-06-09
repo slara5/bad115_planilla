@@ -2,7 +2,7 @@
 <div id="tabla">
 
 <table id="" class="table table-bordered table-hover">
-  <thead class="thead-dark">
+  <thead >
     <tr>
     <th>Correlativo</th>
     <th hidden="true">identificador</th>
