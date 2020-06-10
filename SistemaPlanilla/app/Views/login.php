@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>Login SIGPLA</title>
+  <title>Login SISPLA</title>
   <!-- Tell the browser to be responsive to screen width -->
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -24,7 +24,7 @@
 
 <div class="login-box">
   <div class="login-logo">
-    <a href="#" class="text-white"><b>SIGPLA</b> by "Sin Backup"</a>
+    <a href="#" class="text-white"><b>SISPLA</b> by "Sin Backup"</a>
   </div>
   <!-- /.login-logo -->
   <div class="card">
@@ -48,17 +48,17 @@
             </div>
           </div>
         </div>
-        <?php if(!empty(session()->getFlashData('error'))) : ?>
+        <?php if(!empty(session()->getFlashData('msg_error'))) : ?>
           <div class="col-12">
             <div class="alert alert-danger" role="alert">
-              <?= session()->getFlashData('error') ?>
+              <?= session()->getFlashData('msg_error') ?>
             </div>
           </div>
         <?php endif ?>
-        <?php if(!empty(session()->getFlashData('adios'))) : ?>
+        <?php if(!empty(session()->getFlashData('msg_cierre'))) : ?>
           <div class="col-12">
             <div class="alert alert-success" role="success">
-              <?= session()->getFlashData('adios') ?>
+              <?= session()->getFlashData('msg_cierre') ?>
             </div>
           </div>
         <?php endif ?>

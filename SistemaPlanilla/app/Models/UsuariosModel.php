@@ -27,7 +27,7 @@ class UsuariosModel extends Model
 	protected function encriptar(array $data)
 	{
 		if(isset($data['data']['CONTRASENIA']))
-			//$data['data']['CONTRASENIA'] = password_hash($data['data']['CONTRASENIA'], PASSWORD_BCRYPT);
+			$data['data']['CONTRASENIA'] = password_hash($data['data']['CONTRASENIA'], PASSWORD_BCRYPT);
 		return $data;
 	}
 

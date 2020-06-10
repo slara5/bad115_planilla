@@ -8,8 +8,9 @@ class MenusModel extends Model
 	protected $primaryKey 		= 'ID_MENU';
 	protected $returnType 		= 'array';
 
-	protected $allowedFields 	= ['ID_MENU_PADRE',
-									'NOMBRE_MENU'];
+	protected $allowedFields 	= ['NOMBRE_MENU',
+									'ID_MENU_PADRE',
+									'RUTA'];
 
 	protected $validationRules 		= [];
 	protected $validationMessages 	= [];

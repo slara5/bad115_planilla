@@ -32,23 +32,15 @@ class Login extends BaseController
             return redirect()->to(base_url() . '/dashboard');
         }
         else{
-            session()->setFlashdata('error', 'Usuario o Contraseña incorrectos');
+            session()->setFlashdata('msg_error', 'Usuario o Contraseña incorrectos');
             return redirect()->to(base_url() . '/login');
         }
     }
 
     public function existe(string $usuario, string $contrasenia)
     {
-        $usuariosModel = new UsuariosModel();
-        $user = $usuariosModel->where('USUARIO', $usuario)->first();
-        //$contrasenia = password_hash($this->request->getPost('CONTRASENIA'), PASSWORD_BCRYPT);
-        if($user != NULL)
-        {
-            if($contrasenia == $user['CONTRASENIA']){
-                return $user;
-            }
-        }
-        return NULL;
+        $user = (new UsuariosModel())->where('USUARIO', $usuario)->first();
+        return password_verify($this->request->getPost('CONTRASENIA'), $user['CONTRASENIA']) == true ? $user : NULL;
     }
 
 
@@ -77,7 +69,7 @@ class Login extends BaseController
         ];
         session()->remove($data);
         //session()->stop();
-        session()->setFlashdata('adios', 'Hasta luego!');
+        session()->setFlashdata('msg_cierre', 'Ha cerrado sesión exitosamente!');
         return redirect()->to(base_url() . '/login');
     }
 
