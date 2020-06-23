@@ -141,6 +141,25 @@ function validar_correo(input) {
     submit_form();
 }
 
+function validar_contrasenia(input) {
+    let pattern = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-Z0-9])(?!.*\s).{8,15}$/;
+    if (input.value.match(pattern)) {
+        valido(input);
+    } else {
+        invalido(input);
+    }
+    submit_form();
+}
+
+function confirmar_contrasenia(input) {
+    if(input.value === document.getElementById("CONTRASENIA").value) {
+        valido(input);
+    } else {
+        invalido(input);
+    }
+    submit_form();
+}
+
 function submit_form() {
     if ($(".is-invalid").length == 0) {
         $("#btn_submit").removeAttr('disabled');

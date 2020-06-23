@@ -66,7 +66,7 @@
                         </form>
                     </div>
                 </div>
-                <table id="" class="table table-bordered table-hover">
+                <table id="table" class="table table-bordered table-hover">
                     <thead>
                         <tr>
                             <th>#</th>
@@ -78,13 +78,15 @@
                         <?php foreach ($tipos_movimiento as $index => $tipos_movimiento) : ?>
                             <tr>
                                 <td><?= $index + 1 ?></td>
-                                <td><?= $tipos_movimiento['NOMBRE_TIPO_MOVIMIENTO'] . ' ' ?></td>
+                                <td style="display:none" id="ident"><?= $tipos_movimiento['ID_TIPO_MOVIMIENTO'] . ' ' ?></td>
+                                <td id="nombre"><?= $tipos_movimiento['NOMBRE_TIPO_MOVIMIENTO'] . ' ' ?></td>
                                 <td class="row d-flex justify-content-around">
                                     <form action="<?= $url_eliminar?>" method="post" class=" col-5">
                                     <?= csrf_field() ?>
                                     <input type="hidden" name="ID_TIPO_MOVIMIENTO" value="<?=$tipos_movimiento['ID_TIPO_MOVIMIENTO'] ?>">
-                                        <button class="btn btn-danger  btn-block">Eliminar</button>
+                                        <button class="btn btn-danger  btn-block" onclick="return confirm('Desea eliminar el registro')">Eliminar</button>
                                     </form>
+                                    <button class="btn btn-danger" id="delete" onclick="borrar(<?= $tipos_movimiento['ID_TIPO_MOVIMIENTO'] ?>, '<?= $tipos_movimiento['NOMBRE_TIPO_MOVIMIENTO'] ?>', '<?= $url_eliminar ?>')" >Borrar</button>
                                     <button class="btn btn-primary col-5 btn-sm" 
                                     onclick="editar_estado(<?= $tipos_movimiento['ID_TIPO_MOVIMIENTO'] ?>, '<?= $tipos_movimiento['NOMBRE_TIPO_MOVIMIENTO'] ?>')" 
                                     data-toggle="modal" data-target="#tipoMovModal">Editar</button>

@@ -28,8 +28,15 @@ class Login extends BaseController
 
     	if(isset($user))
         {
-            $this->setUserMethod($user);
-            return redirect()->to(base_url() . '/dashboard');
+            if($user['ACTIVO'] == 1) {
+                $this->setUserMethod($user);
+                return redirect()->to(base_url() . '/dashboard');
+            }
+            else {
+                session()->setFlashdata('msg_error', 'Usuario inactivo. Contacte al administrador');
+            return redirect()->to(base_url() . '/login');
+            }
+            
         }
         else{
             session()->setFlashdata('msg_error', 'Usuario o Contraseña incorrectos');

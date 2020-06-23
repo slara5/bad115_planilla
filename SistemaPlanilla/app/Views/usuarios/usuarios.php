@@ -181,14 +181,14 @@
               </div>
               <div class="form-group">
                 <label for="">Contraseña *</label>
-                <input name="CONTRASENIA" onkeyup="validar_nombre(this)" onblur="validar_nombre(this)" type="password" class="form-control" id="CONTRASENIA" placeholder="Contraseña">
+                <input name="CONTRASENIA" onkeyup="validar_contrasenia(this)" onblur="validar_contrasenia(this)" type="password" class="form-control" id="CONTRASENIA" placeholder="Contraseña">
                 <div class="invalid-feedback" style="display:none">
-                  Contraseña no válida: <strong></strong>
+                  Contraseña no válida: <strong>Debe ser de 8 a 15 caracteres y contener al menos 1 mayúscula y 1 caracter especial</strong>
                 </div>
               </div>
               <div class="form-group">
-                <label for="">Contraseña *</label>
-                <input name="CONFIRMAR_CONTRASENIA" onkeyup="validar_nombre(this)" onblur="validar_nombre()" type="password" class="form-control" id="CONFIRMAR_CONTRASENIA" placeholder="Confirmar Contraseña">
+                <label for="">Confirmar Contraseña *</label>
+                <input name="CONFIRMAR_CONTRASENIA" onkeyup="confirmar_contrasenia(this)" onblur="confirmar_contrasenia(this)" oninput="confirmar_contrasenia(this)" type="password" class="form-control" id="CONFIRMAR_CONTRASENIA" placeholder="Confirmar Contraseña">
                 <div class="invalid-feedback" style="display:none">
                   Contraseña no válida: <strong>Las Contraseñas no coinciden</strong>
                 </div>

@@ -90,4 +90,11 @@ class Tipos_movimiento extends BaseController
 		}
 		return redirect()->to(base_url() . '/tipos_movimiento');
 	}
+
+	public function print(){
+		$this->request->getVar('ID_TIPO_MOVIMIENTO');
+		return redirect()->to(base_url() . '/dashboard');
+	}
+
 }
+
