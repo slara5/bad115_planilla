@@ -32,6 +32,12 @@ $routes->setAutoRoute(true);
 // route since we don't have to scan directories.
 $routes->get('/', 'Login::index');
 
+/*
+//Agregar Autorización a las rutas protegidas
+$routes->get('dashboard', 'Dashboard::index', ['filter' => 'auth']);
+$routes->match(['get', 'post'], 'usuarios', 'Usuarios::index', ['filter' => 'auth']);
+*/
+
 /**
  * --------------------------------------------------------------------
  * Additional Routing

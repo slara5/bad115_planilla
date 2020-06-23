@@ -75,8 +75,14 @@ class Login extends BaseController
             'LOGUEADO',
         ];
         session()->remove($data);
-        //session()->stop();
         session()->setFlashdata('msg_cierre', 'Ha cerrado sesión exitosamente!');
+        return redirect()->to(base_url() . '/login');
+    }
+
+    public function unauthorized()
+    {
+        session()->stop();
+        session()->setFlashdata('msg_error', 'No autorizado!');
         return redirect()->to(base_url() . '/login');
     }
 

@@ -4,7 +4,7 @@ namespace App\Controllers;
 
 use CodeIgniter\HTTP\Response;
 use App\Models\RolesModel;
-
+use App\Models\MenusModel;
 
 
 class Roles extends BaseController
@@ -27,7 +27,8 @@ class Roles extends BaseController
     public function view($par ='')
     {
         $roles = new RolesModel();
-        $datos=$roles->paginate(10);
+        $menus = new MenusModel();
+        $datos = $roles->paginate(10);
         if ($par==''){
             $data = [
                 'roles' => $datos
@@ -38,7 +39,7 @@ class Roles extends BaseController
 
         }else{
 
-            $datos=$roles->like('NOMBRE_ROL',strtoupper($par))->paginate(10);
+            $datos = $roles->like('NOMBRE_ROL',strtoupper($par))->paginate(10);
             $data['roles'] = $datos;
             return view('roles/busqueda', $data);
         }
