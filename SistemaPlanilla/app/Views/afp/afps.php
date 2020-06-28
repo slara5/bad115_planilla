@@ -51,7 +51,7 @@
             <div class="card-body">
                 <div class="row mb-3">
                     <div class="col-4">
-                        <button type="button" class="btn  btn-success col-8" data-toggle="modal" data-target="#afpModal" onclick="limpiar()">Nuevo</button>
+                        <button type="button" class="btn  btn-success col-8" data-toggle="modal" data-target="#afpModal" onclick="limpiar()" >Nuevo</button>
                     </div>
                     <div class="col-8">
                         <form class="mr-0 ml-auto" action="<?= $url_buscar?>" method="post">
@@ -97,7 +97,7 @@
                                     '<?= $afps['PORCENTAJE_LABORAL'] ?>',
                                     '<?= $afps['PORCENTAJE_PATRONAL'] ?>',
                                     '<?= $afps['LIMITE_MAXIMO_AFP'] ?>')" 
-                                    data-toggle="modal" data-target="#generoModal">Editar</button>
+                                    data-toggle="modal" data-target="#afpModal">Editar</button>
                                 </td>
                             </tr>
                         <?php endforeach; ?>
@@ -126,7 +126,7 @@
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title" id="afpModalLabel"><?= $nombre_obj?></h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <button type="button" class="close" data-dismiss="modal" onclick="limpiar()" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
@@ -143,14 +143,14 @@
                     </div>
                     <div class="form-group">
                         <label for="">Porcentaje Laboral *</label>
-                        <input name="PORCENTAJE_LABORAL" id="PORCENTAJE_LABORAL" onkeyup="validar_numero(this, 1)" onblur="validar_numero(this, 1)" type="number" class="form-control" placeholder="1">
+                        <input name="PORCENTAJE_LABORAL" id="PORCENTAJE_LABORAL" onkeyup="validar_numero(this, 1)" onblur="validar_numero(this, 1)" type="number" class="form-control" step="0.01" placeholder="1">
                         <div class="invalid-feedback" style="display:none">
                         Porcentaje invalido: <strong>Porcentaje debe ser mayor 1</strong>
                         </div>
                     </div>
                     <div class="form-group">
                         <label for="">Porcentaje Patronal *</label>
-                        <input name="PORCENTAJE_PATRONAL" id="PORCENTAJE_PATRONAL" onkeyup="validar_numero(this, 1)" onblur="validar_numero(this, 1)" type="number" class="form-control" placeholder="1">
+                        <input name="PORCENTAJE_PATRONAL" id="PORCENTAJE_PATRONAL" onkeyup="validar_numero(this, 1)" onblur="validar_numero(this, 1)" type="number" class="form-control" step="0.01" placeholder="1">
                         <div class="invalid-feedback" style="display:none">
                         Porcentaje invalido: <strong>Porcentaje debe ser mayor 1</strong>
                         </div>

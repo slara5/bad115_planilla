@@ -106,9 +106,24 @@ function crear_sidebar(
                         'url'      => base_url()
                     ],
                     [
-                        'nombre'   => 'Divisiones',
-                        'url'      => base_url()
-                    ]
+                        'nombre'   => 'Unidades',
+                        'url'      => base_url().'/'.'unidades/'
+                    ],
+                    [
+                        'nombre'   => 'Departamentos',
+                        'url'      => base_url().'/'.'Departamentos_empresa/'
+                    ],
+                    [
+                        'nombre'   => 'Area',
+                        'url'      => base_url().'/'.'Area/'
+                    ],
+                    [
+                        'nombre'   => 'Secciones',
+                        'url'      => base_url().'/'.'Secciones/'
+                    ],                    [
+                        'nombre'   => 'Subsecciones',
+                        'url'      => base_url().'/'.'Subsecciones/'
+                    ],
                 ]
             ],
             [
@@ -139,6 +154,20 @@ function crear_sidebar(
                         'nombre'   => 'Nuevo Empleado',
                         'url'      => base_url()
                     ],
+                    [
+                        'nombre'   => 'Tipo de contratacion',
+                        'url'      => base_url().'/Tipos_contratacion'
+                    ],
+                    [
+                        'nombre'   => 'Puestos de trabajo',
+                        'url'      => base_url().'/Puestos_trabajo'
+                    ],
+                    [
+                        'nombre'   => 'Profesiones',
+                        'url'      => base_url().'/profesiones'
+                    ],
+
+                    
                 ]
             ],
             [
