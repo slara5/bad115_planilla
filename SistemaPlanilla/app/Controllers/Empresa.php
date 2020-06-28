@@ -29,7 +29,7 @@ class Empresa extends BaseController
 		];
 		return crear_head('Empresa')
 			. crear_body(
-				view('empresa/empresa', $data),               //main
+				view('empresa/datosEmpresa/empresa', $data),               //main
 				'',                                           //sidebar
 				crear_breadcrumb('Empresa', crear_ruta_breadcrumb('Empresa')),   //breadcrumb
 				['empresa/empresa.js']

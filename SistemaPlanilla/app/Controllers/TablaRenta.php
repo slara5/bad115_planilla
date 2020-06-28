@@ -10,7 +10,7 @@ class TablaRenta extends BaseController
 
 	protected function data_vista($operacion = '', $exito = false, $tablaRenta = [], $termino = '')
 	{
-		$generos  = ($tablaRenta == []) ? (new TablaRentaModel())->get() : $tablaRenta;
+		$tablaRenta  = ($tablaRenta == []) ? (new TablaRentaModel())->get() : $tablaRenta;
 
 		$data = [
 			'tablaRenta'       => $tablaRenta,
@@ -24,7 +24,7 @@ class TablaRenta extends BaseController
 		];
 		return crear_head('TablaRenta')
 			. crear_body(
-				view('tablaRenta/tablaRenta', $data),               //main
+				view('renta/tablaRenta/tablaRenta', $data),               //main
 				'',                                           //sidebar
 				crear_breadcrumb('TablaRenta', crear_ruta_breadcrumb('TablaRenta')),   //breadcrumb
 				['tablaRenta/tablaRenta.js']
