@@ -12,7 +12,7 @@ class Departamentos_empresa extends BaseController{
          $depto_empresa = new DepartamentosEmpresaModel();
          $unidades= new UnidadesModel();
 
-       $datos= $depto_empresa->paginate(5);
+       $datos= $depto_empresa->paginate(10);
 
        $lista_unidades=$unidades->findAll();
        
@@ -32,7 +32,7 @@ class Departamentos_empresa extends BaseController{
         $unidades= new UnidadesModel();
         $lista_unidades=$unidades->findAll();
 
-      $datos= $depto_empresa->paginate(5);
+      $datos= $depto_empresa->paginate(10);
         if ($par==''){
 
             $data = [
@@ -62,7 +62,7 @@ class Departamentos_empresa extends BaseController{
         $depto_empresa = new DepartamentosEmpresaModel();
         $unidades= new UnidadesModel();
         $depto_empresa->where('ID_DEPARTAMENTO_EMPRESA',$id)->delete();
-        $datos= $depto_empresa->paginate(5);
+        $datos= $depto_empresa->paginate(10);
         $lista_unidades=$unidades->findAll();
 
    
@@ -94,7 +94,7 @@ class Departamentos_empresa extends BaseController{
             $unidades= new UnidadesModel();
             $lista_unidades=$unidades->findAll();
     
-          $datos= $depto_empresa->paginate(5);
+          $datos= $depto_empresa->paginate(10);
                 $data = [
                     'depto_empresa' =>$datos,
                     'unidades'=>$unidades,

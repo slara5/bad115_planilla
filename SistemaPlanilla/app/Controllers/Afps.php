@@ -24,7 +24,7 @@ class Afps extends BaseController
 		];
 		return crear_head('Afps')
 			. crear_body(
-				view('afps/afps', $data),               //main
+				view('afp/afps', $data),               //main
 				'',                                           //sidebar
 				crear_breadcrumb('Afps', crear_ruta_breadcrumb('Afps')),   //breadcrumb
 				['afps/afps.js']
