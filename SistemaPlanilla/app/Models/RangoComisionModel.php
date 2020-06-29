@@ -10,7 +10,7 @@ class RangoComisionModel extends Model
     protected $returnType     = 'array';
     protected $useSoftDeletes = false;
 
-    protected $allowedFields = ['ID_EMPRESA','DESDE_MONTO','HASTA_MONTO','PORCENTAJE'];
+    protected $allowedFields = ['ID_EMPRESA','DESDE_MONTO','HASTA_MONTO','PORCENTAJE_COMISION'];
 
 
     protected $validationRules    = [];

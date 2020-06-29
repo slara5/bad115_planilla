@@ -53,7 +53,7 @@ class DetallesTablaRenta extends BaseController
                 'PORCENTAJE_RENTA_TABLA'   => 'required',
                 'VALOR_FIJO_RENTA_TABLA'   => 'required',
 			])) {
-				(new GenerosModel())->save([
+				(new DetallesTablaRentaModel())->save([
 					'ID_RANGO_RENTA' => $this->request->getVar('ID_RANGO_RENTA'),
 					'ID_TABLA' => $this->request->getVar('ID_TABLA'),
 					'DESDE_MONTO_INGRESOS' => $this->request->getVar('DESDE_MONTO_INGRESOS'),
@@ -75,7 +75,7 @@ class DetallesTablaRenta extends BaseController
 			if ($this->validate([
 				'ID_RANGO_RENTA'   => 'required|numeric'
 			])) {
-				(new GenerosModel())->where('ID_RANGO_RENTA', $this->request->getVar('ID_RANGO_RENTA'))->delete();
+				(new detallesTablaRentaModel())->where('ID_RANGO_RENTA', $this->request->getVar('ID_RANGO_RENTA'))->delete();
 				$exito = true;
 			}
 			return $this->data_vista('eliminar', $exito);
@@ -94,7 +94,7 @@ class DetallesTablaRenta extends BaseController
 			])) {
 				$termino = trim($this->request->getVar('termino'));
 				if ($termino != '') {
-					$detalles_buscados = (new GenerosModel())
+					$detalles_buscados = (new DetallesTablaRentaModel())
 						->like('ID_TABLA', $termino)
 						->findAll();
 				}

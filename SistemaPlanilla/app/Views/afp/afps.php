@@ -89,7 +89,7 @@
                                     <form action="<?= $url_eliminar?>" method="post" class=" col-5">
                                     <?= csrf_field() ?>
                                     <input type="hidden" name="ID_AFP" value="<?=$afps['ID_AFP'] ?>">
-                                        <button class="btn btn-danger  btn-block">Eliminar</button>
+                                    <button class="btn btn-danger"><i class="icon fas fa-trash"></i></button>
                                     </form>
                                     <button class="btn btn-primary col-5 btn-sm" 
                                     onclick="editar_estado(<?= $afps['ID_AFP'] ?>, 
@@ -97,7 +97,8 @@
                                     '<?= $afps['PORCENTAJE_LABORAL'] ?>',
                                     '<?= $afps['PORCENTAJE_PATRONAL'] ?>',
                                     '<?= $afps['LIMITE_MAXIMO_AFP'] ?>')" 
-                                    data-toggle="modal" data-target="#afpModal">Editar</button>
+                                    data-toggle="modal" data-target="#afpModal">
+                                    <i class="icon fas fa-edit"></i></button>
                                 </td>
                             </tr>
                         <?php endforeach; ?>
@@ -143,23 +144,23 @@
                     </div>
                     <div class="form-group">
                         <label for="">Porcentaje Laboral *</label>
-                        <input name="PORCENTAJE_LABORAL" id="PORCENTAJE_LABORAL" onkeyup="validar_numero(this, 1)" onblur="validar_numero(this, 1)" type="number" class="form-control" step="0.01" placeholder="1">
+                        <input name="PORCENTAJE_LABORAL" id="PORCENTAJE_LABORAL" onkeyup="validar_numero(this, 1,100)" onblur="validar_numero(this, 1)" type="number" class="form-control" step="0.01" placeholder="1">
                         <div class="invalid-feedback" style="display:none">
-                        Porcentaje invalido: <strong>Porcentaje debe ser mayor 1</strong>
+                        Porcentaje invalido: <strong>Porcentaje debe ser mayor 1 y menor a 100</strong>
                         </div>
                     </div>
                     <div class="form-group">
                         <label for="">Porcentaje Patronal *</label>
-                        <input name="PORCENTAJE_PATRONAL" id="PORCENTAJE_PATRONAL" onkeyup="validar_numero(this, 1)" onblur="validar_numero(this, 1)" type="number" class="form-control" step="0.01" placeholder="1">
+                        <input name="PORCENTAJE_PATRONAL" id="PORCENTAJE_PATRONAL" onkeyup="validar_numero(this, 1,100)" onblur="validar_numero(this, 1)" type="number" class="form-control" step="0.01" placeholder="1">
                         <div class="invalid-feedback" style="display:none">
-                        Porcentaje invalido: <strong>Porcentaje debe ser mayor 1</strong>
+                        Porcentaje invalido: <strong>Porcentaje debe ser mayor 1 y menor a 100</strong>
                         </div>
                     </div>
                     <div class="form-group">
                         <label for="">Límite máximo</label>
-                        <input name="LIMITE_MAXIMO_AFP" id="LIMITE_MAXIMO_AFP"  onkeyup="validar_numero(this, 300)" onblur="validar_numero(this, 300)" type="number" class="form-control" placeholder="300">
+                        <input name="LIMITE_MAXIMO_AFP" id="LIMITE_MAXIMO_AFP"  onkeyup="validar_numero(this, 300)" onblur="validar_numero(this, 300)" type="number" class="form-control" step="0.01" placeholder="300">
                         <div class="invalid-feedback" style="display:none">
-                        Monto invalido: <strong>Monto debe ser mayor que el minimo: 300</strong>
+                        Monto invalido: <strong>Monto debe ser mayor que el salario minimo</strong>
                         </div>
                     </div>
                     <button id="btn_submit" disabled type="submit" class="btn btn-success btn-block">Guardar</button>

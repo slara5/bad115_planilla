@@ -10,7 +10,7 @@ class EmpresaModel extends Model
     protected $returnType     = 'array';
     protected $useSoftDeletes = false;
 
-    protected $allowedFields = ['ID_TABLA','ID_PERIODICIDAD','NOMBRE_EMPRESA',
+    protected $allowedFields = ['ID_TABLA','ID_PERIOCIDAD','NOMBRE_EMPRESA',
     'PORCENTAJE_ISSS','NIT_EMPRESA','NUMERO_AFP_PATRONAL','PORCENTAJE_INSAFORP',
     'LIMITE_ISSS','NUMERO_EMP_MAX_INSAFORP','SALARIO_MINIMO'];
 

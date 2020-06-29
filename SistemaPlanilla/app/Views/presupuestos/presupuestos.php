@@ -51,7 +51,7 @@
       <div class="card-body">
         <div class="row mb-3">
           <div class="col-4">
-            <button type="button" class="btn  btn-success col-8" data-toggle="modal" data-target="#detalleModal" onclick="limpiar()">Nuevo</button>
+            <button type="button" class="btn  btn-success col-8" data-toggle="modal" data-target="#presupuestoModal" onclick="limpiar()">Nuevo</button>
           </div>
           <div class="col-8">
             <form class="mr-0 ml-auto" action="<?= $url_buscar ?>" method="post">
@@ -70,40 +70,38 @@
           <thead>
             <tr>
               <th>#</th>
-              <th>Tabla</th>
-              <th>Monto Desde</th>
-              <th>Monto Hasta</th>
-              <th>Porcentaje Des.</th>
-              <th>Valor Fijo</th>
+              <th>Departamento</th>
+              <th>Año</th>
+              <th>Mes</th>
+              <th>Monto Presupuesto Anual</th>
               <th>Acciones</th>
             </tr>
           </thead>
           <tbody>
-            <?php foreach ($detalles as $index => $detalle) : ?>
+            <?php foreach ($presupuestos as $index => $presupuesto) : ?>
               <tr>
                 <td><?= $index + 1 ?></td>
 
-                <td><?= $tablaModel->get($detalle['ID_TABLA'])[0]['NOMBRE_TABLA']?></td>
-                <td><?= '$ '.$detalle['DESDE_MONTO_INGRESOS']?></td>
-                <td><?= '$ '.$detalle['HASTA_MONTO_INGRESOS']?></td>
-                <td><?= $detalle['PORCENTAJE_RENTA_TABLA'] . ' %' ?></td>
-                <td><?= '$ '.$detalle['VALOR_FIJO_RENTA_TABLA']?></td>
+                <td><?= $departamentoModel->get($presupuesto['ID_DEPARTAMENTO_EMPRESA'])[0]['NOMBRE_DEPARTAMENTO_EMPRESA']?></td>
+                <td><?= $presupuesto['ANIO']?></td>
+                <td><?= $presupuesto['MES']?></td>
+                <td><?= '$ '.$presupuesto['MONTO_PRESUPUESTOANUAL'] ?></td>
+                
 
                 <td class="row d-flex justify-content-around">
                   <form action="<?= $url_eliminar ?>" method="post" class=" col-5">
                     <?= csrf_field() ?>
-                    <input type="hidden" name="ID_RANGO_RENTA" value="<?= $detalle['ID_RANGO_RENTA'] ?>">
+                    <input type="hidden" name="ID_PRESUPUESTO" value="<?= $presupuesto['ID_PRESUPUESTO'] ?>">
                     <button class="btn btn-danger"><i class="icon fas fa-trash"></i></button>
                   </form>
                   <button class="btn btn-primary col-5" 
                   onclick="editar_estado(
-                    <?= $detalle['ID_RANGO_RENTA'] ?>,
-                    '<?= $detalle['ID_TABLA'] ?>',
-                    '<?= $detalle['DESDE_MONTO_INGRESOS'] ?>',
-                    '<?= $detalle['HASTA_MONTO_INGRESOS'] ?>',
-                    '<?= $detalle['PORCENTAJE_RENTA_TABLA'] ?>',
-                    '<?= $detalle['VALOR_FIJO_RENTA_TABLA'] ?>',
-                  )" data-toggle="modal" data-target="#detalleModal">
+                    <?= $presupuesto['ID_PRESUPUESTO'] ?>,
+                    '<?= $presupuesto['ID_DEPARTAMENTO_EMPRESA'] ?>',
+                    '<?= $presupuesto['ANIO'] ?>',
+                    '<?= $presupuesto['MES'] ?>',
+                    '<?= $presupuesto['MONTO_PRESUPUESTOANUAL'] ?>',
+                  )" data-toggle="modal" data-target="#presupuestoModal">
                   <i class="icon fas fa-edit"></i></button>
                   <!-- <button class="btn btn-info col-3" 
                   onclick="" data-toggle="modal" data-target="#empleadoModal">
@@ -115,11 +113,10 @@
           <tfoot>
             <tr>
             <th>#</th>
-              <th>Tabla</th>
+            <th>Empresa</th>
               <th>Monto Desde</th>
               <th>Monto Hasta</th>
-              <th>Porcentaje Des.</th>
-              <th>Valor Fijo</th>
+              <th>Porcentaje Comisión</th>
               <th>Acciones</th>
             </tr>
           </tfoot>
@@ -132,11 +129,11 @@
 </div>
 
 <!-- MODALES -->
-<div class="modal" id="detalleModal" tabindex="-1" role="dialog" aria-labelledby="detalleModalLabel" aria-hidden="true">
+<div class="modal" id="presupuestoModal" tabindex="-1" role="dialog" aria-labelledby="presupuestoModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="detalleModalLabel"><?= $nombre_obj?></h5>
+                <h5 class="modal-title" id="presupuestoModalLabel"><?= $nombre_obj?></h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
@@ -144,48 +141,41 @@
             <div class="modal-body">
                 <form action="<?= $url_guardar ?>" method="post">
                      <?= csrf_field() ?>
-                    <input type="hidden" name="ID_RANGO_RENTA" id="ID_RANGO_RENTA">
+                    <input type="hidden" name="ID_PRESUPUESTO" id="ID_PRESUPUESTO">
 
                     <div class="form-group">
-                    <label>Tabla Renta *</label>
-                    <select name="ID_TABLA" id="ID_TABLA" class="form-control select2 " style="width: 100%;">
-                        <?php foreach ($tablas as $index => $tabla) : ?>
-                            <option value="<?= $tabla['ID_TABLA'] ?>"><?= $tabla['NOMBRE_TABLA'] ?></option>
+                    <label>Departamento *</label>
+                    <select name="ID_DEPARTAMENTO_EMPRESA" id="ID_DEPARTAMENTO_EMPRESA" class="form-control select2 " style="width: 100%;">
+                        <?php foreach ($departamentos as $index => $departamento) : ?>
+                            <option value="<?= $departamento['ID_DEPARTAMENTO_EMPRESA'] ?>"><?= $departamento['NOMBRE_DEPARTAMENTO_EMPRESA'] ?></option>
                         <?php endforeach ?>
                     </select>
                     </div>
 
                     <div class="form-group">
-                        <label for="">Monto desde *</label>
-                        <input name="DESDE_MONTO_INGRESOS" id="DESDE_MONTO_INGRESOS"  onkeyup="validar_numero(this, 1)" onblur="validar_numero(this, 1)" type="number" class="form-control" step="0.01" placeholder="0.01">
+                        <label for="">Año *</label>
+                        <input name="ANIO" id="ANIO"  onkeyup="validar_numero(this, 1900)" onblur="validar_numero(this, 1900)" type="number" class="form-control" placeholder="1900">
                         <div class="invalid-feedback" style="display:none">
-                        Monto invalido: <strong>Monto debe ser mayor que 1</strong>
+                        Año invalido: <strong>Monto debe ser mayor 1900</strong>
                         </div>
                     </div>
 
                     <div class="form-group">
-                        <label for="">Monto hasta *</label>
-                        <input name="HASTA_MONTO_INGRESOS" id="HASTA_MONTO_INGRESOS"  onkeyup="validar_numero(this, 1)" onblur="validar_numero(this, 1)" type="number" class="form-control" step="0.01" placeholder="0.01">
+                        <label for="">Mes *</label>
+                        <input name="MES" id="MES"  onkeyup="validar_numero(this, 1, 12)" onblur="validar_numero(this, 1, 12)" type="number" class="form-control" placeholder="1">
                         <div class="invalid-feedback" style="display:none">
-                        Monto invalido: <strong>Monto debe ser mayor que 1</strong>
+                        Mes invalido: <strong>Mes debe ser entre 1 y 12</strong>
                         </div>
                     </div>
 
                     <div class="form-group">
-                        <label for="">Porcentaje Renta *</label>
-                        <input name="PORCENTAJE_RENTA_TABLA" id="PORCENTAJE_RENTA_TABLA" onkeyup="validar_numero(this, 1,100)" onblur="validar_numero(this, 1,100)" type="number" class="form-control" step="0.01" placeholder="0.01">
+                        <label for="">Monto Presupuesto Anual *</label>
+                        <input name="MONTO_PRESUPUESTOANUAL" id="MONTO_PRESUPUESTOANUAL" onkeyup="validar_numero(this, 1)" onblur="validar_numero(this, 1)" type="number" class="form-control" step="0.01" placeholder="1.00">
                         <div class="invalid-feedback" style="display:none">
-                        Porcentaje invalido: <strong>Porcentaje debe ser mayor 1 y menor a 100</strong>
+                        Monto invalido: <strong>Monto debe ser mayor 1.00</strong>
                         </div>
                     </div>
 
-                    <div class="form-group">
-                        <label for="">Monto descuento fijo *</label>
-                        <input name="VALOR_FIJO_RENTA_TABLA" id="VALOR_FIJO_RENTA_TABLA"  onkeyup="validar_numero(this, 1)" onblur="validar_numero(this, 1)" type="number" class="form-control" step="0.01" placeholder="0.01">
-                        <div class="invalid-feedback" style="display:none">
-                        Monto invalido: <strong>Monto debe ser mayor que 1</strong>
-                        </div>
-                    </div>
 
                     <button id="btn_submit" disabled type="submit" class="btn btn-success btn-block">Guardar</button>
                 </form>
