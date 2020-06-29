@@ -8,3 +8,7 @@ function limpiar(){
     document.querySelector('#NOMBRE_CONTRATACION').value = '';
     $("#btn_submit").attr('disabled', 'disabled');
 }
+
+function eliminar(id_tipo){
+    document.querySelector('#id_eliminar').value = id_tipo;
+}

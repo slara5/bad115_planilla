@@ -70,13 +70,22 @@
       });
 
       $('.table').DataTable({
-        "paging": false,
+        "paging": true,
         "lengthChange": false,
         "searching": false,
         "ordering": true,
         "info": false,
         "autoWidth": false,
         "responsive": true,
+        "language": {
+          "paginate": {
+            "first": "Primero",
+            "last": "Último",
+            "next": "Siguiente",
+            "previous": "Anterior"
+          }
+        }
+        
       });
     })
   </script>

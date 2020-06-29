@@ -80,12 +80,10 @@
                                 <td><?= $index + 1 ?></td>
                                 <td><?= $estado['NOMBRE_ESTADO_CIVIL'] . ' ' ?></td>
                                 <td class="row d-flex justify-content-around">
-                                    <form action="<?= $url_eliminar ?>" method="post" class=" col-5">
-                                        <?= csrf_field() ?>
-                                        <input type="hidden" name="ID_ESTADO_CIVIL" value="<?= $estado['ID_ESTADO_CIVIL'] ?>">
-                                        <button class="btn btn-danger  btn-block">Eliminar</button>
-                                    </form>
-                                    <button class="btn btn-primary col-5 btn-sm" onclick="editar_estado(<?= $estado['ID_ESTADO_CIVIL'] ?>, '<?= $estado['NOMBRE_ESTADO_CIVIL'] ?>')" data-toggle="modal" data-target="#estadoModal">Editar</button>
+                                <button type="button" onclick="eliminar(<?= $estado['ID_ESTADO_CIVIL'] ?>)" class="btn btn-danger col-5" data-toggle="modal" data-target="#eliminarModal">
+                                <i class="icon fas fa-trash"></i>
+                                </button>
+                                <button class="btn btn-primary col-5 btn-sm" onclick="editar_estado(<?= $estado['ID_ESTADO_CIVIL'] ?>, '<?= $estado['NOMBRE_ESTADO_CIVIL'] ?>')" data-toggle="modal" data-target="#estadoModal">Editar</button>
                                 </td>
                             </tr>
                         <?php endforeach; ?>
@@ -131,4 +129,29 @@
             </div>
         </div>
     </div>
+</div>
+
+<!-- Modal Eliminar -->
+<div class="modal" id="eliminarModal" tabindex="-1" role="dialog" aria-labelledby="eliminarModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content  bg-danger">
+      <div class="modal-header">
+        <h5 class="modal-title" id="eliminarModalLabel">Eliminar</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+      <h4>¿Esta seguro que desea eliminar  <?= $nombre_obj ?> seleccionado?</h4>
+      <form action="<?= $url_eliminar ?>" method="post" class="mt-4 row d-flex justify-content-around">
+          <?= csrf_field() ?>
+          <input type="hidden" id="id_eliminar" name="ID_ESTADO_CIVIL">
+          <button type="button" class="btn btn-outline-light col-4" data-dismiss="modal">Cancelar</button>
+          <button type="submit" class="btn btn-outline-light col-4" >
+          Eliminar
+          </button>
+      </form>
+      </div>
+    </div>
+  </div>
 </div>
