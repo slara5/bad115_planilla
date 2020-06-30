@@ -47,7 +47,12 @@ class Login extends BaseController
     public function existe(string $usuario, string $contrasenia)
     {
         $user = (new UsuariosModel())->where('USUARIO', $usuario)->first();
-        return password_verify($this->request->getPost('CONTRASENIA'), $user['CONTRASENIA']) == true ? $user : NULL;
+        if (isset($user)) {
+            return password_verify($this->request->getPost('CONTRASENIA'), $user['CONTRASENIA']) == true ? $user : NULL;
+        } else {
+            return NULL;
+        }
+        
     }
 
 

@@ -18,12 +18,12 @@
   <?php if ($exito) : ?>
     <div class="alert alert-success alert-dismissible">
       <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
-      <h5><i class="icon fas fa-check"></i> <?= $nombre_obj ?> eliminado con exito</h5>
+      <h5><i class="icon fas fa-check"></i> <?= $nombre_obj ?> activado/desactivado con exito</h5>
     </div>
   <?php else : ?>
     <div class="alert alert-danger alert-dismissible">
       <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
-      <h5><i class="icon fas fa-ban"></i> ERROR AL ELIMINAR <?= strtoupper($nombre_obj) ?>!</h5>
+      <h5><i class="icon fas fa-ban"></i> ERROR AL ACTIVAR/DESACTIVAR <?= strtoupper($nombre_obj) ?>!</h5>
     </div>
   <?php endif ?>
 <?php endif ?>

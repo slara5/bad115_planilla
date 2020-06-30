@@ -95,6 +95,7 @@ function crear_sidebar(
         ];
     }
     if(count($menus) == 0){
+        /*
         $menus = [
             [
                 'nombre'   => 'Empresa',
@@ -186,6 +187,49 @@ function crear_sidebar(
                 ]
             ]
             ];
+            */
+
+        $db = \Config\Database::connect();
+        $rol = session()->get('ID_ROL');
+
+        $query = $db->query("SELECT MENUS.ID_MENU, MENUS.ID_ICONO, MENUS.NOMBRE_MENU, ICONOS.NOMBRE_ICONO
+            FROM menus
+            INNER JOIN ICONOS ON iconos.ID_ICONO = menus.ID_ICONO
+            INNER JOIN permisos ON MENUS.ID_MENU = permisos.ID_MENU
+            INNER JOIN roles ON permisos.ID_ROL = roles.ID_ROL
+            WHERE roles.ID_ROL = ". $db->escape($rol) ." AND menus.ID_MENU_PADRE IS NULL");
+
+        foreach($query->getResult() as $query) {
+            $submenus = $db->query(" 
+
+                SELECT MENUS.ID_MENU, MENUS.ID_MENU_PADRE, MENUS.NOMBRE_MENU, MENUS.ID_ICONO, MENUS.RUTA_MENU , iconos.NOMBRE_ICONO 
+                FROM menus
+                INNER JOIN iconos ON MENUS.ID_ICONO = iconos.ID_ICONO
+                INNER JOIN permisos ON MENUS.ID_MENU = permisos.ID_MENU
+                INNER JOIN roles ON permisos.ID_ROL = roles.ID_ROL
+                WHERE MENUS.ID_MENU_PADRE = ". $db->escape($query->ID_MENU) ." 
+                AND permisos.ID_ROL = ". $db->escape($rol) ."
+               
+            ");
+
+            $menus["$query->ID_MENU"] = array(
+                'NOMBRE_MENU'   => $query->NOMBRE_MENU,
+                'ID_ICONO'      => $query->ID_ICONO,
+                'NOMBRE_ICONO'  => $query->NOMBRE_ICONO,
+            );
+
+            foreach ($submenus->getResult() as $submenu) {
+                $menus["$query->ID_MENU"]["submenus"]["$submenu->ID_MENU"] = array(
+                    "NOMBRE_MENU"   => $submenu->NOMBRE_MENU,
+                    "ID_ICONO"      => $submenu->ID_ICONO,
+                    "NOMBRE_ICONO"  => $submenu->NOMBRE_ICONO,
+                    "ID_MENU_PADRE" => $submenu->ID_MENU_PADRE,
+                    "RUTA_MENU"     => $submenu->RUTA_MENU,
+                );
+            }
+
+        }
+
     }
     $datos = [
         'usuario' => $usuario,

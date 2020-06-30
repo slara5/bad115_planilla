@@ -25,21 +25,22 @@
           <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
          
-          <?php foreach ($menus as $menu): ?>
+          <?php foreach ($menus as $index => $menu): ?>
           <li class="nav-item has-treeview">
-            <a href="<?=$menu['url']?>" class="nav-link">
-              <i class="nav-icon <?= $menu['icono']?>"></i>
+            <a href="#" class="nav-link">
+              <i class="nav-icon <?= $menu['NOMBRE_ICONO']?>"></i>
               <p>
-                <?= $menu['nombre']?>
+                <?= $menu['NOMBRE_MENU']?>
                 <i class="fas fa-angle-left right"></i>
               </p>
             </a>
             <ul class="nav nav-treeview">
-              <?php foreach ($menu['submenus'] as $submenu): ?>
+
+            <?php foreach ($menu['submenus'] as $submenu): ?>
                 <li class="nav-item">
-                  <a href="<?=$submenu['url'] ?>" class="nav-link">
+                  <a href="<?=$submenu['RUTA_MENU'] ?>" class="nav-link">
                     <i class="fas fa-arrow-alt-circle-right nav-icon"></i>
-                    <p><?= $submenu['nombre']?></p>
+                    <p><?= $submenu['NOMBRE_MENU']?></p>
                   </a>
                 </li>
               <?php endforeach; ?>
