@@ -55,14 +55,14 @@ class EmpleadosModel extends Model
         }
     }
 
-    function buscar($termino){
+    function buscar($termino){ //busqueda de ids, retorno ids en formato string
         $empleados = $this->select('ID_EMPLEADO')
                 ->like('NOMBRE_PRIMERO', $termino)
                 ->orLike('NOMBRE_SEGUNDO', $termino)
                 ->orLike('APELLIDO_PATERNO', $termino)
                 ->orLike('APELLIDO_MATERNO', $termino)
                 ->findAll();
-        $id_string = [];
+        $id_string = (count($empleados) != 0)? []:['0'];
         for ($i=0; $i < count($empleados); $i++) { 
             $id_string[count($id_string)] = strval($empleados[$i]['ID_EMPLEADO']);
         }

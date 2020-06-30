@@ -36,6 +36,9 @@ class Domicilios extends BaseController
 
 	public function index()
 	{
+        /* $db = \Config\Database::connect();
+        $db->query("call sp_Calcula_Nueva_Planilla(2019-30-06)");
+        return; */
 		return $this->data_vista();
 	}
 

@@ -11,7 +11,7 @@ function editar_estado(id, id_empleado, telefono, tipo){
 }
 function limpiar(){
     document.querySelector('#ID_TELEFONO').value = '';
-    document.querySelector('#ID_EMPLEADO').value = '';
+    // document.querySelector('#ID_EMPLEADO').value = '';
     document.querySelector('#TELEFONO').value = '';
     document.querySelector('#TIPO_TELEFONO').value = '';
 

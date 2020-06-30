@@ -11,7 +11,7 @@ function editar_estado(id, id_empleado, direccion){
 }
 function limpiar(){
     document.querySelector('#ID_DOMICILIO').value = '';
-    document.querySelector('#ID_EMPLEADO').value = '';
+    // document.querySelector('#ID_EMPLEADO').value = '';
     document.querySelector('#DIRECCION').value = '';
 
     $("#btn_submit").attr('disabled', 'disabled');
