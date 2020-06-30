@@ -74,7 +74,7 @@
               <th>Apellido</th>
               <th>Salario</th>
               <th>Correos</th>
-              <th>Telefonos</th>
+              <!-- <th>Telefonos</th> -->
               <th>Puesto</th>
               <th>Acciones</th>
             </tr>
@@ -89,15 +89,13 @@
                 <td><?= $empleado['APELLIDO_PATERNO']?> <br> <?=$empleado['APELLIDO_MATERNO']?></td>
                 <td><?= '$ '.$empleado['SALARIO']?></td>
                 <td><?= $empleado['CORREO_ELECTRONICO_PERSONAL']?> <br><?= $empleado['CORREO_ELECTRONICO_INSTITUCIONAL']?></td>
-                <td><?= $empleado['TELEFONO_MOVIL']?> <br> <?=$empleado['TELEFONO']?></td>
+                
                 <td><?= $puestoModel->get($empleado['ID_PUESTO'])[0]['DESCRIPCION_PUESTO']?></td>
 
                 <td class="row d-flex justify-content-around">
-                  <form action="<?= $url_eliminar ?>" method="post" class=" col-5">
-                    <?= csrf_field() ?>
-                    <input type="hidden" name="ID_EMPLEADO" value="<?= $empleado['ID_EMPLEADO'] ?>">
-                    <button class="btn btn-danger"><i class="icon fas fa-trash"></i></button>
-                  </form>
+                    <button type="button" onclick="eliminar(<?= $empleado['ID_EMPLEADO'] ?>)" class="btn btn-danger col-5" data-toggle="modal" data-target="#eliminarModal">
+                    <i class="icon fas fa-trash"></i>
+                    </button>
                   <button class="btn btn-primary col-5" 
                   onclick="editar_estado(
                     <?= $empleado['ID_EMPLEADO'] ?>,
@@ -107,7 +105,7 @@
                     '<?= $empleado['APELLIDO_PATERNO'] ?>',
                     '<?= $empleado['APELLIDO_MATERNO'] ?>',
                     '<?= $empleado['FECHA_NACIMIENTO'] ?>',
-                    '<?= $empleado['DIRECCION'] ?>',
+                    
                     '<?= $empleado['NUMERO_DOCUMENTO'] ?>',
                     '<?= $empleado['FECHA_EXPEDICION'] ?>',
                     '<?= $empleado['NIT'] ?>',
@@ -118,8 +116,7 @@
                     <?= $empleado['SALARIO'] ?>,
                     '<?= $empleado['CORREO_ELECTRONICO_INSTITUCIONAL'] ?>',
                     '<?= $empleado['CORREO_ELECTRONICO_PERSONAL'] ?>',
-                    '<?= $empleado['TELEFONO'] ?>',
-                    '<?= $empleado['TELEFONO_MOVIL'] ?>',
+                    
                     '<?= $empleado['HORARIO_TRABAJO'] ?>',
                     <?= $empleado['ID_PUESTO'] ?>,
                     <?= $empleado['ID_PROFESION_OFICIO'] ?>,
@@ -147,7 +144,7 @@
               <th>Apellido</th>
               <th>Salario</th>
               <th>Correos</th>
-              <th>Telefonos</th>
+              <!-- <th>Telefonos</th> -->
               <th>Puesto</th>
               <th>Acciones</th>
             </tr>
@@ -219,13 +216,13 @@
                     </div>
 
                 </div>
-                <div class="form-group">
+                <!-- <div class="form-group">
                     <label for="">Dirección *</label>
                     <input name="DIRECCION" onkeyup="validar_string_con_longitud(this, 15)" onblur="validar_string_con_longitud(this, 15)" type="text" class="form-control" id="DIRECCION" placeholder="Calle ## pasaje tal casa ##">
                     <div class="invalid-feedback" style="display:none">
                             Direccion invalida: <strong>La direccion es muy corta</strong>
                     </div>
-                </div>
+                </div> -->
                 <div class="form-group">
                     <label for="">DUI</label>
                     <input name="NUMERO_DOCUMENTO" onkeyup="validar_string_formato(this, '00000000-0', '-')" onblur="validar_string_formato(this, '00000000-0', '-')" type="text" class="form-control" id="NUMERO_DOCUMENTO" placeholder="00000000-0">
@@ -388,7 +385,7 @@
                     Correo invalido: <strong>Por favor ingresar un correo valido: example@example.com</strong>
                     </div>
                 </div>
-                <div class="form-group">
+               <!--  <div class="form-group">
                     <label for="">Telefono Celular</label>
                     <input name="TELEFONO_MOVIL" onkeyup="validar_numero(this, 60000000, 79999999)" onblur="validar_numero(this, 60000000, 79999999)" type="text" class="form-control" id="TELEFONO_MOVIL" placeholder="77777777">
                     <div class="invalid-feedback" style="display:none">
@@ -401,7 +398,7 @@
                     <div class="invalid-feedback" style="display:none">
                     Telefono Celular invalido: <strong>Telefono valido ejemplo: 22222222</strong>
                     </div>
-                </div>
+                </div> -->
                 <div class="form-group">
                     <label for="">Horario de trabajo</label>
                     <input name="HORARIO_TRABAJO" type="text" class="form-control" id="HORARIO_TRABAJO" placeholder="6 AM - 6 PM">
@@ -423,6 +420,34 @@
             <button id="btn_submit" type="submit" class="btn btn-primary col-10 offset-1" disabled >Crear Empleado</button>
         </div>
     </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+<!-- Modal Eliminar -->
+<div class="modal" id="eliminarModal" tabindex="-1" role="dialog" aria-labelledby="eliminarModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content  bg-danger">
+      <div class="modal-header">
+        <h5 class="modal-title" id="eliminarModalLabel">Eliminar</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+      <h4>¿Esta seguro que desea eliminar <?= $nombre_obj ?> seleccionado?</h4>
+      <form action="<?= $url_eliminar ?>" method="post" class="mt-4 row d-flex justify-content-around">
+          <?= csrf_field() ?>
+          <input type="hidden" id="id_eliminar" name="ID_EMPLEADO">
+          <button type="button" class="btn btn-outline-light col-4" data-dismiss="modal">Cancelar</button>
+          <button type="submit" class="btn btn-outline-light col-4" >
+          Eliminar
+          </button>
+      </form>
       </div>
     </div>
   </div>

@@ -9,3 +9,7 @@ function limpiar(){
     document.querySelector('#NOMBRE_ESTADO').value = '';
     $("#btn_submit").attr('disabled', 'disabled');
 }
+
+function eliminar(id_estado_empleado){
+    document.querySelector('#id_eliminar').value = id_estado_empleado;
+}

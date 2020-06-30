@@ -8,3 +8,7 @@ function limpiar(){
     document.querySelector('#NOMBRE_ESTADO_CIVIL').value = '';
     $("#btn_submit").attr('disabled', 'disabled');
 }
+
+function eliminar(id_estado){
+    document.querySelector('#id_eliminar').value = id_estado;
+}

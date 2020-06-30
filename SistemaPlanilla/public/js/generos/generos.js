@@ -8,3 +8,8 @@ function limpiar(){
     document.querySelector('#DESCRIPCION_GENERO').value = '';
     $("#btn_submit").attr('disabled', 'disabled');
 }
+
+
+function eliminar(id_genero){
+    document.querySelector('#id_eliminar').value = id_genero;
+}
