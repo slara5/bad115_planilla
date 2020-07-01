@@ -21,8 +21,8 @@
       <td class='id_nombre_depto'><?= $area['NOMBRE_AREA'] ?></td>
       <td><?= $depto_empresa->get($area['ID_DEPARTAMENTO_EMPRESA'])[0]['NOMBRE_DEPARTAMENTO_EMPRESA']?></td>
       <td>
-      <button href="#"  button class="btn btn-navbar" id="delete" role="button" ><i class="fas fa-trash"></i></button>
-      <button href="#"  button class="btn btn-navbar" id="edit" role="button" ><i class="fas fa-pen"></i></button>
+      <button href="#" id="delete" role="button" class="btn btn-danger"><i class="icon fas fa-trash"></i></button>
+      <button href="#"  id="edit" role="button" class="btn btn-primary col-5" ><i class="icon fas fa-pen"></i></button>
       
       </td>
     </tr>

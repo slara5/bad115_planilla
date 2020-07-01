@@ -307,10 +307,10 @@ INSERT INTO `TIPOS_CONTRATACION` (`ID_TIPO_CONTRATACION`, `NOMBRE_CONTRATACION`)
 
 /*LLENANDO TABLA ESTADO_EMPLEADOS */;
 INSERT INTO `ESTADO_EMPLEADOS` (`ID_ESTADO`, `NOMBRE_ESTADO`, `AFECTA_CALCULO`) VALUES
-	(1, 'Activo', 0),
-	(2, 'Vacaciones', 1),
-	(3, 'Inactivo', 1),
-	(4, 'Despedido', 1);
+	(1, 'Activo', 1),
+	(2, 'Vacaciones', 0),
+	(3, 'Inactivo', 0),
+	(4, 'Despedido', 0);
 
 
 /*LLENANDO TABLA AFPS */
