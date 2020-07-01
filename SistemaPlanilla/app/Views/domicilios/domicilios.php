@@ -131,7 +131,7 @@
 
                     <div class="form-group">
                         <label>Empleado</label>
-                        <select name="ID_EMPLEADO" id="ID_EMPLEADO"  class="form-control select2 " style="width: 100%;">
+                        <select required name="ID_EMPLEADO" id="ID_EMPLEADO"  class="form-control select2 " style="width: 100%;">
                             <?php foreach ($empleados as $index => $empleado) : ?>
                                 <option value="<?= $empleado['ID_EMPLEADO'] ?>">
                                 <?= $empleado['APELLIDO_PATERNO'] ?> <span> </span>

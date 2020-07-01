@@ -73,7 +73,7 @@ echo view('empresa/Area/Busqueda');
                         </div>
                     </div><div class="form-group">
                     <label>Departamentos</label>
-                    <select name="ID_DEPARTAMENTO_EMPRESA" id="ID_DEPARTAMENTO_EMPRESA"  class="form-control select2" style="width: 100%;">
+                    <select required name="ID_DEPARTAMENTO_EMPRESA" id="ID_DEPARTAMENTO_EMPRESA"  class="form-control select2" style="width: 100%;">
                         <?php foreach ($lista_u as $index => $l_unidades) : ?>
                             <option value="<?= $l_unidades['ID_DEPARTAMENTO_EMPRESA'] ?>"><?= $l_unidades['NOMBRE_DEPARTAMENTO_EMPRESA'] ?></option>
                         <?php endforeach ?>

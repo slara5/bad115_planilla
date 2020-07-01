@@ -142,7 +142,7 @@
                     
                     <div class="form-group">
                         <label>Tipo Acción Personal</label>
-                        <select name="ID_TIPO" id="ID_TIPO" class="form-control select2 " style="width: 100%;">
+                        <select required name="ID_TIPO" id="ID_TIPO" class="form-control select2 " style="width: 100%;">
                             <?php foreach ($tipo_accion as $index => $tipo) : ?>
                                 <option value="<?= $tipo['ID_TIPO'] ?>"><?= $tipo['DESCRIPCION'] ?></option>
                             <?php endforeach ?>
@@ -151,7 +151,7 @@
 
                     <div class="form-group">
                         <label>Empleado </label>
-                        <select name="ID_EMPLEADO" id="ID_EMPLEADO" class="form-control select2 " style="width: 100%;">
+                        <select required name="ID_EMPLEADO" id="ID_EMPLEADO" class="form-control select2 " style="width: 100%;">
                             <?php foreach ($empleados as $index => $empleado) : ?>
                                 <option value="<?= $empleado['ID_EMPLEADO'] ?>"><?= $empleadosModel->get_nombre_compleado($empleado['ID_EMPLEADO']) ?></option>
                             <?php endforeach ?>
@@ -182,7 +182,7 @@
 
                     <div class="form-group">
                         <label for="">Descuento?</label>
-                        <select name="DESCUENTA_DIAS" id="DESCUENTA_DIAS" class="form-control">
+                        <select required name="DESCUENTA_DIAS" id="DESCUENTA_DIAS" class="form-control">
                             <option value="1" >SI</option>
                             <option value="0">NO</option>
                         </select>

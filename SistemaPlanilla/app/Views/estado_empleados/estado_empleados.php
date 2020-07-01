@@ -133,7 +133,7 @@
                     </div>
                     <div class="form-group">
                         <label for="">Afecta Calculo en Planilla</label>
-                        <select name="AFECTA_CALCULO" id="AFECTA_CALCULO" class="form-control">
+                        <select required name="AFECTA_CALCULO" id="AFECTA_CALCULO" class="form-control">
                             <option value="1">SI</option>
                             <option value="0">NO</option>
                         </select>
