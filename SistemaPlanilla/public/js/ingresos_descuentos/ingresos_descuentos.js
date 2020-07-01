@@ -8,6 +8,7 @@ function editar_estado(
     TIPO,
     PREFIJO,
     ){
+        limpiar_validaciones();
         $('#ID_TIPO_MOVIMIENTO').val(ID_TIPO_MOVIMIENTO);
         $('#ID_TIPO_MOVIMIENTO').trigger('change');
     
@@ -34,4 +35,5 @@ function editar_estado(
         document.querySelector('#PREFIJO').value = '';
     
         $("#btn_submit").attr('disabled', 'disabled');
+        limpiar_validaciones();
     }

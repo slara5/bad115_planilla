@@ -5,6 +5,7 @@ function editar_estado(
     MES,
     MONTO_PRESUPUESTOANUAL,
     ){
+        limpiar_validaciones();
         $('#ID_DEPARTAMENTO_EMPRESA').val(ID_DEPARTAMENTO_EMPRESA);
         $('#ID_DEPARTAMENTO_EMPRESA').trigger('change');
     
@@ -25,4 +26,5 @@ function editar_estado(
         document.querySelector('#MONTO_PRESUPUESTOANUAL').value = '';
     
         $("#btn_submit").attr('disabled', 'disabled');
+        limpiar_validaciones();
     }

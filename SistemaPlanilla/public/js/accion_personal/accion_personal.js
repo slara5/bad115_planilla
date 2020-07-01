@@ -1,4 +1,5 @@
 function editar_estado(id, id_empleado, id_tipo, FECHA_ACCION, DIAS_APLICAR, DESCUENTA_DIAS){
+    limpiar_validaciones();
 
     $('#ID_EMPLEADO').val(id_empleado);
     $('#ID_EMPLEADO').trigger('change');
@@ -12,6 +13,7 @@ function editar_estado(id, id_empleado, id_tipo, FECHA_ACCION, DIAS_APLICAR, DES
     document.querySelector('#DIAS_APLICAR').value = DIAS_APLICAR;
     document.querySelector('#DESCUENTA_DIAS').value = DESCUENTA_DIAS;
 
+    submit_form();
 }
 function limpiar(){
     document.querySelector('#ID_ACCION').value = '';
@@ -22,6 +24,8 @@ function limpiar(){
     // document.querySelector('#DESCUENTA_DIAS').value = '';
 
     $("#btn_submit").attr('disabled', 'disabled');
+
+    limpiar_validaciones();
 }
 
 

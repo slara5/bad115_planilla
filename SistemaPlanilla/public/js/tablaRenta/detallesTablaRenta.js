@@ -6,6 +6,7 @@ function editar_estado(
     PORCENTAJE_RENTA_TABLA,
     VALOR_FIJO_RENTA_TABLA,
     ){
+        limpiar_validaciones();
         $('#ID_TABLA').val(ID_TABLA);
         $('#ID_TABLA').trigger('change');
     
@@ -28,4 +29,5 @@ function editar_estado(
         document.querySelector('#VALOR_FIJO_RENTA_TABLA').value = '';
     
         $("#btn_submit").attr('disabled', 'disabled');
+        limpiar_validaciones();
     }

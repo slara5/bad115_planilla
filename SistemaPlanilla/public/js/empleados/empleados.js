@@ -31,6 +31,7 @@ function editar_estado(
     ID_MUNICIPIO,
     ID_EMPLEADO_JEFE
 ) {
+    limpiar_validaciones();
     $('#ID_PUESTO').val(ID_PUESTO);
     $('#ID_PUESTO').trigger('change');
     $('#ID_PROFESION_OFICIO').val(ID_PROFESION_OFICIO);
@@ -101,6 +102,7 @@ function limpiar() {
     document.querySelector('#HORARIO_TRABAJO').value = '';
 
     $("#btn_submit").attr('disabled', 'disabled');
+    limpiar_validaciones();
 }
 
 function eliminar(id_empleado){

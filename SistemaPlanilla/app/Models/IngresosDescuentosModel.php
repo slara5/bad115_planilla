@@ -30,4 +30,28 @@ class IngresosDescuentosModel extends Model
 			return [$this->find($id)];
 		}
 	}
+
+	function get_nombre_concepto($id){
+        $movimiento = $this->find($id);
+        return $movimiento['NOMBRE_CONCEPTO'];
+	}
+
+	function get_ingresos(){
+		return $this->where('TIPO', 1)->findAll();
+
+	}
+	function get_descuentos(){
+		return $this->where('TIPO', 2)->findAll();
+	}
+	
+	function buscar($termino){ //busqueda de ids, retorno ids en formato string
+        $movimiento = $this->select('ID_CODIGO')
+                ->like('NOMBRE_CONCEPTO', $termino)
+                ->findAll();
+        $id_string = (count($movimiento) != 0)? []:['0'];
+        for ($i=0; $i < count($movimiento); $i++) { 
+            $id_string[count($id_string)] = strval($movimiento[$i]['ID_CODIGO']);
+        }
+        return $id_string;
+    }
 }

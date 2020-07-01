@@ -289,7 +289,7 @@
                 </div>
                 <div class="form-group">
                     <label for="">Salario</label>
-                    <input name="SALARIO" onkeyup="validar_numero(this, 300)" onblur="validar_numero(this, 300)" type="number" class="form-control" id="SALARIO" placeholder="300">
+                    <input name="SALARIO" step="0.01" min="300" onkeyup="validar_numero(this, 300)" onblur="validar_numero(this, 300)" type="number" class="form-control" id="SALARIO" placeholder="300">
                     <div class="invalid-feedback" style="display:none">
                     Salario invalido: <strong>Salario debe ser mayor que el minimo: 300</strong>
                     </div>
