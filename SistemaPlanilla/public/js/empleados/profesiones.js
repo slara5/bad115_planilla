@@ -17,7 +17,7 @@ function Alerta() {
        
        }
      };
-     xmlhttp.open("GET", "http://sispla.com.devel/Profesiones/view/", true);
+     xmlhttp.open("GET", "../Profesiones/view/", true);
      xmlhttp.send();  
    
    }
@@ -32,7 +32,7 @@ function Alerta() {
        
        }
      };
-     xmlhttp.open("GET", "http://sispla.com.devel/Profesiones/view/"+par, true);
+     xmlhttp.open("GET", "../Profesiones/view/"+par, true);
      xmlhttp.send();  
      
    }
@@ -78,7 +78,7 @@ function Alerta() {
             
             }
           };
-          xmlhttp.open("GET", "http://sispla.com.devel/profesiones/delete/"+ident, true);
+          xmlhttp.open("GET", "../profesiones/delete/"+ident, true);
           xmlhttp.send();
         }
       })
@@ -92,7 +92,8 @@ function Alerta() {
         //codigo
       
       $("#unidadesModal").modal("show");
-      
+      document.getElementById("formulario").reset(); 
+  
               });
       
         

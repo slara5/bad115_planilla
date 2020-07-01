@@ -64,7 +64,7 @@ echo view('empresa/depto_empresa/busqueda');
                     <input type="hidden" name="ID_DEPARTAMENTO_EMPRESA" id="ID_DEPARTAMENTO_EMPRESA">
                     <div class="form-group">
                         <label for="">Nombre de la unidad</label>
-                        <input name="NOMBRE_DEPARTAMENTO_EMPRESA" id="NOMBRE_DEPARTAMENTO_EMPRESA" onkeyup="validar_nombre(this)" onblur="validar_nombre(this)" type="text" class="form-control" placeholder="Nombre del departamento">
+                        <input name="NOMBRE_DEPARTAMENTO_EMPRESA" id="NOMBRE_DEPARTAMENTO_EMPRESA" onkeyup="validar_nombre(this)" onblur="validar_nombre(this)" type="text" class="form-control" placeholder="Nombre del departamento" required>
                         <div class="invalid-feedback" style="display:none">
                             El nombre no debe comenzar con números ni caracteres especiales
                         </div>
