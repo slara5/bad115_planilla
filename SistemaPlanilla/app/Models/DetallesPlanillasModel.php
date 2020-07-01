@@ -31,4 +31,8 @@ class DetallesPlanillasModel extends Model
             return [$this->find($id)];
         }
     }
+
+    function get_destalles($id_planilla){
+        return $this->where('ID_PLANILLA', $id_planilla)->findAll();
+    }
 }

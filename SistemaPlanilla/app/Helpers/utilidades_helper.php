@@ -21,5 +21,5 @@ function crear_ruta_breadcrumb($clase, $metodo = 'index'){
     }
     $ruta = $ruta_clase;
     return $ruta;
-    
 }
+

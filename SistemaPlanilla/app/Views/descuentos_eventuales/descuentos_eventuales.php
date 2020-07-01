@@ -85,7 +85,7 @@
                                 <td><?= $index + 1 ?></td>
                                 <td><?= $empleadosModel->get_nombre_compleado($descuento['ID_EMPLEADO'])?></td>
                                 <td><?= $ingresosDescuentosModel->get_nombre_concepto($descuento['ID_CODIGO']) ?></td>
-                                <td><?= $planillasModel->get_codigo($descuento['ID_PLANILLA'])?></td>
+                                <td><?= $planillasModel->get_codigo_by_id($descuento['ID_PLANILLA'])?></td>
                                 <td><?= $descuento['VALOR_DESCUENTO'] ?></td>
                                 <td><?= $descuento['FECHA_DESCUENTO'] ?></td>
                                 <td><?= $descuento['DESCRIPCION_DESCUENTO'] ?></td>

@@ -1,7 +1,7 @@
 <?php
 
-date_default_timezone_set ('America/El_Salvador');
-setlocale(LC_TIME, 'es_SV');
+// date_default_timezone_set ('America/El_Salvador');
+setlocale(LC_ALL, 'es_SV'); 
 
 function crear_plantilla($main = ''){
     return crear_head().crear_body($main);
@@ -48,7 +48,7 @@ function crear_navbar(
     $fecha = ''
 ){
     if($fecha == ''){
-        $fecha = date("d") . "/" . date("m") . "/" . date("Y") . "   ".date("H:i:s");  ;
+        $fecha =  strftime("%A, %d de %B de %Y",  strtotime(date('Y-m-d')));
     }
     if(count($enlaces) == 0){
         $enlaces = [[
