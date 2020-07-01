@@ -145,7 +145,7 @@
 
                     <div class="form-group">
                     <label>Departamento *</label>
-                    <select name="ID_DEPARTAMENTO_EMPRESA" id="ID_DEPARTAMENTO_EMPRESA" class="form-control select2 " style="width: 100%;">
+                    <select required name="ID_DEPARTAMENTO_EMPRESA" id="ID_DEPARTAMENTO_EMPRESA" class="form-control select2 " style="width: 100%;">
                         <?php foreach ($departamentos as $index => $departamento) : ?>
                             <option value="<?= $departamento['ID_DEPARTAMENTO_EMPRESA'] ?>"><?= $departamento['NOMBRE_DEPARTAMENTO_EMPRESA'] ?></option>
                         <?php endforeach ?>

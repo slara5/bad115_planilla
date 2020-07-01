@@ -76,7 +76,7 @@ echo view('empresa/Secciones/busqueda');
                     
                                               <div class="form-group">
                     <label>Area</label>
-                    <select name="IDAREA" id="IDAREA"  class="form-control select2" style="width: 100%;">
+                    <select required name="IDAREA" id="IDAREA"  class="form-control select2" style="width: 100%;">
                         <?php foreach ($lista_a as $index => $l_areas) : ?>
                             <option value="<?= $l_areas['IDAREA'] ?>"> <?= $l_areas['NOMBRE_AREA'] ?></option>
                         <?php endforeach ?>

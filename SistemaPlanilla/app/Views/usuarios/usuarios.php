@@ -164,7 +164,7 @@
         
               <div class="form-group">
                 <label>Rol</label>
-                <select name="ID_ROL" id="ID_ROL" class="form-control select2">
+                <select required name="ID_ROL" id="ID_ROL" class="form-control select2">
                   <?php foreach ($roles as $index => $rol) : ?>
                     <option value="<?= $rol['ID_ROL'] ?>"><?= $rol['NOMBRE_ROL'] ?></option>
                   <?php endforeach ?>

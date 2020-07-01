@@ -148,7 +148,7 @@
 
                     <div class="form-group">
                     <label>Tabla Renta *</label>
-                    <select name="ID_TABLA" id="ID_TABLA" class="form-control select2 " style="width: 100%;">
+                    <select required name="ID_TABLA" id="ID_TABLA" class="form-control select2 " style="width: 100%;">
                         <?php foreach ($tablas as $index => $tabla) : ?>
                             <option value="<?= $tabla['ID_TABLA'] ?>"><?= $tabla['NOMBRE_TABLA'] ?></option>
                         <?php endforeach ?>

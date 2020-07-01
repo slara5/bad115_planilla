@@ -155,7 +155,7 @@
               
               <div class="form-group">
                 <label>Tipo de Movimiento</label>
-                <select name="ID_TIPO_MOVIMIENTO" id="ID_TIPO_MOVIMIENTO" class="form-control select2">
+                <select required name="ID_TIPO_MOVIMIENTO" id="ID_TIPO_MOVIMIENTO" class="form-control select2">
                   <?php foreach ($tipos_movimiento as $index => $tipo_movimiento) : ?>
                     <option value="<?= $tipo_movimiento['ID_TIPO_MOVIMIENTO'] ?>"><?= $tipo_movimiento['NOMBRE_TIPO_MOVIMIENTO'] ?></option>
                   <?php endforeach ?>

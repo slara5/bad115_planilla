@@ -163,7 +163,7 @@
                     <input type="hidden" name="HIJO" id="HIJO">
                     <div class="form-group">
                         <label>Menu Padre</label>
-                        <select name="ID_MENU_PADRE" id="ID_MENU_PADRE" class="form-control select2">
+                        <select  name="ID_MENU_PADRE" id="ID_MENU_PADRE" class="form-control select2">
                             <?php foreach ($menusPadre as $index => $menusPadre) : ?>
                                 <option value="<?= $menusPadre['ID_MENU'] ?>"><?= $menusPadre['NOMBRE_MENU'] ?></option>
                             <?php endforeach ?>

@@ -147,7 +147,7 @@
 
                     <div class="form-group">
                         <label>Empleado </label>
-                        <select name="ID_EMPLEADO" id="ID_EMPLEADO" class="form-control select2 " style="width: 100%;">
+                        <select required name="ID_EMPLEADO" id="ID_EMPLEADO" class="form-control select2 " style="width: 100%;">
                             <?php foreach ($empleados as $index => $empleado) : ?>
                                 <option value="<?= $empleado['ID_EMPLEADO'] ?>"><?= $empleadosModel->get_nombre_compleado($empleado['ID_EMPLEADO']) ?></option>
                             <?php endforeach ?>
@@ -156,7 +156,7 @@
 
                     <div class="form-group">
                         <label>Tipo Movimiento</label>
-                        <select name="ID_CODIGO" id="ID_CODIGO" class="form-control select2 " style="width: 100%;">
+                        <select required name="ID_CODIGO" id="ID_CODIGO" class="form-control select2 " style="width: 100%;">
                             <?php foreach ($pagos as $index => $pago) : ?>
                                 <option value="<?= $pago['ID_CODIGO'] ?>"><?= $pago['NOMBRE_CONCEPTO'] ?></option>
                             <?php endforeach ?>
@@ -200,7 +200,7 @@
 
                     <div class="form-group">
                         <label for="">Pago activo?</label>
-                        <select name="ACTIVO_PAGO" id="ACTIVO_PAGO" class="form-control">
+                        <select required name="ACTIVO_PAGO" id="ACTIVO_PAGO" class="form-control">
                             <option value="1" >SI</option>
                             <option value="0">NO</option>
                         </select>
