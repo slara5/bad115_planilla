@@ -95,99 +95,6 @@ function crear_sidebar(
         ];
     }
     if(count($menus) == 0){
-        /*
-        $menus = [
-            [
-                'nombre'   => 'Empresa',
-                'url'      => base_url(),
-                'icono'    => 'fas fa-building',
-                'submenus' => [
-                    [
-                        'nombre'   => 'Datos Empresa',
-                        'url'      => base_url()
-                    ],
-                    [
-                        'nombre'   => 'Unidades',
-                        'url'      => base_url().'/'.'unidades/'
-                    ],
-                    [
-                        'nombre'   => 'Departamentos',
-                        'url'      => base_url().'/'.'Departamentos_empresa/'
-                    ],
-                    [
-                        'nombre'   => 'Area',
-                        'url'      => base_url().'/'.'Area/'
-                    ],
-                    [
-                        'nombre'   => 'Secciones',
-                        'url'      => base_url().'/'.'Secciones/'
-                    ],                    [
-                        'nombre'   => 'Subsecciones',
-                        'url'      => base_url().'/'.'Subsecciones/'
-                    ],
-                ]
-            ],
-            [
-                'nombre'   => 'Planilla',
-                'url'      => base_url(),
-                'icono'    => 'fas fa-copy',
-                'submenus' => [
-                    [
-                        'nombre'   => 'Boleta de pago',
-                        'url'      => base_url()
-                    ],
-                    [
-                        'nombre'   => 'ISSS, AFP',
-                        'url'      => base_url()
-                    ],
-                ]
-            ],
-            [
-                'nombre'   => 'Empleados',
-                'url'      => base_url(),
-                'icono'    => 'fas fa-address-card',
-                'submenus' => [
-                    [
-                        'nombre'   => 'Datos Empleados',
-                        'url'      => base_url()
-                    ],
-                    [
-                        'nombre'   => 'Nuevo Empleado',
-                        'url'      => base_url()
-                    ],
-                    [
-                        'nombre'   => 'Tipo de contratacion',
-                        'url'      => base_url().'/Tipos_contratacion'
-                    ],
-                    [
-                        'nombre'   => 'Puestos de trabajo',
-                        'url'      => base_url().'/Puestos_trabajo'
-                    ],
-                    [
-                        'nombre'   => 'Profesiones',
-                        'url'      => base_url().'/profesiones'
-                    ],
-
-                    
-                ]
-            ],
-            [
-                'nombre'   => 'Usuario',
-                'url'      => base_url(),
-                'icono'    => 'fas fa-users-cog',
-                'submenus' => [
-                    [
-                        'nombre'   => 'Roles Y permisos',
-                        'url'      => base_url()
-                    ],
-                    [
-                        'nombre'   => 'Activar y desactivar',
-                        'url'      => base_url()
-                    ],
-                ]
-            ]
-            ];
-            */
 
         $db = \Config\Database::connect();
         $rol = session()->get('ID_ROL');
@@ -227,9 +134,7 @@ function crear_sidebar(
                     "RUTA_MENU"     => $submenu->RUTA_MENU,
                 );
             }
-
         }
-
     }
     $datos = [
         'usuario' => $usuario,

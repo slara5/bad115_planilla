@@ -48,17 +48,17 @@ class Login extends BaseController
     {
         $user = (new UsuariosModel())->where('USUARIO', $usuario)->first();
         if (isset($user)) {
-            return password_verify($this->request->getPost('CONTRASENIA'), $user['CONTRASENIA']) == true ? $user : NULL;
+            return password_verify($this->request->getPost('CONTRASENIA'), $user['CONTRASENIA']) == true ? $user : NULL; 
         } else {
             return NULL;
         }
-        
     }
 
 
     private function setUserMethod($user)
     {
     	$data = [
+            'ID_USUARIO'    => $user['ID_USUARIO'],
     		'ID_ROL'		=> $user['ID_ROL'],
     		'NOMBRES'		=> $user['NOMBRES'],
     		'APELLIDOS'		=> $user['APELLIDOS'],
