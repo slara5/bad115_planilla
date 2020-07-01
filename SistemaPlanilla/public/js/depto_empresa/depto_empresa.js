@@ -34,7 +34,7 @@ $(document).on("click","tr td #delete",function(){
             
             }
           };
-          xmlhttp.open("GET", "http://sispla.com.devel/Departamentos_empresa/delete/"+ident, true);
+          xmlhttp.open("GET", "../Departamentos_empresa/delete/"+ident, true);
           xmlhttp.send();
         }
       })
@@ -43,9 +43,11 @@ $(document).on("click","tr td #delete",function(){
 
       $(document).on("click","#nuevo",function(ev){ 
         //codigo
+        document.getElementById("formulario").reset(); 
       
       $("#unidadesModal").modal("show");
-      
+
+  
               });
 
 function validador(input){
@@ -104,7 +106,7 @@ function Buscar() {
        
        }
      };
-     xmlhttp.open("GET", "http://sispla.com.devel/Departamentos_empresa/view/", true);
+     xmlhttp.open("GET", "../Departamentos_empresa/view/", true);
      xmlhttp.send();  
    
    }
@@ -119,7 +121,7 @@ function Buscar() {
        
        }
      };
-     xmlhttp.open("GET", "http://sispla.com.devel/Departamentos_empresa/view/"+par, true);
+     xmlhttp.open("GET", "../Departamentos_empresa/view/"+par, true);
      xmlhttp.send();  
      
    }

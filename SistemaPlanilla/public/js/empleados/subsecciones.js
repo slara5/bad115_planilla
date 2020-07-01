@@ -17,7 +17,7 @@ function Buscar() {
        
        }
      };
-     xmlhttp.open("GET", "http://sispla.com.devel/subsecciones/view/", true);
+     xmlhttp.open("GET", "../subsecciones/view/", true);
      xmlhttp.send();  
    
    }
@@ -32,7 +32,7 @@ function Buscar() {
        
        }
      };
-     xmlhttp.open("GET", "http://sispla.com.devel/subsecciones/view/"+par, true);
+     xmlhttp.open("GET", "../subsecciones/view/"+par, true);
      xmlhttp.send();  
      
    }
@@ -41,6 +41,7 @@ function Buscar() {
     //codigo
   
   $("#unidadesModal").modal("show");
+  document.getElementById("formulario").reset(); 
   
           });
 
@@ -150,7 +151,7 @@ function Buscar() {
                                 
                                 }
                               };
-                              xmlhttp.open("GET", "http://sispla.com.devel/subsecciones/delete/"+ident, true);
+                              xmlhttp.open("GET", "../subsecciones/delete/"+ident, true);
                               xmlhttp.send();
                             }
                           })

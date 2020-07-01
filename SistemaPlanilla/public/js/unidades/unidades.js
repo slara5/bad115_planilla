@@ -104,8 +104,10 @@ $(document).on("click","tr td #edit",function(){
 
 $(document).on("click","#nuevo",function(ev){ 
   //codigo
+  document.getElementById("formulario").reset(); 
 
 $("#unidadesModal").modal("show");
+
 
         });
 
