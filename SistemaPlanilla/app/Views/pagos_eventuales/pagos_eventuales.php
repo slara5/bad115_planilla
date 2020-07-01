@@ -85,7 +85,7 @@
                                 <td><?= $index + 1 ?></td>
                                 <td><?= $empleadosModel->get_nombre_compleado($pago['ID_EMPLEADO'])?></td>
                                 <td><?= $ingresosDescuentosModel->get_nombre_concepto($pago['ID_CODIGO']) ?></td>
-                                <td><?= $planillasModel->get_codigo($pago['ID_PLANILLA'])?></td>
+                                <td><?= $planillasModel->get_codigo_by_id($pago['ID_PLANILLA'])?></td>
                                 <td><?= $pago['VALOR_PAGO'] ?></td>
                                 <td><?= $pago['FECHA_PAGO'] ?></td>
                                 <td><?= $pago['DESCRIPCION__PAGO'] ?></td>

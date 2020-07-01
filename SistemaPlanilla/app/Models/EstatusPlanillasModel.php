@@ -2,15 +2,15 @@
 
 use CodeIgniter\Model;
 
-class TiposContratacionModel extends Model
+class EstatusPlanillasModel extends Model
 {
-    protected $table      = 'TIPOS_CONTRATACION';
-    protected $primaryKey = 'ID_TIPO_CONTRATACION';
+    protected $table      = 'ESTATUS_PLANILLAS';
+    protected $primaryKey = 'ID_ESTATUS';
 
     protected $returnType     = 'array';
     protected $useSoftDeletes = false;
 
-    protected $allowedFields = ['NOMBRE_CONTRATACION'];
+    protected $allowedFields = ['NOMBRE_ESTATUS','CODIGO_ESTATUS','ESTATUS_PLANILLA'];
 
 
     protected $validationRules    = [];
@@ -28,6 +28,6 @@ class TiposContratacionModel extends Model
     }
 
     function get_nombre($id){
-        return ($this->find($id))['NOMBRE_CONTRATACION'];
+        return ($this->find($id))['NOMBRE_ESTATUS'];
     }
 }

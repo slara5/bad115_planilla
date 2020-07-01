@@ -28,4 +28,8 @@ class EmpresaModel extends Model
             return [$this->find($id)];
         }
     }
+
+    function get_periodicidad($id){
+        return ($this->find($id))['ID_PERIOCIDAD'];
+    }
 }
