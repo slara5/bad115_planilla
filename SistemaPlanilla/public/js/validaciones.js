@@ -130,6 +130,47 @@ function validar_fecha(input) {
     submit_form();
 }
 
+function validar_fecha_inicio_fin(input_inicio, input_fin, input){
+    let f1 = document.getElementById(input_inicio).value;
+    let f2 = document.getElementById(input_fin).value;
+    if (f1 != "") {
+        
+        
+
+        try {
+          f1 = new Date(f1);
+        } catch (error) {
+          invalido(input);
+          return;
+        }
+        
+        if (f2 == ''){
+            valido(input);
+            return;
+        }else{
+            try {
+                f2 = new Date(f2);
+              } catch (error) {
+                invalido(input);
+                return;
+              }
+      
+              if (f2 >= f1) {
+                valido(input);
+              } else {
+                invalido(
+                  input
+                );
+              }
+        }
+        
+
+    } else {
+        invalido(input);
+    }
+    submit_form();
+  }
+
 function validar_correo(input) {
     let valor = input.value;
     let patron = /^(([^<>()[\]\.,;:\s@\"]+(\.[^<>()[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i;
@@ -177,4 +218,10 @@ function invalido(input) {
     $(input).removeClass("is-valid");
     $(input).addClass("is-invalid");
     $(input).next().css("display", "block");
+}
+
+function limpiar_validaciones(){
+    $(".invalid-feedback").css("display", 'none');
+    $(".is-invalid").removeClass("is-invalid");
+    $(".is-valid").removeClass("is-valid");
 }

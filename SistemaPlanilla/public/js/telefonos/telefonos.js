@@ -1,5 +1,5 @@
 function editar_estado(id, id_empleado, telefono, tipo){
-
+    limpiar_validaciones();
     $('#ID_EMPLEADO').val(id_empleado);
     $('#ID_EMPLEADO').trigger('change');
 
@@ -7,7 +7,7 @@ function editar_estado(id, id_empleado, telefono, tipo){
     document.querySelector('#ID_EMPLEADO').value = id_empleado;
     document.querySelector('#TELEFONO').value = telefono;
     document.querySelector('#TIPO_TELEFONO').value = tipo;
-
+    submit_form();
 }
 function limpiar(){
     document.querySelector('#ID_TELEFONO').value = '';
@@ -16,6 +16,7 @@ function limpiar(){
     document.querySelector('#TIPO_TELEFONO').value = '';
 
     $("#btn_submit").attr('disabled', 'disabled');
+    limpiar_validaciones();
 }
 
 

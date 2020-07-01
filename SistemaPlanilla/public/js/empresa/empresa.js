@@ -11,6 +11,7 @@ function editar_estado(
     PORCENTAJE_COMISION,
     ID_EMPRESA,
     ){
+        limpiar_validaciones();
         $('#ID_EMPRESA').val(ID_EMPRESA);
         $('#ID_EMPRESA').trigger('change');
         $('#ID_EMPRESA').val(ID_EMPRESA);
@@ -43,4 +44,5 @@ function editar_estado(
         document.querySelector('#PORCENTAJE_COMISION').value = '';
     
         $("#btn_submit").attr('disabled', 'disabled');
+        limpiar_validaciones();
     }
