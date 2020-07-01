@@ -25,4 +25,19 @@ class PlanillasModel extends Model
             return [$this->find($id)];
         }
     }
+    function get_codigo($id){
+        $planilla = $this->find($id);
+        return $planilla['CODIGO'];
+    }
+    
+    function buscar($termino){ //busqueda de ids, retorno ids en formato string
+        $planillas = $this->select('ID_PLANILLA')
+                ->like('CODIGO', $termino)
+                ->findAll();
+        $id_string = (count($planillas) != 0)? []:['0'];
+        for ($i=0; $i < count($planillas); $i++) { 
+            $id_string[count($id_string)] = strval($planillas[$i]['ID_PLANILLA']);
+        }
+        return $id_string;
+    }
 }
