@@ -34,7 +34,7 @@ $(document).on("click","tr td #delete",function(){
           
           }
         };
-        xmlhttp.open("GET", "http://sispla.com.devel/unidades/delete/"+ident, true);
+        xmlhttp.open("GET", "../unidades/delete/"+ident, true);
         xmlhttp.send();
       }
     })
@@ -62,7 +62,7 @@ if (par === ""){
     
     }
   };
-  xmlhttp.open("GET", "http://sispla.com.devel/unidades/view/", true);
+  xmlhttp.open("GET", "../unidades/view/", true);
   xmlhttp.send();  
 
 }
@@ -77,7 +77,7 @@ else{
     
     }
   };
-  xmlhttp.open("GET", "http://sispla.com.devel/unidades/view/"+par, true);
+  xmlhttp.open("GET", "../unidades/view/"+par, true);
   xmlhttp.send();  
   
 }
