@@ -63,6 +63,17 @@
                             El nombre no debe comenzar con números ni caracteres especiales
                         </div>
                     </div>
+                    <h4>Menú</h4>
+                    <?php foreach ($menus->getResultArray() as $index => $menus) : ?>
+                      <div class="form-group">
+                        <div class="form-check">
+                          <input class="form-check-input" type="checkbox" id="show-child" value="<?= $menus["ID_MENU"] ?>">
+                          <label class="form-check-label"><?= $menus["NOMBRE_MENU"] ?></label>
+                        </div>
+                      </div>
+                    
+                    <?php endforeach ?>
+
                     <button id="btn_submit" disabled type="submit" class="btn btn-success btn-block">Guardar</button>
                 </form>
             </div>

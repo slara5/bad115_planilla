@@ -82,7 +82,7 @@
               <tr>
                 <td><?= $index + 1 ?></td>
 
-                <td><?= $departamentoModel->get($presupuesto['ID_DEPARTAMENTO_EMPRESA'])[0]['NOMBRE_DEPARTAMENTO_EMPRESA']?></td>
+                <td><?= $departamentoModel->get_nombre_departamento($presupuesto['ID_DEPARTAMENTO_EMPRESA'])?></td>
                 <td><?= $presupuesto['ANIO']?></td>
                 <td><?= $presupuesto['MES']?></td>
                 <td><?= '$ '.$presupuesto['MONTO_PRESUPUESTOANUAL'] ?></td>
@@ -145,7 +145,7 @@
 
                     <div class="form-group">
                     <label>Departamento *</label>
-                    <select name="ID_DEPARTAMENTO_EMPRESA" id="ID_DEPARTAMENTO_EMPRESA" class="form-control select2 " style="width: 100%;">
+                    <select required name="ID_DEPARTAMENTO_EMPRESA" id="ID_DEPARTAMENTO_EMPRESA" class="form-control select2 " style="width: 100%;">
                         <?php foreach ($departamentos as $index => $departamento) : ?>
                             <option value="<?= $departamento['ID_DEPARTAMENTO_EMPRESA'] ?>"><?= $departamento['NOMBRE_DEPARTAMENTO_EMPRESA'] ?></option>
                         <?php endforeach ?>

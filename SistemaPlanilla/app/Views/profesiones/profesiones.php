@@ -80,7 +80,7 @@ echo view('profesiones/busqueda');
 
                     <div class="form-group">
                     <label>¿Es oficio?</label>
-                    <select name="ES_OFICIO" id="ES_OFICIO"  class="form-control select2 " style="width: 100%;">
+                    <select required name="ES_OFICIO" id="ES_OFICIO"  class="form-control select2 " style="width: 100%;">
                     <option value="0">NO</option>
                     <option value="1">SI</option>
 

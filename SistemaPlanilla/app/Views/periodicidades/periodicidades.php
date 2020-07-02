@@ -3,7 +3,7 @@
     <div class="alert alert-success alert-dismissible">
       <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
       <h5><i class="icon fas fa-check"></i> <?= $nombre_obj ?> Guardado!</h5>
-      Se ha guardado el <?= $nombre_obj ?> con exito
+      Se ha guardado la <?= $nombre_obj ?> con exito
     </div>
   <?php else : ?>
     <div class="alert alert-danger alert-dismissible">
@@ -51,7 +51,7 @@
       <div class="card-body">
         <div class="row mb-3">
           <div class="col-4">
-            <button type="button" class="btn  btn-success col-8" data-toggle="modal" data-target="#rangoModal" onclick="limpiar()">Nuevo</button>
+            <button type="button" class="btn  btn-success col-8" data-toggle="modal" data-target="#periodicidadModal" onclick="limpiar()">Nuevo</button>
           </div>
           <div class="col-8">
             <form class="mr-0 ml-auto" action="<?= $url_buscar ?>" method="post">
@@ -70,38 +70,33 @@
           <thead>
             <tr>
               <th>#</th>
-              <th>Empresa</th>
-              <th>Monto Desde</th>
-              <th>Monto Hasta</th>
-              <th>Porcentaje Comisión</th>
+              <th>Descripción</th>
+              <th>Planillas por mes</th>
               <th>Acciones</th>
             </tr>
           </thead>
           <tbody>
-            <?php foreach ($rangos as $index => $rango) : ?>
+            <?php foreach ($periodicidades as $index => $periodicidad) : ?>
               <tr>
                 <td><?= $index + 1 ?></td>
 
-                <td><?= $empresaModel->get($rango['ID_EMPRESA'])[0]['NOMBRE_EMPRESA']?></td>
-                <td><?= '$ '.$rango['DESDE_MONTO']?></td>
-                <td><?= '$ '.$rango['HASTA_MONTO']?></td>
-                <td><?= $rango['PORCENTAJE_COMISION'] . ' %' ?></td>
+                
+                <td><?= $periodicidad['DESC_PERIOCIDAD']?></td>
+                <td><?= $periodicidad['PLANILLAS_POR_MES']?></td>
                 
 
                 <td class="row d-flex justify-content-around">
                   <form action="<?= $url_eliminar ?>" method="post" class=" col-5">
                     <?= csrf_field() ?>
-                    <input type="hidden" name="ID_RANGO" value="<?= $rango['ID_RANGO'] ?>">
+                    <input type="hidden" name="ID_PERIOCIDAD" value="<?= $periodicidad['ID_PERIOCIDAD'] ?>">
                     <button class="btn btn-danger"><i class="icon fas fa-trash"></i></button>
                   </form>
                   <button class="btn btn-primary col-5" 
                   onclick="editar_estado(
-                    <?= $rango['ID_RANGO'] ?>,
-                    '<?= $rango['ID_EMPRESA'] ?>',
-                    '<?= $rango['DESDE_MONTO'] ?>',
-                    '<?= $rango['HASTA_MONTO'] ?>',
-                    '<?= $rango['PORCENTAJE_COMISION'] ?>',
-                  )" data-toggle="modal" data-target="#rangoModal">
+                    <?= $periodicidad['ID_PERIOCIDAD'] ?>,
+                    '<?= $periodicidad['DESC_PERIOCIDAD'] ?>',
+                    '<?= $periodicidad['PLANILLAS_POR_MES'] ?>',
+                  )" data-toggle="modal" data-target="#periodicidadModal">
                   <i class="icon fas fa-edit"></i></button>
                   <!-- <button class="btn btn-info col-3" 
                   onclick="" data-toggle="modal" data-target="#empleadoModal">
@@ -113,10 +108,8 @@
           <tfoot>
             <tr>
             <th>#</th>
-            <th>Empresa</th>
-              <th>Monto Desde</th>
-              <th>Monto Hasta</th>
-              <th>Porcentaje Comisión</th>
+              <th>Descripción</th>
+              <th>Planillas por mes</th>
               <th>Acciones</th>
             </tr>
           </tfoot>
@@ -129,11 +122,11 @@
 </div>
 
 <!-- MODALES -->
-<div class="modal" id="rangoModal" tabindex="-1" role="dialog" aria-labelledby="rangoModalLabel" aria-hidden="true">
+<div class="modal" id="periodicidadModal" tabindex="-1" role="dialog" aria-labelledby="periodicidadModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="rangoModalLabel"><?= $nombre_obj?></h5>
+                <h5 class="modal-title" id="periodicidadModalLabel"><?= $nombre_obj?></h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
@@ -141,38 +134,21 @@
             <div class="modal-body">
                 <form action="<?= $url_guardar ?>" method="post">
                      <?= csrf_field() ?>
-                    <input type="hidden" name="ID_RANGO" id="ID_RANGO">
+                    <input type="hidden" name="ID_PERIOCIDAD" id="ID_PERIOCIDAD">
 
                     <div class="form-group">
-                    <label>Empresa *</label>
-                    <select required name="ID_EMPRESA" id="ID_EMPRESA" class="form-control select2 " style="width: 100%;">
-                        <?php foreach ($empresas as $index => $empresa) : ?>
-                            <option value="<?= $empresa['ID_EMPRESA'] ?>"><?= $empresa['NOMBRE_EMPRESA'] ?></option>
-                        <?php endforeach ?>
-                    </select>
+                    <label for="">Descripción de Periodicidad *</label>
+                    <input name="DESC_PERIOCIDAD" onkeyup="validar_nombre(this)" onblur="validar_nombre(this)" type="text" class="form-control" id="DESC_PERIOCIDAD" placeholder="MENSUAL">
+                    <div class="invalid-feedback" style="display:none">
+                    Descripción invalida: <strong>Nombre debe comenzar con letras</strong>
+                    </div>
                     </div>
 
                     <div class="form-group">
-                        <label for="">Monto desde *</label>
-                        <input name="DESDE_MONTO" id="DESDE_MONTO"  onkeyup="validar_numero(this, 1)" onblur="validar_numero(this, 1)" type="number" class="form-control" step="0.01" placeholder="0.01">
+                        <label for="">Número de Planillas por mes *</label>
+                        <input name="PLANILLAS_POR_MES" id="PLANILLAS_POR_MES"  onkeyup="validar_numero(this, 1,5)" onblur="validar_numero(this, 1,5)" type="number" class="form-control" placeholder="1">
                         <div class="invalid-feedback" style="display:none">
-                        Monto invalido: <strong>Monto debe ser mayor que 1</strong>
-                        </div>
-                    </div>
-
-                    <div class="form-group">
-                        <label for="">Monto hasta *</label>
-                        <input name="HASTA_MONTO" id="HASTA_MONTO"  onkeyup="validar_numero(this, 1)" onblur="validar_numero(this, 1)" type="number" class="form-control" step="0.01" placeholder="0.01">
-                        <div class="invalid-feedback" style="display:none">
-                        Monto invalido: <strong>Monto debe ser mayor que 1</strong>
-                        </div>
-                    </div>
-
-                    <div class="form-group">
-                        <label for="">Porcentaje Comisión *</label>
-                        <input name="PORCENTAJE_COMISION" id="PORCENTAJE_COMISION" onkeyup="validar_numero(this,0,100)" onblur="validar_numero(this,0,100)" type="number" class="form-control" step="0.01" placeholder="0.01">
-                        <div class="invalid-feedback" style="display:none">
-                        Porcentaje invalido: <strong>Porcentaje debe ser mayor 0 y menor a 100</strong>
+                        Planillas invalidas: <strong>Número debe ser entre 1 y 5</strong>
                         </div>
                     </div>
 

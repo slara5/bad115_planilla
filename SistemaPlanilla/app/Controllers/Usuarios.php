@@ -82,7 +82,17 @@ class Usuarios extends BaseController
             if($this->validate([
                 'ID_USUARIO'    => 'required|numeric'
             ])){
-                (new UsuariosModel())->where('ID_USUARIO', $this->request->getVar('ID_USUARIO'))->delete();
+                $db = \Config\Database::connect();
+                $usuario = $this->request->getVar("ID_USUARIO");
+
+                $activo = (new UsuariosModel())->where('ID_USUARIO', $usuario)->first();
+
+                if($activo["ACTIVO"] == 1) {
+                    $db->query("UPDATE USUARIOS SET ACTIVO = 0 WHERE USUARIOS.ID_USUARIO = ".$db->escape($usuario));
+                } else {
+                    $db->query("UPDATE USUARIOS SET ACTIVO = 1 WHERE USUARIOS.ID_USUARIO = ".$db->escape($usuario));
+                }
+                
                 $exito = true;
             }
             return $this->data_vista('eliminar', $exito);

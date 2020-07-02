@@ -300,7 +300,7 @@
 
                 <div class="form-group">
                     <label>Sub Seccion</label>
-                    <select name="ID_SUB_SECCION" id="ID_SUB_SECCION"  class="form-control select2 " style="width: 100%;">
+                    <select required name="ID_SUB_SECCION" id="ID_SUB_SECCION"  class="form-control select2 " style="width: 100%;">
                         <?php foreach ($sub_secciones as $index => $sub_seccion) : ?>
                             <option value="<?= $sub_seccion['ID_SUB_SECCION'] ?>"><?= $sub_seccion['NOMBRE_SUB_SECCION'] ?></option>
                         <?php endforeach ?>
@@ -308,7 +308,7 @@
                 </div>
                 <div class="form-group">
                     <label>Estado</label>
-                    <select name="ID_ESTADO" id="ID_ESTADO" class="form-control select2 " style="width: 100%;">
+                    <select required name="ID_ESTADO" id="ID_ESTADO" class="form-control select2 " style="width: 100%;">
                         <?php foreach ($estado_empleados as $index => $estado) : ?>
                             <option value="<?= $estado['ID_ESTADO'] ?>"><?= $estado['NOMBRE_ESTADO'] ?></option>
                         <?php endforeach ?>
@@ -316,7 +316,7 @@
                 </div>
                 <div class="form-group">
                     <label>Estado Civil</label>
-                    <select name="ID_ESTADO_CIVIL" id="ID_ESTADO_CIVIL" class="form-control select2 " style="width: 100%;">
+                    <select required name="ID_ESTADO_CIVIL" id="ID_ESTADO_CIVIL" class="form-control select2 " style="width: 100%;">
                         <?php foreach ($estados_civil as $index => $estado) : ?>
                             <option value="<?= $estado['ID_ESTADO_CIVIL'] ?>"><?= $estado['NOMBRE_ESTADO_CIVIL'] ?></option>
                         <?php endforeach ?>
@@ -324,7 +324,7 @@
                 </div>
                 <div class="form-group">
                     <label>AFP</label>
-                    <select name="ID_AFP" id="ID_AFP" class="form-control select2 " style="width: 100%;">
+                    <select required name="ID_AFP" id="ID_AFP" class="form-control select2 " style="width: 100%;">
                         <?php foreach ($afps as $index => $afp) : ?>
                             <option value="<?= $afp['ID_AFP'] ?>"><?= $afp['NOMBRE_AFP'] ?></option>
                         <?php endforeach ?>
@@ -332,7 +332,7 @@
                 </div>
                 <div class="form-group">
                     <label>puesto</label>
-                    <select name="ID_PUESTO" id="ID_PUESTO" class="form-control select2 " style="width: 100%;">
+                    <select required name="ID_PUESTO" id="ID_PUESTO" class="form-control select2 " style="width: 100%;">
                         <?php foreach ($puestos_trabajo as $index => $puesto) : ?>
                             <option value="<?= $puesto['ID_PUESTO'] ?>"><?= $puesto['DESCRIPCION_PUESTO'] ?></option>
                         <?php endforeach ?>
@@ -340,7 +340,7 @@
                 </div>
                 <div class="form-group">
                     <label>Genero</label>
-                    <select name="ID_GENERO" id="ID_GENERO" class="form-control select2 " style="width: 100%;">
+                    <select required name="ID_GENERO" id="ID_GENERO" class="form-control select2 " style="width: 100%;">
                         <?php foreach ($generos as $index => $genero) : ?>
                             <option value="<?= $genero['ID_GENERO'] ?>"><?= $genero['DESCRIPCION_GENERO'] ?></option>
                         <?php endforeach ?>
@@ -349,7 +349,7 @@
                 </div>
                 <div class="form-group">
                     <label>Tipo Contratacion</label>
-                    <select name="ID_TIPO_CONTRATACION" id="ID_TIPO_CONTRATACION" class="form-control select2 " style="width: 100%;">
+                    <select required name="ID_TIPO_CONTRATACION" id="ID_TIPO_CONTRATACION" class="form-control select2 " style="width: 100%;">
                         <?php foreach ($tipos_contratacion as $index => $contratacion) : ?>
                             <option value="<?= $contratacion['ID_TIPO_CONTRATACION'] ?>"><?= $contratacion['NOMBRE_CONTRATACION'] ?></option>
                         <?php endforeach ?>
@@ -357,7 +357,7 @@
                 </div>
                 <div class="form-group">
                     <label>Muncipio</label>
-                    <select name="ID_MUNICIPIO" id="ID_MUNICIPIO" class="form-control select2 " style="width: 100%;">
+                    <select required name="ID_MUNICIPIO" id="ID_MUNICIPIO" class="form-control select2 " style="width: 100%;">
                         <?php foreach ($municipios as $index => $municipio) : ?>
                             <option value="<?= $municipio['ID_MUNICIPIO'] ?>"><?= $municipio['NOMBRE_MUNICIPIO'] ?></option>
                         <?php endforeach ?>
@@ -365,7 +365,7 @@
                 </div>
                 <div class="form-group">
                     <label>Profesion u Oficio</label>
-                    <select name="ID_PROFESION_OFICIO" id="ID_PROFESION_OFICIO" class="form-control select2 " style="width: 100%;">
+                    <select required name="ID_PROFESION_OFICIO" id="ID_PROFESION_OFICIO" class="form-control select2 " style="width: 100%;">
                         <?php foreach ($profesiones as $index => $profesion) : ?>
                             <option value="<?= $profesion['ID_PROFESION_OFICIO'] ?>"><?= $profesion['NOMBRE_PROFESION'] ?></option>
                         <?php endforeach ?>
@@ -405,7 +405,7 @@
                 </div>
                 <div class="form-group">
                     <label>Jefe De Empleado</label>
-                    <select name="ID_EMPLEADO_JEFE" id="ID_EMPLEADO_JEFE" class="form-control select2 " style="width: 100%;">
+                    <select required name="ID_EMPLEADO_JEFE" id="ID_EMPLEADO_JEFE" class="form-control select2 " style="width: 100%;">
                         <?php foreach ($empleados as $index => $empleado) : ?>
                             <option value="<?= $empleado['ID_EMPLEADO'] ?>">
                                 <?= $empleado['APELLIDO_PATERNO'] . ' ' . $empleado['APELLIDO_MATERNO'] . ',' . $empleado['NOMBRE_PRIMERO'] . ' ' . $empleado['NOMBRE_SEGUNDO'] ?></option>

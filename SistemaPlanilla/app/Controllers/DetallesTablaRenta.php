@@ -94,9 +94,11 @@ class DetallesTablaRenta extends BaseController
 			])) {
 				$termino = trim($this->request->getVar('termino'));
 				if ($termino != '') {
-					$detalles_buscados = (new DetallesTablaRentaModel())
-						->like('ID_TABLA', $termino)
-						->findAll();
+					$array_tabla = (new TablaRentaModel())->buscar($termino);
+
+                    $detalles_buscados = (new DetallesTablaRentaModel())
+                    ->orWhereIn('ID_TABLA', $array_tabla )
+                    ->findAll();
 				}
 				$exito = (count($detalles_buscados) == 0) ? false : true;
 			}

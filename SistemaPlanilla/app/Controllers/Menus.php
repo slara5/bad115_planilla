@@ -3,7 +3,9 @@
 namespace App\Controllers;
 
 use CodeIgniter\HTTP\Response;
+
 use App\Models\MenusModel;
+use App\Models\IconosModel;
 
 class Menus extends BaseController
 {
@@ -14,11 +16,15 @@ class Menus extends BaseController
 
 		$menusPadre = (new MenusModel())->get();
 
+		$iconos = (new IconosModel())->get();
+
 		$data = [
 			'menus'				=> $menus,
 			'menusModel'		=> new MenusModel(),
 			'menusPadre'		=> $menusPadre,
-			'nemusPadreModel'	=> new MenusModel(),
+			'menusPadreModel'	=> new MenusModel(),
+			'iconos'			=> $iconos,
+			'iconosModel'		=> new IconosModel(),
 			'operacion'			=> $operacion,
 			'exito' 			=> $exito,
 			'nombre_obj'    	=> 'Menú',
@@ -53,13 +59,14 @@ class Menus extends BaseController
 				if($this->request->getVar('HIJO') == "true")
 				{
 					$guardarPadre = $this->request->getVar('ID_MENU_PADRE');
-					$guardarRuta = $this->request->getVar('RUTA');
+					$guardarRuta = $this->request->getVar('RUTA_MENU');
 				}
 				(new MenusModel())->save([
 					'ID_MENU' 		=> $this->request->getVar('ID_MENU'),
+					'ID_ICONO' 		=> $this->request->getVar('ID_ICONO'),
 					'NOMBRE_MENU' 	=> $this->request->getVar('NOMBRE_MENU'),
 					'ID_MENU_PADRE' => $guardarPadre,
-					'RUTA' 			=> $guardarRuta,
+					'RUTA_MENU' 	=> $guardarRuta,
 				]);
 				$exito = true;
 			}
@@ -96,13 +103,13 @@ class Menus extends BaseController
 				$termino = trim($this->request->getVar('termino'));
 				if ($termino != '') {
 					$tipos_movimiento_buscados = (new MenusModel())
-						->like('NOMBRE_TIPO_MOVIMIENTO', $termino)
+						->like('NOMBRE_MENU', $termino)
 						->findAll();
 				}
-				$exito = (count($tipos_movimiento_buscados) == 0) ? false : true;
+				$exito = (count($menus_buscados) == 0) ? false : true;
 			}
-			return $this->data_vista('buscar', $exito, $tipos_movimiento_buscados, $termino);
+			return $this->data_vista('buscar', $exito, $menus_buscados, $termino);
 		}
-		return redirect()->to(base_url() . '/tipos_movimiento');
+		return redirect()->to(base_url() . '/menus');
 	}
 }

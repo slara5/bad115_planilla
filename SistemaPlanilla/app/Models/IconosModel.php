@@ -2,16 +2,13 @@
 
 use CodeIgniter\Model;
 
-class MenusModel extends Model
+class IconosModel extends Model
 {
-	protected $table 			= 'MENUS';
-	protected $primaryKey 		= 'ID_MENU';
+	protected $table 			= 'ICONOS';
+	protected $primaryKey 		= 'ID_ICONO';
 	protected $returnType 		= 'array';
 
-	protected $allowedFields 	= ['NOMBRE_MENU',
-									'ID_ICONO',
-									'ID_MENU_PADRE',
-									'RUTA_MENU'];
+	protected $allowedFields 	= ['NOMBRE_ICONO'];
 
 	protected $validationRules 		= [];
 	protected $validationMessages 	= [];

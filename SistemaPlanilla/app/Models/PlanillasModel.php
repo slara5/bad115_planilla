@@ -25,10 +25,7 @@ class PlanillasModel extends Model
             return [$this->find($id)];
         }
     }
-    function get_codigo($id){
-        $planilla = $this->find($id);
-        return $planilla['CODIGO'];
-    }
+
     
     function buscar($termino){ //busqueda de ids, retorno ids en formato string
         $planillas = $this->select('ID_PLANILLA')
@@ -40,4 +37,32 @@ class PlanillasModel extends Model
         }
         return $id_string;
     }
+
+    function ultima_planila(){
+        return $this->orderBy('ID_PLANILLA', 'desc')->first();
+    }
+
+    function get_id_planilla_by_codigo($codigo){
+        return ($this->select('ID_PLANILLA')->where('CODIGO', $codigo)->get())[0]['ID_PLANILLA'];
+    }
+    function get_codigo_by_id($id){
+        return ($this->find($id)['CODIGO']);
+    }
+
+    function get_codigo($periodo, $fecha){
+        $planilla_codigos = $this->select('CODIGO')
+                ->where('ID_PERIOCIDAD', $periodo)
+                ->where('FECHA_PLANILLA', $fecha)->get();
+
+        if(count($planilla_codigos) != 1){
+            return '';
+        }
+
+        return $planilla_codigos[0]['CODIGO'];
+    }
+
+    function get_estatus($id){
+        return ($this->find($id))['ID_ESTATUS'];
+    }
+
 }

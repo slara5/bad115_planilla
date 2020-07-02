@@ -91,10 +91,17 @@ class Presupuestos extends BaseController
 				'termino'   => 'required|string'
 			])) {
 				$termino = trim($this->request->getVar('termino'));
+                
+
 				if ($termino != '') {
-					$detalles_buscados = (new PresupuestosModel())
-						->like('ID_PRESUPUESTO', $termino)
-						->findAll();
+                    $array_presupuestos = (new DepartamentosEmpresaModel())->buscar($termino);
+
+                    $detalles_buscados = (new PresupuestosModel())
+                    ->orWhereIn('ID_DEPARTAMENTO_EMPRESA', $array_presupuestos )
+					->orLike('ANIO', $termino)
+					->orLike('MES', $termino)
+                    ->findAll();
+                    
 				}
 				$exito = (count($detalles_buscados) == 0) ? false : true;
 			}

@@ -18,12 +18,12 @@
   <?php if ($exito) : ?>
     <div class="alert alert-success alert-dismissible">
       <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
-      <h5><i class="icon fas fa-check"></i> <?= $nombre_obj ?> eliminado con exito</h5>
+      <h5><i class="icon fas fa-check"></i> <?= $nombre_obj ?> activado/desactivado con exito</h5>
     </div>
   <?php else : ?>
     <div class="alert alert-danger alert-dismissible">
       <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
-      <h5><i class="icon fas fa-ban"></i> ERROR AL ELIMINAR <?= strtoupper($nombre_obj) ?>!</h5>
+      <h5><i class="icon fas fa-ban"></i> ERROR AL ACTIVAR/DESACTIVAR <?= strtoupper($nombre_obj) ?>!</h5>
     </div>
   <?php endif ?>
 <?php endif ?>
@@ -74,27 +74,32 @@
                 <th>Rol</th>
                 <th>Nombres</th>
                 <th>Apellidos</th>
-                <th>Activo</th>
                 <th>Creado</th>
+                <th>Activo</th>
                 <th>Acciones</th>
               </tr>
             </thead>
             <tbody>
               <?php foreach ($usuarios as $index => $usuario) : ?>
+                <?php if($usuario['ID_USUARIO'] != 1): ?>
                 <tr>
-                  <td><?= $index + 1 ?></td>
+                  <td><?= $index ?></td>
 
                   <td><?= $usuario['USUARIO'] ?></td>
                   <td><?= $rolesModel->get($usuario['ID_ROL'])[0]['NOMBRE_ROL'] ?></td>
                   <td><?= $usuario['NOMBRES'] ?></td>
                   <td><?= $usuario['APELLIDOS'] ?></td>
-                  <td><?= ($usuario['ACTIVO'] == 1) ? "ACTIVO" : "INACTIVO" ?></td>
                   <td><?= $usuario['FECHA_HORA_CREACION'] ?></td>
+                  <td><?= ($usuario['ACTIVO'] == 1) ? "ACTIVO" : "INACTIVO" ?></td>
                   <td class="row d-flex justify-content-around">
                     <form action="<?= $url_eliminar ?>" method="post" class="col-5">
                       <?= csrf_field() ?>
                       <input type="hidden" name="ID_USUARIO" value="<?= $usuario['ID_USUARIO'] ?>">
-                      <button class="btn btn-danger"><i class="icon fas fa-trash"></i></button>
+                      <?php if ($usuario['ACTIVO'] == 1) : ?>
+                        <button class="btn btn-danger"><i class="icon fas fa-user-slash"></i></button>
+                      <?php else: ?>
+                        <button class="btn btn-success"><i class="icon fas fa-user-check"></i></button>
+                      <?php endif ?>
                     </form>
                     <button class="btn btn-primary col-5"
                       onclick="editar_estado(
@@ -108,6 +113,7 @@
                     </button>
                   </td>
                 </tr>
+              <?php endif ?>
               <?php endforeach ?>
             </tbody>
             <tfoot>
@@ -117,8 +123,8 @@
                 <th>Rol</th>
                 <th>Nombres</th>
                 <th>Apellidos</th>
-                <th>Activo</th>
                 <th>Creado</th>
+                <th>Activo</th>
                 <th>Acciones</th>
               </tr>
             </tfoot>
@@ -164,7 +170,7 @@
         
               <div class="form-group">
                 <label>Rol</label>
-                <select name="ID_ROL" id="ID_ROL" class="form-control select2">
+                <select required name="ID_ROL" id="ID_ROL" class="form-control select2">
                   <?php foreach ($roles as $index => $rol) : ?>
                     <option value="<?= $rol['ID_ROL'] ?>"><?= $rol['NOMBRE_ROL'] ?></option>
                   <?php endforeach ?>
