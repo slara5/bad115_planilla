@@ -11,11 +11,13 @@ function editar_estado(
     NUMERO_EMP_MAX_INSAFORP,
     SALARIO_MINIMO,
     ){
+
+        limpiar_validaciones();
         $('#ID_PERIOCIDAD').val(ID_PERIOCIDAD);
         $('#ID_PERIOCIDAD').trigger('change');
         $('#ID_TABLA').val(ID_TABLA);
         $('#ID_TABLA').trigger('change');
-    
+
         document.querySelector('#ID_EMPRESA').value = ID_EMPRESA; 
         document.querySelector('#NOMBRE_EMPRESA').value = NOMBRE_EMPRESA;
         document.querySelector('#PORCENTAJE_ISSS').value = PORCENTAJE_ISSS;
@@ -43,4 +45,5 @@ function editar_estado(
         document.querySelector('#SALARIO_MINIMO').value = '';
     
         $("#btn_submit").attr('disabled', 'disabled');
+        limpiar_validaciones();
     }

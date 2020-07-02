@@ -70,13 +70,29 @@
       });
 
       $('.table').DataTable({
-        "paging": false,
+        "paging": true,
         "lengthChange": false,
         "searching": false,
         "ordering": true,
         "info": false,
         "autoWidth": false,
         "responsive": true,
+        "language": {
+          "sZeroRecords": "No se encontraron resultados",
+          "sEmptyTable": "Ningún dato disponible en esta tabla",
+          "thousands": ",",
+          "loadingRecords": "Cargando...",
+          "processing": "Procesando...",
+          "search": "Buscar:",
+          "zeroRecords": "Sin resultados encontrados",
+          "paginate": {
+            "first": "Primero",
+            "last": "Último",
+            "next": "Siguiente",
+            "previous": "Anterior"
+          }
+        }
+        
       });
     })
   </script>

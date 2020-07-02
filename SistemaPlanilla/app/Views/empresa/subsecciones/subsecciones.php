@@ -76,7 +76,7 @@ echo view('empresa/subsecciones/busqueda');
                     
                                               <div class="form-group">
                     <label>Seccion</label>
-                    <select name="ID_SECCION" id="ID_SECCION"  class="form-control select2" style="width: 100%;">
+                    <select required name="ID_SECCION" id="ID_SECCION"  class="form-control select2" style="width: 100%;">
                         <?php foreach ($lista_s as $index => $l_seccion) : ?>
                             <option value="<?= $l_seccion['ID_SECCION'] ?>"> <?= $l_seccion['NOMBRE_SECCION'] ?></option>
                         <?php endforeach ?>

@@ -13,6 +13,8 @@ use App\Models\ProfesionesModel;
 use App\Models\TiposContratacionModel;
 use App\Models\PuestosTrabajoModel;
 use App\Models\SubSeccionesModel;
+use App\Models\TelefonosModel;
+use App\Models\DomiciliosModel;
 
 
 
@@ -83,7 +85,7 @@ class Empleados extends BaseController
                 'APELLIDO_PATERNO'   => 'required',
                 'APELLIDO_MATERNO'   => 'required',
                 'FECHA_NACIMIENTO'   => 'valid_date[Y-m-d]',
-                'DIRECCION'          => 'required',
+                //'DIRECCION'          => 'required',
                 'NUMERO_DOCUMENTO'   => 'required',
                 'FECHA_EXPEDICION'   => 'valid_date[Y-m-d]',
                 'NIT'                => 'required',
@@ -94,11 +96,13 @@ class Empleados extends BaseController
                 'SALARIO'            => 'numeric',
                 'CORREO_ELECTRONICO_PERSONAL'       => 'valid_email',
                 'CORREO_ELECTRONICO_INSTITUCIONAL'  => 'valid_email',
-                'TELEFONO_MOVIL'     => 'string',
-                'TELEFONO'           => 'string',
+                /* 'TELEFONO_MOVIL'     => 'string',
+                'TELEFONO'           => 'string', */
                 'HORARIO_TRABAJO'    => 'string',
 
             ])) { 
+                $codigo_empleado = ($this->request->getVar('CODIGO_EMPLEADO') != null)? $this->request->getVar('CODIGO_EMPLEADO'): $this->get_codigo_empleado();
+                
                 (new EmpleadosModel())->save([
                     'ID_EMPLEADO'           => $this->request->getvar('ID_EMPLEADO'),
                     'ID_SUB_SECCION'        => $this->request->getVar('ID_SUB_SECCION'),
@@ -110,13 +114,13 @@ class Empleados extends BaseController
                     'ID_TIPO_CONTRATACION'  => $this->request->getVar('ID_TIPO_CONTRATACION'),
                     'ID_MUNICIPIO'          => $this->request->getVar('ID_MUNICIPIO'),
                     'ID_PROFESION_OFICIO'   => $this->request->getVar('ID_PROFESION_OFICIO'),
-                    'CODIGO_EMPLEADO'       => $this->request->getVar('CODIGO_EMPLEADO'),
+                    'CODIGO_EMPLEADO'       => $codigo_empleado,
                     'NOMBRE_PRIMERO'        => $this->request->getVar('NOMBRE_PRIMERO'),
                     'NOMBRE_SEGUNDO'        => $this->request->getVar('NOMBRE_SEGUNDO'),
                     'APELLIDO_PATERNO'      => $this->request->getVar('APELLIDO_PATERNO'),
                     'APELLIDO_MATERNO'      => $this->request->getVar('APELLIDO_MATERNO'),
                     'FECHA_NACIMIENTO'      => $this->request->getVar('FECHA_NACIMIENTO'),
-                    'DIRECCION'             => $this->request->getVar('DIRECCION'),
+                    //'DIRECCION'             => $this->request->getVar('DIRECCION'),
                     'NUMERO_DOCUMENTO'      => $this->request->getVar('NUMERO_DOCUMENTO'),
                     'FECHA_EXPEDICION'      => $this->request->getVar('FECHA_EXPEDICION'),
                     'NIT'                   => $this->request->getVar('NIT'),
@@ -127,8 +131,8 @@ class Empleados extends BaseController
                     'SALARIO'               => $this->request->getVar('SALARIO'),
                     'CORREO_ELECTRONICO_INSTITUCIONAL' => $this->request->getVar('CORREO_ELECTRONICO_INSTITUCIONAL'),
                     'CORREO_ELECTRONICO_PERSONAL'      => $this->request->getVar('CORREO_ELECTRONICO_PERSONAL'),
-                    'TELEFONO'              => $this->request->getVar('TELEFONO'),
-                    'TELEFONO_MOVIL'        => $this->request->getVar('TELEFONO_MOVIL'),
+                    // 'TELEFONO'              => $this->request->getVar('TELEFONO'),
+                    // 'TELEFONO_MOVIL'        => $this->request->getVar('TELEFONO_MOVIL'),
                     // 'NIVEL_ESTUDIOS'        => $this->request->getVar('NIVEL_ESTUDIOS'),
                     'NIVEL_ESTUDIOS'        => 'Universidad',
                     'ID_EMPLEADO_JEFE'      => $this->request->getVar('ID_EMPLEADO_JEFE'),
@@ -152,8 +156,10 @@ class Empleados extends BaseController
 			if ($this->validate([
 				'ID_EMPLEADO'   => 'required|numeric'
 			])) {
-				(new EmpleadosModel())->where('ID_EMPLEADO', $this->request->getVar('ID_EMPLEADO'))->delete();
-				$exito = true;
+                (new TelefonosModel())->where('ID_EMPLEADO', $this->request->getVar('ID_EMPLEADO'))->delete();
+                (new DomiciliosModel())->where('ID_EMPLEADO', $this->request->getVar('ID_EMPLEADO'))->delete();
+                (new EmpleadosModel())->where('ID_EMPLEADO', $this->request->getVar('ID_EMPLEADO'))->delete();
+                $exito = true;
 			} 
 			return $this->data_vista('eliminar', $exito);
 		} 

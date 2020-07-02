@@ -1,4 +1,5 @@
 function editar_estado(id, usuario, rol, nombres, apellidos){
+    limpiar_validaciones();
     document.querySelector('#ID_USUARIO').value = id;
     document.querySelector('#USUARIO').value = usuario;
     document.querySelector('#ID_ROL').value = rol;
@@ -15,4 +16,5 @@ function limpiar(){
     document.querySelector('#CONFIRMAR_CONTRASENIA').value = '';
     
     $("#btn_submit").attr('disabled', 'disabled');
+    limpiar_validaciones();
 }

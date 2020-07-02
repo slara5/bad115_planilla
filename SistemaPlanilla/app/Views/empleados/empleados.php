@@ -74,7 +74,7 @@
               <th>Apellido</th>
               <th>Salario</th>
               <th>Correos</th>
-              <th>Telefonos</th>
+              <!-- <th>Telefonos</th> -->
               <th>Puesto</th>
               <th>Acciones</th>
             </tr>
@@ -89,15 +89,13 @@
                 <td><?= $empleado['APELLIDO_PATERNO']?> <br> <?=$empleado['APELLIDO_MATERNO']?></td>
                 <td><?= '$ '.$empleado['SALARIO']?></td>
                 <td><?= $empleado['CORREO_ELECTRONICO_PERSONAL']?> <br><?= $empleado['CORREO_ELECTRONICO_INSTITUCIONAL']?></td>
-                <td><?= $empleado['TELEFONO_MOVIL']?> <br> <?=$empleado['TELEFONO']?></td>
+                
                 <td><?= $puestoModel->get($empleado['ID_PUESTO'])[0]['DESCRIPCION_PUESTO']?></td>
 
                 <td class="row d-flex justify-content-around">
-                  <form action="<?= $url_eliminar ?>" method="post" class=" col-5">
-                    <?= csrf_field() ?>
-                    <input type="hidden" name="ID_EMPLEADO" value="<?= $empleado['ID_EMPLEADO'] ?>">
-                    <button class="btn btn-danger"><i class="icon fas fa-trash"></i></button>
-                  </form>
+                    <button type="button" onclick="eliminar(<?= $empleado['ID_EMPLEADO'] ?>)" class="btn btn-danger col-5" data-toggle="modal" data-target="#eliminarModal">
+                    <i class="icon fas fa-trash"></i>
+                    </button>
                   <button class="btn btn-primary col-5" 
                   onclick="editar_estado(
                     <?= $empleado['ID_EMPLEADO'] ?>,
@@ -107,7 +105,7 @@
                     '<?= $empleado['APELLIDO_PATERNO'] ?>',
                     '<?= $empleado['APELLIDO_MATERNO'] ?>',
                     '<?= $empleado['FECHA_NACIMIENTO'] ?>',
-                    '<?= $empleado['DIRECCION'] ?>',
+                    
                     '<?= $empleado['NUMERO_DOCUMENTO'] ?>',
                     '<?= $empleado['FECHA_EXPEDICION'] ?>',
                     '<?= $empleado['NIT'] ?>',
@@ -118,8 +116,7 @@
                     <?= $empleado['SALARIO'] ?>,
                     '<?= $empleado['CORREO_ELECTRONICO_INSTITUCIONAL'] ?>',
                     '<?= $empleado['CORREO_ELECTRONICO_PERSONAL'] ?>',
-                    '<?= $empleado['TELEFONO'] ?>',
-                    '<?= $empleado['TELEFONO_MOVIL'] ?>',
+                    
                     '<?= $empleado['HORARIO_TRABAJO'] ?>',
                     <?= $empleado['ID_PUESTO'] ?>,
                     <?= $empleado['ID_PROFESION_OFICIO'] ?>,
@@ -147,7 +144,7 @@
               <th>Apellido</th>
               <th>Salario</th>
               <th>Correos</th>
-              <th>Telefonos</th>
+              <!-- <th>Telefonos</th> -->
               <th>Puesto</th>
               <th>Acciones</th>
             </tr>
@@ -219,13 +216,13 @@
                     </div>
 
                 </div>
-                <div class="form-group">
+                <!-- <div class="form-group">
                     <label for="">Dirección *</label>
                     <input name="DIRECCION" onkeyup="validar_string_con_longitud(this, 15)" onblur="validar_string_con_longitud(this, 15)" type="text" class="form-control" id="DIRECCION" placeholder="Calle ## pasaje tal casa ##">
                     <div class="invalid-feedback" style="display:none">
                             Direccion invalida: <strong>La direccion es muy corta</strong>
                     </div>
-                </div>
+                </div> -->
                 <div class="form-group">
                     <label for="">DUI</label>
                     <input name="NUMERO_DOCUMENTO" onkeyup="validar_string_formato(this, '00000000-0', '-')" onblur="validar_string_formato(this, '00000000-0', '-')" type="text" class="form-control" id="NUMERO_DOCUMENTO" placeholder="00000000-0">
@@ -292,7 +289,7 @@
                 </div>
                 <div class="form-group">
                     <label for="">Salario</label>
-                    <input name="SALARIO" onkeyup="validar_numero(this, 300)" onblur="validar_numero(this, 300)" type="number" class="form-control" id="SALARIO" placeholder="300">
+                    <input name="SALARIO" step="0.01" min="300" onkeyup="validar_numero(this, 300)" onblur="validar_numero(this, 300)" type="number" class="form-control" id="SALARIO" placeholder="300">
                     <div class="invalid-feedback" style="display:none">
                     Salario invalido: <strong>Salario debe ser mayor que el minimo: 300</strong>
                     </div>
@@ -303,7 +300,7 @@
 
                 <div class="form-group">
                     <label>Sub Seccion</label>
-                    <select name="ID_SUB_SECCION" id="ID_SUB_SECCION"  class="form-control select2 " style="width: 100%;">
+                    <select required name="ID_SUB_SECCION" id="ID_SUB_SECCION"  class="form-control select2 " style="width: 100%;">
                         <?php foreach ($sub_secciones as $index => $sub_seccion) : ?>
                             <option value="<?= $sub_seccion['ID_SUB_SECCION'] ?>"><?= $sub_seccion['NOMBRE_SUB_SECCION'] ?></option>
                         <?php endforeach ?>
@@ -311,7 +308,7 @@
                 </div>
                 <div class="form-group">
                     <label>Estado</label>
-                    <select name="ID_ESTADO" id="ID_ESTADO" class="form-control select2 " style="width: 100%;">
+                    <select required name="ID_ESTADO" id="ID_ESTADO" class="form-control select2 " style="width: 100%;">
                         <?php foreach ($estado_empleados as $index => $estado) : ?>
                             <option value="<?= $estado['ID_ESTADO'] ?>"><?= $estado['NOMBRE_ESTADO'] ?></option>
                         <?php endforeach ?>
@@ -319,7 +316,7 @@
                 </div>
                 <div class="form-group">
                     <label>Estado Civil</label>
-                    <select name="ID_ESTADO_CIVIL" id="ID_ESTADO_CIVIL" class="form-control select2 " style="width: 100%;">
+                    <select required name="ID_ESTADO_CIVIL" id="ID_ESTADO_CIVIL" class="form-control select2 " style="width: 100%;">
                         <?php foreach ($estados_civil as $index => $estado) : ?>
                             <option value="<?= $estado['ID_ESTADO_CIVIL'] ?>"><?= $estado['NOMBRE_ESTADO_CIVIL'] ?></option>
                         <?php endforeach ?>
@@ -327,7 +324,7 @@
                 </div>
                 <div class="form-group">
                     <label>AFP</label>
-                    <select name="ID_AFP" id="ID_AFP" class="form-control select2 " style="width: 100%;">
+                    <select required name="ID_AFP" id="ID_AFP" class="form-control select2 " style="width: 100%;">
                         <?php foreach ($afps as $index => $afp) : ?>
                             <option value="<?= $afp['ID_AFP'] ?>"><?= $afp['NOMBRE_AFP'] ?></option>
                         <?php endforeach ?>
@@ -335,7 +332,7 @@
                 </div>
                 <div class="form-group">
                     <label>puesto</label>
-                    <select name="ID_PUESTO" id="ID_PUESTO" class="form-control select2 " style="width: 100%;">
+                    <select required name="ID_PUESTO" id="ID_PUESTO" class="form-control select2 " style="width: 100%;">
                         <?php foreach ($puestos_trabajo as $index => $puesto) : ?>
                             <option value="<?= $puesto['ID_PUESTO'] ?>"><?= $puesto['DESCRIPCION_PUESTO'] ?></option>
                         <?php endforeach ?>
@@ -343,7 +340,7 @@
                 </div>
                 <div class="form-group">
                     <label>Genero</label>
-                    <select name="ID_GENERO" id="ID_GENERO" class="form-control select2 " style="width: 100%;">
+                    <select required name="ID_GENERO" id="ID_GENERO" class="form-control select2 " style="width: 100%;">
                         <?php foreach ($generos as $index => $genero) : ?>
                             <option value="<?= $genero['ID_GENERO'] ?>"><?= $genero['DESCRIPCION_GENERO'] ?></option>
                         <?php endforeach ?>
@@ -352,7 +349,7 @@
                 </div>
                 <div class="form-group">
                     <label>Tipo Contratacion</label>
-                    <select name="ID_TIPO_CONTRATACION" id="ID_TIPO_CONTRATACION" class="form-control select2 " style="width: 100%;">
+                    <select required name="ID_TIPO_CONTRATACION" id="ID_TIPO_CONTRATACION" class="form-control select2 " style="width: 100%;">
                         <?php foreach ($tipos_contratacion as $index => $contratacion) : ?>
                             <option value="<?= $contratacion['ID_TIPO_CONTRATACION'] ?>"><?= $contratacion['NOMBRE_CONTRATACION'] ?></option>
                         <?php endforeach ?>
@@ -360,7 +357,7 @@
                 </div>
                 <div class="form-group">
                     <label>Muncipio</label>
-                    <select name="ID_MUNICIPIO" id="ID_MUNICIPIO" class="form-control select2 " style="width: 100%;">
+                    <select required name="ID_MUNICIPIO" id="ID_MUNICIPIO" class="form-control select2 " style="width: 100%;">
                         <?php foreach ($municipios as $index => $municipio) : ?>
                             <option value="<?= $municipio['ID_MUNICIPIO'] ?>"><?= $municipio['NOMBRE_MUNICIPIO'] ?></option>
                         <?php endforeach ?>
@@ -368,7 +365,7 @@
                 </div>
                 <div class="form-group">
                     <label>Profesion u Oficio</label>
-                    <select name="ID_PROFESION_OFICIO" id="ID_PROFESION_OFICIO" class="form-control select2 " style="width: 100%;">
+                    <select required name="ID_PROFESION_OFICIO" id="ID_PROFESION_OFICIO" class="form-control select2 " style="width: 100%;">
                         <?php foreach ($profesiones as $index => $profesion) : ?>
                             <option value="<?= $profesion['ID_PROFESION_OFICIO'] ?>"><?= $profesion['NOMBRE_PROFESION'] ?></option>
                         <?php endforeach ?>
@@ -388,7 +385,7 @@
                     Correo invalido: <strong>Por favor ingresar un correo valido: example@example.com</strong>
                     </div>
                 </div>
-                <div class="form-group">
+               <!--  <div class="form-group">
                     <label for="">Telefono Celular</label>
                     <input name="TELEFONO_MOVIL" onkeyup="validar_numero(this, 60000000, 79999999)" onblur="validar_numero(this, 60000000, 79999999)" type="text" class="form-control" id="TELEFONO_MOVIL" placeholder="77777777">
                     <div class="invalid-feedback" style="display:none">
@@ -401,14 +398,14 @@
                     <div class="invalid-feedback" style="display:none">
                     Telefono Celular invalido: <strong>Telefono valido ejemplo: 22222222</strong>
                     </div>
-                </div>
+                </div> -->
                 <div class="form-group">
                     <label for="">Horario de trabajo</label>
                     <input name="HORARIO_TRABAJO" type="text" class="form-control" id="HORARIO_TRABAJO" placeholder="6 AM - 6 PM">
                 </div>
                 <div class="form-group">
                     <label>Jefe De Empleado</label>
-                    <select name="ID_EMPLEADO_JEFE" id="ID_EMPLEADO_JEFE" class="form-control select2 " style="width: 100%;">
+                    <select required name="ID_EMPLEADO_JEFE" id="ID_EMPLEADO_JEFE" class="form-control select2 " style="width: 100%;">
                         <?php foreach ($empleados as $index => $empleado) : ?>
                             <option value="<?= $empleado['ID_EMPLEADO'] ?>">
                                 <?= $empleado['APELLIDO_PATERNO'] . ' ' . $empleado['APELLIDO_MATERNO'] . ',' . $empleado['NOMBRE_PRIMERO'] . ' ' . $empleado['NOMBRE_SEGUNDO'] ?></option>
@@ -423,6 +420,34 @@
             <button id="btn_submit" type="submit" class="btn btn-primary col-10 offset-1" disabled >Crear Empleado</button>
         </div>
     </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+<!-- Modal Eliminar -->
+<div class="modal" id="eliminarModal" tabindex="-1" role="dialog" aria-labelledby="eliminarModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content  bg-danger">
+      <div class="modal-header">
+        <h5 class="modal-title" id="eliminarModalLabel">Eliminar</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+      <h4>¿Esta seguro que desea eliminar <?= $nombre_obj ?> seleccionado?</h4>
+      <form action="<?= $url_eliminar ?>" method="post" class="mt-4 row d-flex justify-content-around">
+          <?= csrf_field() ?>
+          <input type="hidden" id="id_eliminar" name="ID_EMPLEADO">
+          <button type="button" class="btn btn-outline-light col-4" data-dismiss="modal">Cancelar</button>
+          <button type="submit" class="btn btn-outline-light col-4" >
+          Eliminar
+          </button>
+      </form>
       </div>
     </div>
   </div>

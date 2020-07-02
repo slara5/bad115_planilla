@@ -73,6 +73,7 @@
                             <th>Nombre</th>
                             <th>Menu Padre</th>
                             <th>Ruta</th>
+                            <th>Icono</th>
                             <th>Acciones</th>
                         </tr>
                     </thead>
@@ -81,18 +82,20 @@
                             <tr>
                                 <td><?= $index + 1 ?></td>
                                 <td><?= $menus['NOMBRE_MENU'] . ' ' ?></td>
+
                                 <?php if($menus['ID_MENU_PADRE'] != NULL) :?>
                                     <td><?= $menusModel->get($menus['ID_MENU_PADRE'])[0]['NOMBRE_MENU'] ?></td>
-                                    <td><?= $menus['RUTA'] . ' ' ?></td>
+                                    <td><?= $menus['RUTA_MENU'] . ' ' ?></td>
                                 <?php else :?>
                                     <td>NINGUNO</td>
                                     <td>NO APLICA</td>
                                 <?php endif; ?>
+                                <td><i class="<?= $iconosModel->get($menus['ID_ICONO'])[0]['NOMBRE_ICONO'] ?>"></i></td>
                                 <td class="row d-flex justify-content-around">
                                     <form action="<?= $url_eliminar?>" method="post" class=" col-5">
                                     <?= csrf_field() ?>
                                     <input type="hidden" name="ID_MENU" value="<?=$menus['ID_MENU'] ?>">
-                                        <button class="btn btn-danger  btn-block">Eliminar</button>
+                                        <button class="btn btn-danger  btn-block">Borrar</button>
                                     </form>
                                     <button class="btn btn-primary col-5 btn-sm" 
                                     onclick="editar_estado(<?= $menus['ID_MENU'] ?>, '<?= $menus['NOMBRE_MENU'] ?>')" 
@@ -107,6 +110,7 @@
                             <th>Nombre</th>
                             <th>Menu Padre</th>
                             <th>Ruta</th>
+                            <th>Icono</th>
                             <th>Acciones</th>
                         </tr>
                     </tfoot>
@@ -141,6 +145,14 @@
                         </div>
                     </div>
                     <div class="form-group">
+                        <label>Icono</label>
+                        <select name="ID_ICONO" id="ID_ICONO" class="form-control select2">
+                            <?php foreach ($iconos as $index => $icono) : ?>
+                                <option value="<?= $icono['ID_ICONO'] ?>"><?= $icono['NOMBRE_ICONO'] ?></option>
+                            <?php endforeach ?>
+                        </select>
+                    </div>
+                    <div class="form-group">
                     <div class="form-check">
                           <input class="form-check-input" type="checkbox" id="show-child">
                           <label class="form-check-label">Es Submenú</label>
@@ -151,7 +163,7 @@
                     <input type="hidden" name="HIJO" id="HIJO">
                     <div class="form-group">
                         <label>Menu Padre</label>
-                        <select name="ID_MENU_PADRE" id="ID_MENU_PADRE" class="form-control select2">
+                        <select  name="ID_MENU_PADRE" id="ID_MENU_PADRE" class="form-control select2">
                             <?php foreach ($menusPadre as $index => $menusPadre) : ?>
                                 <option value="<?= $menusPadre['ID_MENU'] ?>"><?= $menusPadre['NOMBRE_MENU'] ?></option>
                             <?php endforeach ?>
@@ -159,7 +171,7 @@
                     </div>
                     <div class="form-group">
                         <label for="">Ruta del <?= $nombre_obj?></label>
-                        <input name="RUTA" id="RUTA" onkeyup="" onblur="" type="text" class="form-control" id="" placeholder="Ruta del <?= $nombre_obj?>">
+                        <input name="RUTA_MENU" id="RUTA_MENU" onkeyup="" onblur="" type="text" class="form-control" placeholder="Ruta del <?= $nombre_obj?>">
                         <div class="invalid-feedback" style="display:none">
                             El nombre no debe comenzar con números ni caracteres especiales
                         </div>

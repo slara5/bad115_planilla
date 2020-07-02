@@ -26,4 +26,8 @@ class TiposContratacionModel extends Model
             return [$this->find($id)];
         }
     }
+
+    function get_nombre($id){
+        return ($this->find($id))['NOMBRE_CONTRATACION'];
+    }
 }

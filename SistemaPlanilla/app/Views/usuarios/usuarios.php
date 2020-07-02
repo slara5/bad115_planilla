@@ -18,12 +18,12 @@
   <?php if ($exito) : ?>
     <div class="alert alert-success alert-dismissible">
       <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
-      <h5><i class="icon fas fa-check"></i> <?= $nombre_obj ?> eliminado con exito</h5>
+      <h5><i class="icon fas fa-check"></i> <?= $nombre_obj ?> activado/desactivado con exito</h5>
     </div>
   <?php else : ?>
     <div class="alert alert-danger alert-dismissible">
       <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
-      <h5><i class="icon fas fa-ban"></i> ERROR AL ELIMINAR <?= strtoupper($nombre_obj) ?>!</h5>
+      <h5><i class="icon fas fa-ban"></i> ERROR AL ACTIVAR/DESACTIVAR <?= strtoupper($nombre_obj) ?>!</h5>
     </div>
   <?php endif ?>
 <?php endif ?>
@@ -164,7 +164,7 @@
         
               <div class="form-group">
                 <label>Rol</label>
-                <select name="ID_ROL" id="ID_ROL" class="form-control select2">
+                <select required name="ID_ROL" id="ID_ROL" class="form-control select2">
                   <?php foreach ($roles as $index => $rol) : ?>
                     <option value="<?= $rol['ID_ROL'] ?>"><?= $rol['NOMBRE_ROL'] ?></option>
                   <?php endforeach ?>

@@ -17,7 +17,7 @@ function Buscar() {
        
        }
      };
-     xmlhttp.open("GET", "http://sispla.com.devel/Puestos_trabajo/view/", true);
+     xmlhttp.open("GET", "../Puestos_trabajo/view/", true);
      xmlhttp.send();  
    
    }
@@ -32,7 +32,7 @@ function Buscar() {
        
        }
      };
-     xmlhttp.open("GET", "http://sispla.com.devel/Puestos_trabajo/view/"+par, true);
+     xmlhttp.open("GET", "../Puestos_trabajo/view/"+par, true);
      xmlhttp.send();  
      
    }
@@ -76,7 +76,7 @@ function Buscar() {
             
             }
           };
-          xmlhttp.open("GET", "http://sispla.com.devel/Puestos_trabajo/delete/"+ident, true);
+          xmlhttp.open("GET", "../Puestos_trabajo/delete/"+ident, true);
           xmlhttp.send();
         }
       })
@@ -87,6 +87,8 @@ function Buscar() {
         //codigo
       
       $("#unidadesModal").modal("show");
+      document.getElementById("formulario").reset(); 
+  
       
               });
 

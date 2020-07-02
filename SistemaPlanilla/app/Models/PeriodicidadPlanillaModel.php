@@ -26,4 +26,8 @@ class PeriodicidadPlanillaModel extends Model
             return [$this->find($id)];
         }
     }
+
+    function get_descripcion($id){
+        return ($this->find($id))['DESC_PERIOCIDAD'];
+    }
 }

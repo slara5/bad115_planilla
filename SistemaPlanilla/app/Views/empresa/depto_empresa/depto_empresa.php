@@ -64,13 +64,13 @@ echo view('empresa/depto_empresa/busqueda');
                     <input type="hidden" name="ID_DEPARTAMENTO_EMPRESA" id="ID_DEPARTAMENTO_EMPRESA">
                     <div class="form-group">
                         <label for="">Nombre de la unidad</label>
-                        <input name="NOMBRE_DEPARTAMENTO_EMPRESA" id="NOMBRE_DEPARTAMENTO_EMPRESA" onkeyup="validar_nombre(this)" onblur="validar_nombre(this)" type="text" class="form-control" placeholder="Nombre del departamento">
+                        <input name="NOMBRE_DEPARTAMENTO_EMPRESA" id="NOMBRE_DEPARTAMENTO_EMPRESA" onkeyup="validar_nombre(this)" onblur="validar_nombre(this)" type="text" class="form-control" placeholder="Nombre del departamento" required>
                         <div class="invalid-feedback" style="display:none">
                             El nombre no debe comenzar con números ni caracteres especiales
                         </div>
                     </div><div class="form-group">
                     <label>Unidades</label>
-                    <select name="ID_UNIDAD" id="ID_UNIDAD"  class="form-control select2" style="width: 100%;">
+                    <select required name="ID_UNIDAD" id="ID_UNIDAD"  class="form-control select2" style="width: 100%;">
                         <?php foreach ($lista_u as $index => $l_unidades) : ?>
                             <option value="<?= $l_unidades['ID_UNIDAD'] ?>"><?= $l_unidades['NOMBRE_UNIDAD'] ?></option>
                         <?php endforeach ?>

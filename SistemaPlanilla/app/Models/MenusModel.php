@@ -9,8 +9,9 @@ class MenusModel extends Model
 	protected $returnType 		= 'array';
 
 	protected $allowedFields 	= ['NOMBRE_MENU',
+									'ID_ICONO',
 									'ID_MENU_PADRE',
-									'RUTA'];
+									'RUTA_MENU'];
 
 	protected $validationRules 		= [];
 	protected $validationMessages 	= [];
