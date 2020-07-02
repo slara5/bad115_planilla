@@ -26,4 +26,15 @@ class TablaRentaModel extends Model
             return [$this->find($id)];
         }
     }
+
+    function buscar($termino){ //busqueda de ids, retorno ids en formato string
+        $movimiento = $this->select('ID_TABLA')
+                ->like('NOMBRE_TABLA', $termino)
+                ->findAll();
+        $id_string = (count($movimiento) != 0)? []:['0'];
+        for ($i=0; $i < count($movimiento); $i++) { 
+            $id_string[count($id_string)] = strval($movimiento[$i]['ID_TABLA']);
+        }
+        return $id_string;
+    }
 }

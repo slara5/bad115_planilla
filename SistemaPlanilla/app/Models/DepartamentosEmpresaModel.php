@@ -29,4 +29,20 @@ class DepartamentosEmpresaModel extends Model
             return [$this->find($id)];
         }
     }
+
+    function get_nombre_departamento($id){
+        $movimiento = $this->find($id);
+        return $movimiento['NOMBRE_DEPARTAMENTO_EMPRESA'];
+    }
+    
+    function buscar($termino){ //busqueda de ids, retorno ids en formato string
+        $movimiento = $this->select('ID_DEPARTAMENTO_EMPRESA')
+                ->like('NOMBRE_DEPARTAMENTO_EMPRESA', $termino)
+                ->findAll();
+        $id_string = (count($movimiento) != 0)? []:['0'];
+        for ($i=0; $i < count($movimiento); $i++) { 
+            $id_string[count($id_string)] = strval($movimiento[$i]['ID_DEPARTAMENTO_EMPRESA']);
+        }
+        return $id_string;
+    }
 }

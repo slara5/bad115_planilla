@@ -32,4 +32,15 @@ class EmpresaModel extends Model
     function get_periodicidad($id){
         return ($this->find($id))['ID_PERIOCIDAD'];
     }
+
+    function buscar($termino){ //busqueda de ids, retorno ids en formato string
+        $movimiento = $this->select('ID_EMPRESA')
+                ->like('NOMBRE_EMPRESA', $termino)
+                ->findAll();
+        $id_string = (count($movimiento) != 0)? []:['0'];
+        for ($i=0; $i < count($movimiento); $i++) { 
+            $id_string[count($id_string)] = strval($movimiento[$i]['ID_EMPRESA']);
+        }
+        return $id_string;
+    }
 }
