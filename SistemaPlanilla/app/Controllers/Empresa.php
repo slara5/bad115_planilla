@@ -13,12 +13,16 @@ class Empresa extends BaseController
 	{
 		$empresa  = ($empresa == []) ? (new EmpresaModel())->get() : $empresa;
 
-        $periodicidad_planilla     = (new PeriodicidadPlanillaModel())->get();
-        $tabla_renta = (new TablaRentaModel())->get();
+        $periodicidad     = (new PeriodicidadPlanillaModel())->get();
+        $tabla = (new TablaRentaModel())->get();
         $empresa          = $empresa;
 
 		$data = [
-			'empresa'       => $empresa,
+			'tablas'               => $tabla,
+			'tablaModel'          => new TablaRentaModel(), 
+			'periodicidades'               => $periodicidad,
+            'periodicidadModel'          => new PeriodicidadPlanillaModel(),
+			'empresas'       => $empresa,
 			'operacion'		=> $operacion,
 			'exito' 		=> $exito,
 			'nombre_obj'    => 'Empresa',
@@ -46,11 +50,31 @@ class Empresa extends BaseController
 		if ($this->request->getMethod() == 'post') {
 			$exito = false;
 			if ($this->validate([
-				'DESCRIPCION_GENERO'   => 'required|string'
+				'ID_TABLA'   => 'required',
+				'ID_PERIOCIDAD'   => 'required',
+				'NOMBRE_EMPRESA'   => 'required',
+				'PORCENTAJE_ISSS'   => 'required',
+				'NIT_EMPRESA'   => 'required',
+				'NUMERO_AFP_PATRONAL'   => 'required',
+				'PORCENTAJE_INSAFORP'   => 'required',
+				'LIMITE_ISSS'   => 'required',
+				'NUMERO_EMP_MAX_INSAFORP'   => 'required',
+				'SALARIO_MINIMO'   => 'required',
+				
+				
 			])) {
-				(new GenerosModel())->save([
-					'ID_GENERO' => $this->request->getVar('ID_GENERO'),
-					'DESCRIPCION_GENERO' => $this->request->getVar('DESCRIPCION_GENERO')
+				(new EmpresaModel())->save([
+					'ID_EMPRESA' => $this->request->getVar('ID_EMPRESA'),
+					'ID_TABLA' => $this->request->getVar('ID_TABLA'),
+					'ID_PERIOCIDAD' => $this->request->getVar('ID_PERIOCIDAD'),
+					'NOMBRE_EMPRESA' => $this->request->getVar('NOMBRE_EMPRESA'),
+					'PORCENTAJE_ISSS' => $this->request->getVar('PORCENTAJE_ISSS'),
+					'NIT_EMPRESA' => $this->request->getVar('NIT_EMPRESA'),
+					'NUMERO_AFP_PATRONAL' => $this->request->getVar('NUMERO_AFP_PATRONAL'),
+					'PORCENTAJE_INSAFORP' => $this->request->getVar('PORCENTAJE_INSAFORP'),
+					'LIMITE_ISSS' => $this->request->getVar('LIMITE_ISSS'),
+					'NUMERO_EMP_MAX_INSAFORP' => $this->request->getVar('NUMERO_EMP_MAX_INSAFORP'),
+					'SALARIO_MINIMO' => $this->request->getVar('SALARIO_MINIMO')
 				]);
 				$exito = true;
 			}
@@ -66,7 +90,7 @@ class Empresa extends BaseController
 			if ($this->validate([
 				'ID_EMPRESA'   => 'required|numeric'
 			])) {
-				(new GenerosModel())->where('ID_EMPRESA', $this->request->getVar('ID_EMPRESA'))->delete();
+				(new EmpresaModel())->where('ID_EMPRESA', $this->request->getVar('ID_EMPRESA'))->delete();
 				$exito = true;
 			}
 			return $this->data_vista('eliminar', $exito);
@@ -86,7 +110,7 @@ class Empresa extends BaseController
 				$termino = trim($this->request->getVar('termino'));
 				if ($termino != '') {
 					$generos_buscados = (new EmpresaModel())
-						->like('DESCRIPCION_GENERO', $termino)
+						->like('NOMBRE_EMPRESA', $termino)
 						->findAll();
 				}
 				$exito = (count($empresa_buscada) == 0) ? false : true;
