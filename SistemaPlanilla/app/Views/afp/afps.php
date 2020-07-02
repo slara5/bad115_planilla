@@ -78,25 +78,25 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <?php foreach ($afps as $index => $afps) : ?>
+                        <?php foreach ($afps as $index => $afp) : ?>
                             <tr>
                                 <td><?= $index + 1 ?></td>
-                                <td><?= $afps['NOMBRE_AFP'] . ' ' ?></td>
-                                <td><?= $afps['PORCENTAJE_LABORAL'] . ' %' ?></td>
-                                <td><?= $afps['PORCENTAJE_PATRONAL'] . ' %' ?></td>
-                                <td><?= '$ '.$afps['LIMITE_MAXIMO_AFP'] . ' ' ?></td>
+                                <td><?= $afp['NOMBRE_AFP'] . ' ' ?></td>
+                                <td><?= $afp['PORCENTAJE_LABORAL'] . ' %' ?></td>
+                                <td><?= $afp['PORCENTAJE_PATRONAL'] . ' %' ?></td>
+                                <td><?= '$ '.$afp['LIMITE_MAXIMO_AFP'] . ' ' ?></td>
                                 <td class="row d-flex justify-content-around">
                                     <form action="<?= $url_eliminar?>" method="post" class=" col-5">
                                     <?= csrf_field() ?>
-                                    <input type="hidden" name="ID_AFP" value="<?=$afps['ID_AFP'] ?>">
+                                    <input type="hidden" name="ID_AFP" value="<?=$afp['ID_AFP'] ?>">
                                     <button class="btn btn-danger"><i class="icon fas fa-trash"></i></button>
                                     </form>
-                                    <button class="btn btn-primary col-5 btn-sm" 
-                                    onclick="editar_estado(<?= $afps['ID_AFP'] ?>, 
-                                    '<?= $afps['NOMBRE_AFP'] ?>',
-                                    '<?= $afps['PORCENTAJE_LABORAL'] ?>',
-                                    '<?= $afps['PORCENTAJE_PATRONAL'] ?>',
-                                    '<?= $afps['LIMITE_MAXIMO_AFP'] ?>')" 
+                                    <button class="btn btn-primary col-5" 
+                                    onclick="editar_estado(<?= $afp['ID_AFP'] ?>, 
+                                    '<?= $afp['NOMBRE_AFP'] ?>',
+                                    '<?= $afp['PORCENTAJE_LABORAL'] ?>',
+                                    '<?= $afp['PORCENTAJE_PATRONAL'] ?>',
+                                    '<?= $afp['LIMITE_MAXIMO_AFP'] ?>',)" 
                                     data-toggle="modal" data-target="#afpModal">
                                     <i class="icon fas fa-edit"></i></button>
                                 </td>
@@ -127,7 +127,7 @@
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title" id="afpModalLabel"><?= $nombre_obj?></h5>
-                <button type="button" class="close" data-dismiss="modal" onclick="limpiar()" aria-label="Close">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
@@ -137,7 +137,7 @@
                     <input type="hidden" name="ID_AFP" id="ID_AFP">
                     <div class="form-group">
                         <label for="">Nombre de <?= $nombre_obj?> *</label>
-                        <input name="NOMBRE_AFP" id="NOMBRE_AFP" onkeyup="validar_nombre(this)" onblur="validar_nombre(this)" type="text" class="form-control" id="" placeholder="Nombre de <?= $nombre_obj?>">
+                        <input name="NOMBRE_AFP" id="NOMBRE_AFP" onkeyup="validar_nombre(this)" onblur="validar_nombre(this)" type="text" class="form-control" placeholder="Nombre de <?= $nombre_obj?>">
                         <div class="invalid-feedback" style="display:none">
                             El nombre no debe comenzar con números ni caracteres especiales
                         </div>

@@ -102,14 +102,14 @@ class Empresa extends BaseController
 	{
 		if ($this->request->getMethod() == 'post') {
 			$exito = false;
-			$generos_buscados = [];
+			$empresa_buscada = [];
 			$termino = '';
 			if ($this->validate([
 				'termino'   => 'required|string'
 			])) {
 				$termino = trim($this->request->getVar('termino'));
 				if ($termino != '') {
-					$generos_buscados = (new EmpresaModel())
+					$empresa_buscada = (new EmpresaModel())
 						->like('NOMBRE_EMPRESA', $termino)
 						->findAll();
 				}
