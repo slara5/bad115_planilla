@@ -82,7 +82,7 @@
               <tr>
                 <td><?= $index + 1 ?></td>
 
-                <td><?= $departamentoModel->get($presupuesto['ID_DEPARTAMENTO_EMPRESA'])[0]['NOMBRE_DEPARTAMENTO_EMPRESA']?></td>
+                <td><?= $departamentoModel->get_nombre_departamento($presupuesto['ID_DEPARTAMENTO_EMPRESA'])?></td>
                 <td><?= $presupuesto['ANIO']?></td>
                 <td><?= $presupuesto['MES']?></td>
                 <td><?= '$ '.$presupuesto['MONTO_PRESUPUESTOANUAL'] ?></td>

@@ -92,9 +92,11 @@ class RangoComision extends BaseController
 			])) {
 				$termino = trim($this->request->getVar('termino'));
 				if ($termino != '') {
-					$detalles_buscados = (new RangoComisionModel())
-						->like('ID_RANGO', $termino)
-						->findAll();
+					$array_tabla = (new EmpresaModel())->buscar($termino);
+
+                    $detalles_buscados = (new RangoComisionModel())
+                    ->orWhereIn('ID_EMPRESA', $array_tabla )
+                    ->findAll();
 				}
 				$exito = (count($detalles_buscados) == 0) ? false : true;
 			}
