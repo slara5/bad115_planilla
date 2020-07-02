@@ -42,7 +42,7 @@
         </div>
         <div class="card-body">
             <div class="row mb-3">
-                <div class="col-6">
+                <div class="col-4">
                 <?php if ($estatus != 'CERRADA') : ?>
                     <form action="<?= $url_cerrar ?>" method="post">
                         <?= csrf_field() ?>
@@ -51,9 +51,19 @@
                     </form>
                 <?php endif ?>
                 </div>
-                <div class="col-6">
-                    <button type="button" class="btn  btn-primary btn-block" data-toggle="modal" data-target="#domicilioModel" onclick="">
-                    <strong>Imprimir Planilla</strong></button>
+                <div class="col-4">
+                <form action="<?= $url_descargar_excel ?>" method="post">
+                        <?= csrf_field() ?>
+                        <button type="submit" class="btn  btn-primary btn-block" data-toggle="modal" data-target="#domicilioModel" onclick="">
+                        <strong>Descargar Planilla: Excel</strong></button>
+                    </form>
+                </div>
+                <div class="col-4">
+                <form action="<?= $url_descargar_pdf ?>" method="post">
+                        <?= csrf_field() ?>
+                        <button type="submit" class="btn  btn-primary btn-block" data-toggle="modal" data-target="#domicilioModel" onclick="">
+                        <strong>Descargar Planilla: PDF</strong></button>
+                    </form>
                 </div>
             </div>
 
@@ -106,7 +116,7 @@
                             <td><?= $detalle['DIAS_LABORADOS'] ?></td>
                             <td><?= $detalle['SEGURO_SOCIAL'] ?></td>
                             <td><?= $detalle['AFP'] ?></td>
-                            <td><?= $detalle['SEGURO_SOCIAL'] ?></td>
+                            <td><?= $detalle['RENTA'] ?></td>
                             <td><?= $detalle['SALARIO_LIQUIDO_DETALLE'] ?></td>
                         </tr>
                 <?php endforeach; ?>

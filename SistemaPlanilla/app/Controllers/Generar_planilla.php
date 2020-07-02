@@ -2,6 +2,8 @@
 
 namespace App\Controllers;
 
+
+
 use CodeIgniter\HTTP\Response;
 use App\Models\PlanillasModel;
 use App\Models\DetallesPlanillasModel;
@@ -11,6 +13,11 @@ use App\Models\EmpresaModel;
 use App\Models\EstatusPlanillasModel;
 use App\Models\TiposContratacionModel;
 
+
+use PhpOffice\PhpSpreadsheet\Spreadsheet;
+use PhpOffice\PhpSpreadsheet\Writer\Xlsx;
+use PhpOffice\PhpSpreadsheet\IOFactory;
+
 class Generar_planilla extends BaseController
 {
 
@@ -19,17 +26,9 @@ class Generar_planilla extends BaseController
 		$planilla  = ($parametros == []) ? '' : $parametros['planilla'];
 		$estatus  = ($parametros == []) ? '' : $parametros['estatus'];
 		$detalles_planillas  = ($parametros == []) ? '' : $parametros['detalles'];
-		
-		setlocale(LC_ALL, 'es_SV'); 
-		$periodo_nombre = (new PeriodicidadPlanillaModel())->get_descripcion((new EmpresaModel)->get_periodicidad(1));
-		$mes = strtoupper(strftime('%B', strtotime(date('Y-m-d'))));
-		$rango = '';
-		
-		if((new EmpresaModel)->get_periodicidad(1) == 2){//quincenal
-			$rango = (date('d') < 16) ? 'PRIMERA QUINCENA DE ': 'SEGUNDA QUINCENA DE ';
-		}
-		$rango = $rango.$mes;
 
+		$periodo_nombre = (new PeriodicidadPlanillaModel())->get_descripcion((new EmpresaModel)->get_periodicidad(1));
+		$rango = $this->get_rango();
 
 		$data = [
 			'contratacionModel' =>new TiposContratacionModel(),
@@ -43,8 +42,8 @@ class Generar_planilla extends BaseController
 			'exito' 		=> $exito,
 			'nombre_obj'    => 'Generar Planilla',
 			'termino'       => $termino,
-			'url_guardar'	=> base_url() . '/generar_planilla/guardar',
-			'url_eliminar'  => base_url() . '/generar_planilla/eliminar',
+			'url_descargar_excel'	=> base_url() . '/generar_planilla/descargar_excel',
+			'url_descargar_pdf'  => base_url() . '/generar_planilla/descargar_pdf',
 			'url_buscar'    => base_url() . '/generar_planilla/buscar',
 			'url_calcular'  => base_url() . '/generar_planilla/calcular',
 			'url_cerrar'  => base_url() . '/generar_planilla/cerrar',
@@ -58,10 +57,36 @@ class Generar_planilla extends BaseController
 			);
 	}
 
+
 	public function index()
 	{
 		return $this->get_planilla('planilla_existe');
 		
+	}
+
+	public function descargar_pdf(){
+
+	}
+
+	public function descargar_excel(){
+
+		$planilla_codigo = $this->codigo_planilla();
+		$rango = $this->get_rango();	
+
+
+		return crear_excel($planilla_codigo, $rango);
+		
+	}
+
+	protected function get_rango(){
+		setlocale(LC_ALL, 'es_SV'); 
+		$mes = strtoupper(strftime('%B', strtotime(date('Y-m-d'))));
+		$rango = '';
+		
+		if((new EmpresaModel)->get_periodicidad(1) == 2){//quincenal
+			$rango = (date('d') < 16) ? 'PRIMERA QUINCENA DE ': 'SEGUNDA QUINCENA DE ';
+		}
+		return $rango.$mes;
 	}
 	
 
@@ -87,6 +112,7 @@ class Generar_planilla extends BaseController
 	protected function get_planilla($op = ''){
 		$planilla_codigo = $this->codigo_planilla();
 		$exito = false;
+		
 
 		if($planilla_codigo != ''){ //la planilla ya existe
 			$this->calcular_planilla(true);
@@ -99,6 +125,7 @@ class Generar_planilla extends BaseController
 			$detalles_planillas = (new DetallesPlanillasModel())->get_destalles($id_planilla);
 		}
 
+		
 		if($exito){ 
 			return $this->data_vista($operacion, $exito, [
 				'estatus' => $estatus, 
@@ -106,6 +133,7 @@ class Generar_planilla extends BaseController
 				'detalles' => $detalles_planillas,
 				]);
 		}else{ //si no existe planilla, enviar parametros vacios
+			$operacion = '';
 			return $this->data_vista($operacion, $exito, []);
 		}
 	}

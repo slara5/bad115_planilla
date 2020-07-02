@@ -100,11 +100,11 @@ function crear_sidebar(
         $rol = session()->get('ID_ROL');
 
         $query = $db->query("SELECT MENUS.ID_MENU, MENUS.ID_ICONO, MENUS.NOMBRE_MENU, ICONOS.NOMBRE_ICONO
-            FROM menus
-            INNER JOIN ICONOS ON iconos.ID_ICONO = menus.ID_ICONO
-            INNER JOIN permisos ON MENUS.ID_MENU = permisos.ID_MENU
-            INNER JOIN roles ON permisos.ID_ROL = roles.ID_ROL
-            WHERE roles.ID_ROL = ". $db->escape($rol) ." AND menus.ID_MENU_PADRE IS NULL");
+            FROM MENUS
+            INNER JOIN ICONOS ON ICONOS.ID_ICONO = MENUS.ID_ICONO
+            INNER JOIN PERMISOS ON MENUS.ID_MENU = PERMISOS.ID_MENU
+            INNER JOIN ROLES ON PERMISOS.ID_ROL = ROLES.ID_ROL
+            WHERE ROLES.ID_ROL = ". $db->escape($rol) ." AND MENUS.ID_MENU_PADRE IS NULL");
 
         foreach($query->getResult() as $query) {
             $submenus = $db->query(" 
