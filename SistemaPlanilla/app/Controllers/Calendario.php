@@ -13,7 +13,8 @@ class Calendario extends BaseController
 
 	protected function data_vista($operacion = '', $exito = false, $eventos = [], $termino = '')
 	{
-		$eventos  = ($eventos == []) ? (new EventosModel())->get() : $eventos;
+        $eventos  = ($eventos == []) ? (new EventosModel())->get() : $eventos;
+        
 
 		$data = [
             'eventos'    => $eventos,
@@ -39,7 +40,7 @@ class Calendario extends BaseController
 	}
 
 	public function index()
-	{
+	{   
         return $this->data_vista();
     }
     
@@ -68,10 +69,15 @@ class Calendario extends BaseController
     }
 
     public function eliminar(){
-        (new GenerosModel())->where('ID_EVENTO', $this->request->getVar('ID_EVENTO'))->delete();
+        $exito = 'fallo';
+        if ($this->request->getMethod() == 'post'){
+            if ($this->validate([
+                'ID_EVENTO'   => 'required',
+            ])) {
+                 (new EventosModel())->where('ID_EVENTO', $this->request->getVar('ID_EVENTO'))->delete();
+                 $exito = 'fallo';
+            }
+        }
         return 'exito';
     }
-
-
-
 }
